@@ -14,12 +14,12 @@ const loggedinUser = { email: 'user@appsus.com', fullname: 'Mahatma Appsus' }
 
 // _createEmails();
 
-function query(){
+function query() {
     return Promise.resolve(gEmails);
 }
 
 
-function createEmail(subject, body, composer, receiver = loggedinUser.email){
+function createEmail(subject, body, composer, receiver = loggedinUser.email) {
     const email = {
         id: utilService.makeId(4),
         subject,
@@ -34,7 +34,7 @@ function createEmail(subject, body, composer, receiver = loggedinUser.email){
     _saveEmailsToStorage();
 }
 
-function _createEmails(){
+function _createEmails() {
     createEmail('wowwww', 'yesssss', 'Raz@Gmail.com');
     createEmail('yayyyy', 'helloooo', 'momo@Gmail.com');
     createEmail('amazing', 'to do list', 'shlomi@Gmail.com');
@@ -42,10 +42,10 @@ function _createEmails(){
     createEmail('amazing', 'to do list', 'user@appsus.com', 'receiver@gmail.com');
 }
 
-function _saveEmailsToStorage(){
-    storageService.saveToStorage(EMAIL_KEY,gEmails)
+function _saveEmailsToStorage() {
+    storageService.saveToStorage(EMAIL_KEY, gEmails)
 }
 
-function getLoggedUser(){
+function getLoggedUser() {
     return loggedinUser;
 }
