@@ -5,7 +5,7 @@ class _AppHeader extends React.Component {
   render() {
 
     return (
-        <div className="header">
+        <div className="header main-layout">
             <div className="logo">
                 <h1>Appsus</h1>
             </div>

@@ -1,4 +1,4 @@
-export class Notes extends React.Component {
+export class NotesApp extends React.Component {
 
     render(){
         return(
