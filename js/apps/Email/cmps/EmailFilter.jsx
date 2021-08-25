@@ -11,7 +11,8 @@ export class EmailFilter extends React.Component {
 
 
     handleChange = ({target}) => {
-        this.setState({filterBy: {...this.state.filterBy, searchTxt: target.value}}, () => {
+
+        this.setState({filterBy: {...this.state.filterBy, searchTxt: target.value, folder: this.props.currentFolder}}, () => {
             this.props.onSetFilter(this.state.filterBy);
         })
     }

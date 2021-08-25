@@ -20,6 +20,9 @@ export class EmailApp extends React.Component {
         this.loadEmails();
     }
 
+    componentWillUnmount() {
+        emailService.cleanAllCheckedEmails();
+    }
 
     loadEmails = () => {
         const emails = emailService.query(this.state.filterBy).then(emails => {
@@ -37,8 +40,30 @@ export class EmailApp extends React.Component {
     }
 
     onSetFolderFilter = (folder) => {
-        this.setState({ ...this.state, filterBy: { ...this.state.filterBy, folder } }, this.loadEmails)
-        console.log(this.state)
+        let thisFilterBy = this.state.filterBy;
+
+        if(!thisFilterBy){
+            thisFilterBy = {
+                folder,
+                searchTxt: '',
+                isRead: false,
+                isStared: false,
+            }
+        } else {
+            thisFilterBy = {...thisFilterBy, folder: folder}
+
+        }
+        
+        this.setState({...this.state, filterBy: thisFilterBy}, this.loadEmails)
+    }
+
+    onCheckEmail = (emailId) => {
+        emailService.toggleCheckEmailById(emailId);
+    }
+
+    onCheckAllEmails = (isChecked) => {
+        emailService.toggleCheckAllEmails(this.state.filterBy, isChecked);
+        this.loadEmails();
     }
     onCreateNewEmail = () => {
         let { isNewEmail } = this.state
@@ -70,9 +95,9 @@ export class EmailApp extends React.Component {
 
                 <div className="emails-right-layout">
                     <div className="email-filter">
-                        <EmailFilter onSetFilter={this.onSetFilter} />
+                        <EmailFilter onSetFilter={this.onSetFilter} currentFolder={this.state.filterBy ? this.state.filterBy.folder : 'inbox'}/>
                     </div>
-                    <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} />
+                    <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} onCheckEmail={this.onCheckEmail} onCheckAllEmails={this.onCheckAllEmails} />
 
                 </div>
                 {selectedEmail && <EmailDetails email={selectedEmail} onSelectedEmail={this.onSelectedEmail} />}

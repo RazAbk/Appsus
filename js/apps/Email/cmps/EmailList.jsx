@@ -1,14 +1,15 @@
 import { EmailPreview } from "./EmailPreview.jsx";
 
-export function EmailList({ emails, onSelectedEmail }) {
+export function EmailList({ emails, onSelectedEmail, onCheckEmail, onCheckAllEmails }) {
 
     return (
         <div className="emails-body">
             <div className="emails-func">
 
                 <div className="func-left">
-                    <div>⬜</div>
-                    <div>➰</div>
+                    <label htmlFor="checked-all-emails" ></label>
+                    <input type="checkbox" name="checked-all-emails" className="email-checkbox" onChange={(ev) => {onCheckAllEmails(ev.nativeEvent.target.checked)}} />
+                    <i className="fas fa-sync-alt refresh"></i>
                 </div>
 
                 <div className="func-right">
@@ -33,7 +34,7 @@ export function EmailList({ emails, onSelectedEmail }) {
                     </div>
 
                 </div>
-                {emails.map(email => <EmailPreview key={email.id} email={email} onSelectedEmail={onSelectedEmail} />)}
+                {emails.map(email => <EmailPreview key={email.id} email={email} onSelectedEmail={onSelectedEmail} onCheckEmail={onCheckEmail} />)}
             </div>
 
         </div>
