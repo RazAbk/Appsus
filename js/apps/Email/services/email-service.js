@@ -85,7 +85,7 @@ const loggedInUser = { email: 'user@appsus.com', fullname: 'Mahatma Appsus' }
 function query(filterBy) {
     if (filterBy) {
         let { searchTxt, isRead, isStared, folder } = filterBy;
-        
+
         const filteredEmails = gEmails.filter(email => {
             return (
                 (
@@ -107,14 +107,14 @@ function query(filterBy) {
 
 
 
-function createEmail(subject, body, composer, receiver = loggedInUser.email) {
+function createEmail(subject, body, folder = 'inbox', composer, receiver = loggedInUser.email) {
     const email = {
         id: utilService.makeId(4),
         subject,
         body,
         isRead: false,
         isStared: false,
-        folder: 'inbox',
+        folder,
         sentAt: Date.now(),
         composer,
         receiver: receiver
@@ -137,6 +137,6 @@ function getEmailById(id) {
 
 }
 
-function isUserTheComposer(composer){
+function isUserTheComposer(composer) {
     return composer === loggedInUser.email;
 }
