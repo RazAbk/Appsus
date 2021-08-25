@@ -27,7 +27,7 @@ const gEmails = storageService.loadFromStorage(EMAIL_KEY) || [{
         body: 'I would like to know you',
         isRead: false,
         isStared: false,
-        folder: 'inbox',
+        folder: 'sent',
         sentAt: Date.now(),
         composer: 'user@appsus.com',
         receiver: 'bobo@walla.com'
@@ -49,7 +49,7 @@ const gEmails = storageService.loadFromStorage(EMAIL_KEY) || [{
         body: 'I would like to have fun',
         isRead: false,
         isStared: false,
-        folder: 'inbox',
+        folder: 'sent',
         sentAt: Date.now(),
         composer: 'user@appsus.com',
         receiver: 'nahum@microsoft.com'
@@ -100,7 +100,7 @@ function query(filterBy) {
         })
         return Promise.resolve(filteredEmails);
     } else {
-        return Promise.resolve(gEmails);
+        return Promise.resolve(gEmails.filter(email => email.folder === 'inbox'));
     }
 }
 

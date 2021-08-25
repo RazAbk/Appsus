@@ -33,8 +33,21 @@ export class EmailApp extends React.Component {
     }
     
     onSetFolderFilter = (folder) => {
-        this.setState({...this.state, filterBy:{...this.state.filterBy, folder}}, this.loadEmails)
-        console.log(this.state)
+        let thisFilterBy = this.state.filterBy;
+
+        if(!thisFilterBy){
+            thisFilterBy = {
+                folder,
+                searchTxt: '',
+                isRead: false,
+                isStared: false,
+            }
+        } else {
+            thisFilterBy = {...thisFilterBy, folder: folder}
+
+        }
+        
+        this.setState({...this.state, filterBy: thisFilterBy}, this.loadEmails)
     }
 
     render() {
