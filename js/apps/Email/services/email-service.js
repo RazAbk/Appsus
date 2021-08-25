@@ -6,7 +6,10 @@ export const emailService = {
     getLoggedUser,
     query,
     getEmailById,
-    isUserTheComposer
+    isUserTheComposer,
+    toggleCheckEmailById,
+    cleanAllCheckedEmails,
+    toggleCheckAllEmails
 }
 
 const EMAIL_KEY = 'emailsDB'
@@ -16,6 +19,7 @@ const gEmails = storageService.loadFromStorage(EMAIL_KEY) || [{
         body: 'I would like to know you better',
         isRead: false,
         isStared: false,
+        isChecked: false,
         folder: 'inbox',
         sentAt: Date.now(),
         composer: 'yossi@Gmail.com',
@@ -27,6 +31,7 @@ const gEmails = storageService.loadFromStorage(EMAIL_KEY) || [{
         body: 'I would like to know you',
         isRead: false,
         isStared: false,
+        isChecked: false,
         folder: 'sent',
         sentAt: Date.now(),
         composer: 'user@appsus.com',
@@ -38,6 +43,7 @@ const gEmails = storageService.loadFromStorage(EMAIL_KEY) || [{
         body: 'I would like to meet',
         isRead: false,
         isStared: false,
+        isChecked: false,
         folder: 'inbox',
         sentAt: Date.now(),
         composer: 'dori@Gmail.com',
@@ -49,6 +55,7 @@ const gEmails = storageService.loadFromStorage(EMAIL_KEY) || [{
         body: 'I would like to have fun',
         isRead: false,
         isStared: false,
+        isChecked: false,
         folder: 'sent',
         sentAt: Date.now(),
         composer: 'user@appsus.com',
@@ -60,6 +67,7 @@ const gEmails = storageService.loadFromStorage(EMAIL_KEY) || [{
         body: 'Lets build a better tomorrow',
         isRead: false,
         isStared: false,
+        isChecked: false,
         folder: 'inbox',
         sentAt: Date.now(),
         composer: 'yossi@Gmail.com',
@@ -71,6 +79,7 @@ const gEmails = storageService.loadFromStorage(EMAIL_KEY) || [{
         body: 'I like you',
         isRead: false,
         isStared: false,
+        isChecked: false,
         folder: 'inbox',
         sentAt: Date.now(),
         composer: 'yossi@Gmail.com',
@@ -104,9 +113,6 @@ function query(filterBy) {
     }
 }
 
-
-
-
 function createEmail(subject, body, composer, receiver = loggedInUser.email) {
     const email = {
         id: utilService.makeId(4),
@@ -124,10 +130,6 @@ function createEmail(subject, body, composer, receiver = loggedInUser.email) {
     _saveEmailsToStorage();
 }
 
-function _saveEmailsToStorage() {
-    storageService.saveToStorage(EMAIL_KEY, gEmails)
-}
-
 function getLoggedUser() {
     return loggedInUser;
 }
@@ -139,4 +141,30 @@ function getEmailById(id) {
 
 function isUserTheComposer(composer){
     return composer === loggedInUser.email;
+}
+
+function toggleCheckEmailById(emailId){
+    const email = gEmails.find(email => email.id === emailId);
+
+    if(email){
+        email.isChecked = !email.isChecked;
+        _saveEmailsToStorage();
+    }
+}
+
+function toggleCheckAllEmails(filterBy, isChecked){
+    console.log('filterBy: ',filterBy)
+    query(filterBy).then(emailsToToggle => {
+        emailsToToggle.forEach(email => { email.isChecked = isChecked});
+        _saveEmailsToStorage();
+    });
+}
+
+function cleanAllCheckedEmails(){
+    gEmails.forEach(email => (email.isChecked = false))
+    _saveEmailsToStorage();
+}
+
+function _saveEmailsToStorage() {
+    storageService.saveToStorage(EMAIL_KEY, gEmails)
 }
