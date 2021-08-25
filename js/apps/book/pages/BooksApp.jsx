@@ -1,4 +1,4 @@
-export class Books extends React.Component {
+export class BooksApp extends React.Component {
 
     render(){
         return(

@@ -4,9 +4,9 @@ const { Route, Switch } = ReactRouterDOM;
 
 import { Home } from './js/pages/Home.jsx'
 import { About } from './js/pages/About.jsx';
-import { Email } from './js/pages/Email.jsx';
-import { Notes } from './js/pages/Notes.jsx';
-import { Books } from './js/pages/Books.jsx';
+import { EmailApp } from './js/apps/email/pages/EmailApp.jsx'
+import { NotesApp } from './js/apps/keep/pages/NotesApp.jsx';
+import { BooksApp } from './js/apps/book/pages/BooksApp.jsx';
 import { AppHeader } from './js/cmps/AppHeader.jsx';
 import { AppFooter } from './js/cmps/AppFooter.jsx';
 
@@ -18,10 +18,10 @@ export function App() {
             </header>
             <main>
                 <Switch>
-                    <Route exact path="/Books" component={Books} />
-                    <Route exact path="/Notes" component={Notes} />
-                    <Route exact path="/Email" component={Email} />
-                    <Route exact path="/about" component={About} />
+                    <Route path="/books" component={BooksApp} />
+                    <Route path="/notes" component={NotesApp} />
+                    <Route path="/email" component={EmailApp} />
+                    <Route path="/about" component={About} />
                     <Route exact path="/" component={Home} />
                 </Switch>
             </main>
