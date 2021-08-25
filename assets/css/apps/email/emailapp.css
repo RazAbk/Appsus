@@ -1,99 +1,134 @@
-.email-app{
+.email-app {
     margin: 0 auto;
-
     display: flex;
     justify-content: space-between;
-
     margin-block-start: 2rem;
     background-color: rgb(163, 163, 163);
     border-radius: 5px;
     padding: 5rem;
 }
 
-.emails-right-layout{
+.emails-right-layout {
     width: 100%;
 }
 
-.emails-list{
+.emails-list {
     background-color: rgb(212, 212, 212);
     border-radius: 5px;
     padding: 0.5rem;
 }
 
-.email-preview{
+.email-preview {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     margin: 0.5rem 0.3rem;
     background-color: #fff;
-
     height: 3rem;
     border-radius: 5px;
-
     transition: 0.3s;
 }
 
-.email-preview:hover{
+.email-preview:hover {
     background-color: rgb(221, 221, 221);
 }
 
-.email-left{
+.email-left {
     display: flex;
 }
 
-.email-right{
+.email-right {
     display: flex;
 }
 
-.email-left>*{
+.email-left>* {
     padding: 0 0.3rem;
 }
 
-.email-right>*{
+.email-right>* {
     padding: 0 0.3rem;
 }
 
-.emails-sort{
+.emails-sort {
     background-color: rgb(92, 0, 0);
 }
 
-.emails-body{
+.emails-body {
     padding: 1rem;
     background-color: rgb(75, 75, 75);
     border-radius: 5px;
 }
 
-.emails-func{
+.emails-func {
     display: flex;
     padding: 0.5rem 0;
     background-color: rgb(211, 142, 142);
 }
 
-.func-left{
+.func-left {
     display: flex;
 }
 
-.email-filter{
+.email-filter {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #fff;
     background-color: rgb(75, 75, 75);
     border-radius: 5px;
-
     margin-block-end: 2rem;
     padding: 1rem;
 }
 
-.email-filter input{
+.email-filter input {
     width: 90%;
     height: 3rem;
 }
 
-.email-folders{
+.email-folders {
     width: 10rem;
     height: 100%;
     background-color: #fff;
     margin-inline-end: 4rem;
+}
+
+
+/* //Email-Details */
+
+.email-details {
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    height: 400px;
+    position: absolute;
+    background-color: aqua;
+    font-size: 2rem;
+    border-radius: 5px;
+}
+
+.email-details>*:not(:first-child) {
+    margin-block-start: 1.5rem;
+}
+
+.header-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.details-subject {
+    font-size: 3rem;
+}
+
+.details-body {
+    display: flex;
+    justify-content: center;
+}
+
+.details-back {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-inline-end: 18px;
+    margin-block-end: 15px;
+    cursor: pointer;
 }

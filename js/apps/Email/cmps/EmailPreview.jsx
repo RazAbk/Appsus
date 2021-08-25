@@ -1,8 +1,8 @@
 
-export function EmailPreview({email}) {
+export function EmailPreview({ email, onSelectedEmail }) {
 
-    return(
-        <div className="email-preview">
+    return (
+        <div className="email-preview" onClick={() => { onSelectedEmail(email) }}>
             <div className="email-left">
                 <div>⬜</div>
                 <div>🟡</div>
@@ -16,5 +16,4 @@ export function EmailPreview({email}) {
             </div>
         </div>
     )
-  }
-  
+}

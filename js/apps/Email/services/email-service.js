@@ -4,7 +4,8 @@ import { storageService } from "../../../services/storage.service.js";
 export const emailService = {
     createEmail,
     getLoggedUser,
-    query
+    query,
+    getEmailById
 }
 
 const EMAIL_KEY = 'emailsDB'
@@ -17,6 +18,8 @@ const loggedinUser = { email: 'user@appsus.com', fullname: 'Mahatma Appsus' }
 function query() {
     return Promise.resolve(gEmails);
 }
+
+
 
 
 function createEmail(subject, body, composer, receiver = loggedinUser.email) {
@@ -48,4 +51,9 @@ function _saveEmailsToStorage() {
 
 function getLoggedUser() {
     return loggedinUser;
+}
+
+function getEmailById(id) {
+
+
 }

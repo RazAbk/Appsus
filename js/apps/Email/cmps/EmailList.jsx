@@ -1,8 +1,8 @@
 import { EmailPreview } from "./EmailPreview.jsx";
 
-export function EmailList({emails}) {
+export function EmailList({ emails, onSelectedEmail }) {
 
-    return(
+    return (
         <div className="emails-body">
             <div className="emails-func">
 
@@ -33,10 +33,9 @@ export function EmailList({emails}) {
                     </div>
 
                 </div>
-                {emails.map(email => <EmailPreview key={email.id} email={email} />)}
+                {emails.map(email => <EmailPreview key={email.id} email={email} onSelectedEmail={onSelectedEmail} />)}
             </div>
 
         </div>
     )
-  }
-  
+}
