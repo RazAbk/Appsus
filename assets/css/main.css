@@ -1,3 +1,12 @@
+@import url(/assets/css/cmps/appheader.css);
+@import url(/assets/css/cmps/appfooter.css);
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
 body {
     background-color: lightblue;
 }
