@@ -89,10 +89,10 @@ function query(filterBy) {
         const filteredEmails = gEmails.filter(email => {
             return (
                 (
-                    email.subject.includes(searchTxt) ||
-                    email.body.includes(searchTxt) ||
-                    email.composer.includes(searchTxt) ||
-                    email.receiver.includes(searchTxt)
+                    email.subject.toLowerCase().includes(searchTxt) ||
+                    email.body.toLowerCase().includes(searchTxt) ||
+                    email.composer.toLowerCase().includes(searchTxt) ||
+                    email.receiver.toLowerCase().includes(searchTxt)
 
                 ) && email.isRead === isRead && email.isStared === isStared &&
                 email.folder === folder

@@ -1,5 +1,8 @@
+import { utilService } from "../../../services/util.service.js"
 
 export function EmailPreview({ email, onSelectedEmail }) {
+
+    const {time, date} = utilService.getFormattedDateNTime(email.sentAt)
 
     return (
         <div className="email-preview" onClick={() => { onSelectedEmail(email) }}>
@@ -10,7 +13,7 @@ export function EmailPreview({ email, onSelectedEmail }) {
             </div>
             <div className="email-right">
                 <p>{email.subject}</p>
-                <p>{email.sentAt}</p>
+                <p>{`${time} ${date}`}</p>
                 <div>⬜</div>
                 <div>🟡</div>
             </div>
