@@ -71,7 +71,7 @@ export class EmailApp extends React.Component {
 
                 <div className="emails-right-layout">
                     <div className="email-filter">
-                        <EmailFilter onSetFilter={this.onSetFilter} />
+                        <EmailFilter onSetFilter={this.onSetFilter} currentFolder={this.state.filterBy ? this.state.filterBy.folder : 'inbox'}/>
                     </div>
                     <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} />
 
