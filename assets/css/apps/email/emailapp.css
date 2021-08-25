@@ -2,13 +2,18 @@
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    background-color: rgb(163, 163, 163);
+    background-color: rgba(141, 141, 141, 0.759);
     border-radius: 5px;
     padding: 2rem;
 }
 
 .emails-right-layout {
     width: 100%;
+    padding-inline-start: 4.5rem;
+}
+
+.emails-left-layout {
+    height: 100%;
 }
 
 .emails-body {
@@ -35,6 +40,8 @@
     height: 3rem;
     border-radius: 5px;
     transition: 0.3s;
+
+    cursor: pointer;
 }
 
 .email-preview:hover {
@@ -92,10 +99,37 @@
 }
 
 .email-folders {
-    width: 10rem;
-    height: 100%;
+    position: absolute;
+    width: 3rem;
+    height: 30.1rem;
+    background-color: rgb(75, 75, 75);
+    border-radius: 5px;
+    transition: 0.3s;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0.5rem 0.5rem 0;
+}
+
+.email-folders>*{
+    margin-block-end: 1rem;
+}
+
+.email-folders:hover{
+    position: absolute;
+    width: 15rem;
+    background-color: rgba(75, 75, 75, 0.97);
+    box-shadow: 6px 0px 8px 0px #3d3d3dc9;;
+}
+
+.new-compose{
     background-color: #fff;
-    margin-inline-end: 4rem;
+    border-radius: 50%;
+    padding: 0.5rem;
+    color:rgb(94, 80, 63);
+    font-size: 1.5rem;
+    transform: translateX(10%);
 }
 
 
@@ -110,13 +144,14 @@
     top:50%;
     left:50%;
     transform: translate(-50%,-50%);
-    background-color: rgb(238, 238, 238);
+    background-color: rgba(238, 238, 238, 0.9);
     font-size: 2rem;
     border-radius: 5px;
 
     z-index: 500;
 
     animation:scale-up-center-modal .4s cubic-bezier(.39,.575,.565,1.000) both;
+    box-shadow: 6px 4px 20px 8px #3d3d3dc9;
 }
 
 .header-details {
@@ -128,7 +163,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(31, 31, 31);
+    background-color: rgba(31, 31, 31, 0.95);
     height: 3rem;
     border-radius: 5px 5px 0 0;
     padding: 1rem;
@@ -151,7 +186,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(221, 221, 221);
+    background-color: rgba(204, 204, 204, 0.349);
     padding: 0.5rem 1rem;
     font-size: 1.5rem;
 }

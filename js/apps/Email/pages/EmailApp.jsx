@@ -16,6 +16,7 @@ export class EmailApp extends React.Component {
     componentDidMount() {
         this.loadEmails();
     }
+    
 
     loadEmails = () => {
         const emails = emailService.query(this.state.filterBy).then(emails => {
@@ -30,6 +31,11 @@ export class EmailApp extends React.Component {
     onSetFilter = (filterBy) => {
         this.setState({ filterBy }, this.loadEmails)
     }
+    
+    onSetFolderFilter = (folder) => {
+        this.setState({...this.state, filterBy:{...this.state.filterBy, folder}}, this.loadEmails)
+        console.log(this.state)
+    }
 
     render() {
 
@@ -41,12 +47,12 @@ export class EmailApp extends React.Component {
                 <Screen isOpen={this.state.selectedEmail} closeModal={this.onSelectedEmail} />
                 <div className="emails-left-layout">
                     <nav className="email-folders">
-                        <div className="new-compose">+</div>
-                        <div className="inbox">inbox</div>
-                        <div className="starred">starred</div>
-                        <div className="sent">sent</div>
-                        <div className="trash">trash</div>
-                        <div className="drafts">drafts</div>
+                        <i className="fas fa-plus new-compose"></i>
+                        <div className="inbox" onClick={() => {this.onSetFolderFilter('inbox')}}>inbox</div>
+                        <div className="starred" onClick={() => {this.onSetFolderFilter('starred')}}>starred</div>
+                        <div className="sent" onClick={() => {this.onSetFolderFilter('sent')}}>sent</div>
+                        <div className="trash" onClick={() => {this.onSetFolderFilter('trash')}}>trash</div>
+                        <div className="drafts" onClick={() => {this.onSetFolderFilter('drafts')}}>drafts</div>
                     </nav>
                 </div>
 

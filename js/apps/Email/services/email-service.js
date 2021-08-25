@@ -85,7 +85,7 @@ const loggedInUser = { email: 'user@appsus.com', fullname: 'Mahatma Appsus' }
 function query(filterBy) {
     if (filterBy) {
         let { searchTxt, isRead, isStared, folder } = filterBy;
-
+        
         const filteredEmails = gEmails.filter(email => {
             return (
                 (
