@@ -1,0 +1,10 @@
+/* Animations */
+
+@keyframes scale-up-center-modal {
+    0%{
+        transform:scale(.5) translate(-50%,-50%)
+    }
+    100%{
+        transform:scale(1) translate(-50%,-50%)
+    }
+}

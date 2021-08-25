@@ -5,7 +5,8 @@ export const emailService = {
     createEmail,
     getLoggedUser,
     query,
-    getEmailById
+    getEmailById,
+    isUserTheComposer
 }
 
 const EMAIL_KEY = 'emailsDB'
@@ -28,8 +29,8 @@ const gEmails = storageService.loadFromStorage(EMAIL_KEY) || [{
         isStared: false,
         folder: 'inbox',
         sentAt: Date.now(),
-        composer: 'bobo@Gmail.com',
-        receiver: 'user@appsus.com'
+        composer: 'user@appsus.com',
+        receiver: 'bobo@walla.com'
     },
     {
         id: utilService.makeId(4),
@@ -50,8 +51,8 @@ const gEmails = storageService.loadFromStorage(EMAIL_KEY) || [{
         isStared: false,
         folder: 'inbox',
         sentAt: Date.now(),
-        composer: 'nahum@Gmail.com',
-        receiver: 'user@appsus.com'
+        composer: 'user@appsus.com',
+        receiver: 'nahum@microsoft.com'
     },
     {
         id: utilService.makeId(4),
@@ -78,7 +79,7 @@ const gEmails = storageService.loadFromStorage(EMAIL_KEY) || [{
 ];
 _saveEmailsToStorage();
 
-const loggedinUser = { email: 'user@appsus.com', fullname: 'Mahatma Appsus' }
+const loggedInUser = { email: 'user@appsus.com', fullname: 'Mahatma Appsus' }
 
 
 function query(filterBy) {
@@ -106,7 +107,7 @@ function query(filterBy) {
 
 
 
-function createEmail(subject, body, composer, receiver = loggedinUser.email) {
+function createEmail(subject, body, composer, receiver = loggedInUser.email) {
     const email = {
         id: utilService.makeId(4),
         subject,
@@ -128,10 +129,14 @@ function _saveEmailsToStorage() {
 }
 
 function getLoggedUser() {
-    return loggedinUser;
+    return loggedInUser;
 }
 
 function getEmailById(id) {
 
 
+}
+
+function isUserTheComposer(composer){
+    return composer === loggedInUser.email;
 }

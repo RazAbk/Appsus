@@ -1,11 +1,10 @@
 @import url(/assets/css/parts/layout.css);
-
 @import url(/assets/css/cmps/appheader.css);
 @import url(/assets/css/cmps/appfooter.css);
-
 @import url(/assets/css/apps/email/emailapp.css);
-
 @import url(/assets/css/parts/helpers.css);
+@import url(/assets//css/parts/animations.css);
+
 *{
     box-sizing: border-box;
     padding: 0;

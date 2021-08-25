@@ -25,3 +25,26 @@
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(231, 150, 0);
 }
+
+/* Screen */
+
+.screen {
+  filter: opacity(0);
+  pointer-events: none;
+  cursor: pointer;
+
+  position: fixed;
+  background: rgba(46, 46, 46, 0.808);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 200;
+
+  transition: 0.3s;
+}
+
+.screen-on {
+  filter: opacity(1);
+  pointer-events: visible;
+}

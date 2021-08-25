@@ -2,6 +2,7 @@ import { emailService } from '../services/email-service.js'
 import { EmailList } from '../cmps/EmailList.jsx'
 import { EmailFilter } from '../cmps/EmailFilter.jsx';
 import { EmailDetails } from '../cmps/EmailDetails.jsx';
+import { Screen } from '../../../cmps/Screen.jsx';
 
 
 export class EmailApp extends React.Component {
@@ -37,6 +38,7 @@ export class EmailApp extends React.Component {
 
         return (
             <div className="email-app main-layout">
+                <Screen isOpen={this.state.selectedEmail} closeModal={this.onSelectedEmail} />
                 <div className="emails-left-layout">
                     <nav className="email-folders">
                         <div className="new-compose">+</div>
