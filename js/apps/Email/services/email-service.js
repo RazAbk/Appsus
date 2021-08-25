@@ -8,14 +8,99 @@ export const emailService = {
 }
 
 const EMAIL_KEY = 'emailsDB'
-const gEmails = storageService.loadFromStorage(EMAIL_KEY) || [];
+const gEmails = storageService.loadFromStorage(EMAIL_KEY) || [
+    {
+        id: utilService.makeId(4),
+        subject: 'Hello there',
+        body: 'I would like to know you better',
+        isRead: false,
+        isStared: false,
+        folder: 'inbox',
+        sentAt: Date.now(),
+        composer: 'yossi@Gmail.com',
+        receiver: 'user@appsus.com'
+    },
+    {
+        id: utilService.makeId(4),
+        subject: 'Hello body',
+        body: 'I would like to know you',
+        isRead: false,
+        isStared: false,
+        folder: 'inbox',
+        sentAt: Date.now(),
+        composer: 'bobo@Gmail.com',
+        receiver: 'user@appsus.com'
+    },
+    {
+        id: utilService.makeId(4),
+        subject: 'Hello friend',
+        body: 'I would like to meet',
+        isRead: false,
+        isStared: false,
+        folder: 'inbox',
+        sentAt: Date.now(),
+        composer: 'dori@Gmail.com',
+        receiver: 'user@appsus.com'
+    },
+    {
+        id: utilService.makeId(4),
+        subject: 'Hello mahatma',
+        body: 'I would like to have fun',
+        isRead: false,
+        isStared: false,
+        folder: 'inbox',
+        sentAt: Date.now(),
+        composer: 'nahum@Gmail.com',
+        receiver: 'user@appsus.com'
+    },
+    {
+        id: utilService.makeId(4),
+        subject: 'Hello mister',
+        body: 'Lets build a better tomorrow',
+        isRead: false,
+        isStared: false,
+        folder: 'inbox',
+        sentAt: Date.now(),
+        composer: 'yossi@Gmail.com',
+        receiver: 'user@appsus.com'
+    },
+    {
+        id: utilService.makeId(4),
+        subject: 'Hello mr',
+        body: 'I like you',
+        isRead: false,
+        isStared: false,
+        folder: 'inbox',
+        sentAt: Date.now(),
+        composer: 'yossi@Gmail.com',
+        receiver: 'user@appsus.com'
+    },
+];
+_saveEmailsToStorage();
 
 const loggedinUser = { email: 'user@appsus.com', fullname: 'Mahatma Appsus' }
 
-// _createEmails();
 
-function query(){
-    return Promise.resolve(gEmails);
+function query(filterBy){
+    if(filterBy){
+        let {searchTxt, isRead, isStared, folder} = filterBy;
+
+        const filteredEmails = gEmails.filter( email => {
+            return (
+            (
+                email.subject.includes(searchTxt) || 
+                email.body.includes(searchTxt) ||
+                email.composer.includes(searchTxt) ||
+                email.receiver.includes(searchTxt)
+
+            ) && email.isRead === isRead && email.isStared === isStared &&
+                email.folder === folder
+            )
+        })
+        return Promise.resolve(filteredEmails);
+    } else{
+        return Promise.resolve(gEmails);
+    }
 }
 
 
@@ -25,6 +110,8 @@ function createEmail(subject, body, composer, receiver = loggedinUser.email){
         subject,
         body,
         isRead: false,
+        isStared: false,
+        folder: 'inbox',
         sentAt: Date.now(),
         composer,
         receiver: receiver
@@ -32,14 +119,6 @@ function createEmail(subject, body, composer, receiver = loggedinUser.email){
 
     gEmails.push(email);
     _saveEmailsToStorage();
-}
-
-function _createEmails(){
-    createEmail('wowwww', 'yesssss', 'Raz@Gmail.com');
-    createEmail('yayyyy', 'helloooo', 'momo@Gmail.com');
-    createEmail('amazing', 'to do list', 'shlomi@Gmail.com');
-    createEmail('amazing', 'to do list', 'user@appsus.com', 'receiver@gmail.com');
-    createEmail('amazing', 'to do list', 'user@appsus.com', 'receiver@gmail.com');
 }
 
 function _saveEmailsToStorage(){

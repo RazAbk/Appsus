@@ -8,8 +8,6 @@
     border-radius: 5px;
     padding: 2rem;
 
-    /* max-height: 400px; */
-    /* max-height: 50%; */
 }
 
 .emails-right-layout{
@@ -87,7 +85,7 @@
     background-color: #fff;
     background-color: rgb(75, 75, 75);
     border-radius: 5px;
-
+    
     margin-block-end: 2rem;
     padding: 1rem;
 }
@@ -95,6 +93,11 @@
 .email-filter input{
     width: 90%;
     height: 3rem;
+    padding: 0 0 0 0.5rem;
+    font-size: 1.5rem;
+
+    border-radius: 5px;
+    outline: none;
 }
 
 .email-folders{
