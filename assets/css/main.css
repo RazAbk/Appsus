@@ -11,12 +11,13 @@
 }
 
 body {
-    background-color: lightblue;
+    /* background-color: lightblue; */
 }
 
 main{
     display: flex;
     justify-content: center;
+    height: calc(100vh - 180px);
 }
 
 .user-preview {
