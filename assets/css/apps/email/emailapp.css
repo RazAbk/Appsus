@@ -1,4 +1,6 @@
 .email-app{
+    margin: 0 auto;
+
     display: flex;
     justify-content: space-between;
 
@@ -6,6 +8,10 @@
     background-color: rgb(163, 163, 163);
     border-radius: 5px;
     padding: 5rem;
+}
+
+.emails-right-layout{
+    width: 100%;
 }
 
 .emails-list{

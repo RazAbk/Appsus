@@ -25,7 +25,7 @@ export class EmailApp extends React.Component {
         if(!emails || emails.length === 0) return <h1>Loading...</h1>
 
         return(
-            <div className="email-app">
+            <div className="email-app main-layout">
                 <div className="emails-left-layout">
                     <nav className="email-folders">
                         <div className="new-compose">+</div>
