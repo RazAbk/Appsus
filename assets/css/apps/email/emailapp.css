@@ -4,20 +4,31 @@
     display: flex;
     justify-content: space-between;
 
-    margin-block-start: 2rem;
     background-color: rgb(163, 163, 163);
     border-radius: 5px;
-    padding: 5rem;
+    padding: 2rem;
+
+    /* max-height: 400px; */
+    /* max-height: 50%; */
 }
 
 .emails-right-layout{
     width: 100%;
 }
 
+.emails-body{
+    padding: 1rem;
+    background-color: rgb(75, 75, 75);
+    border-radius: 5px;
+    max-height: 100%;
+}
+
 .emails-list{
     background-color: rgb(212, 212, 212);
     border-radius: 5px;
     padding: 0.5rem;
+    overflow-y:scroll;
+    height: 300px;
 }
 
 .email-preview{
@@ -28,7 +39,7 @@
     margin: 0.5rem 0.3rem;
     background-color: #fff;
 
-    height: 3rem;
+    height: 5rem;
     border-radius: 5px;
 
     transition: 0.3s;
@@ -58,11 +69,6 @@
     background-color: rgb(92, 0, 0);
 }
 
-.emails-body{
-    padding: 1rem;
-    background-color: rgb(75, 75, 75);
-    border-radius: 5px;
-}
 
 .emails-func{
     display: flex;
