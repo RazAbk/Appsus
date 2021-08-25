@@ -4,28 +4,27 @@
 @import url(/assets/css/cmps/appfooter.css);
 
 @import url(/assets/css/apps/email/emailapp.css);
+
+@import url(/assets/css/parts/helpers.css);
 *{
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
 
+#root{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 body {
-    /* background-color: lightblue; */
+    background-color: rgb(202, 233, 243);
 }
 
 main{
     display: flex;
     justify-content: center;
-    height: calc(100vh - 180px);
-}
-
-.user-preview {
-    background-color: darkcyan;
-    padding: 5px;
-    width: 200px;
-    text-align: center;    
-}
-.user-preview button {
-    margin: 5px;
+    /* height: 100%; */
 }

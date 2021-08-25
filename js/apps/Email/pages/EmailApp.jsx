@@ -1,6 +1,6 @@
 import { emailService } from '../services/email-service.js'
 import { EmailList } from '../cmps/EmailList.jsx'
-import { EmailDetails } from '../cmps/EmailDetails.jsx';
+import { EmailFilter } from '../cmps/EmailFilter.jsx';
 
 export class EmailApp extends React.Component {
 
@@ -15,8 +15,8 @@ export class EmailApp extends React.Component {
     }
 
     loadEmails = () => {
-        const emails = emailService.query().then(emails => {
-            this.setState({ emails });
+        const emails = emailService.query(this.state.filterBy).then(emails => {
+            this.setState({emails});
         })
     }
     onSelectedEmail = (email) => {
@@ -24,10 +24,14 @@ export class EmailApp extends React.Component {
     }
 
 
-    render() {
+    onSetFilter = (filterBy) => {
+        this.setState({filterBy}, this.loadEmails)
+    }
 
-        const { emails, selectedEmail } = this.state;
-        if (!emails || emails.length === 0) return <h1>Loading...</h1>
+    render(){
+
+        const {emails} = this.state;
+        if(!emails) return <h1>Loading...</h1>
 
         return (
             <div className="email-app main-layout">
@@ -44,7 +48,7 @@ export class EmailApp extends React.Component {
 
                 <div className="emails-right-layout">
                     <div className="email-filter">
-                        <input type="text" />
+                        <EmailFilter onSetFilter={this.onSetFilter}/>
                     </div>
                     <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} />
 
