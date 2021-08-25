@@ -1,0 +1,14 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    height: 120px;
+
+    padding: 2rem;
+}
+
+.nav-bar>*{
+    margin-inline-start: 0.5rem;
+    text-decoration: none;
+}
