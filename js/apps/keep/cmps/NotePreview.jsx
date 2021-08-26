@@ -26,12 +26,8 @@ export function NotePreview({ note }){
 
     return(
         <div className={`note ${note.type}`}>
-<<<<<<< HEAD
-            {Object.keys(info).map((inf,idx) => <h2 key={`${note.id}-${idx}`}>{inf}</h2>)}
-=======
             {/* {Object.keys(info).map((inf,idx) => <h2 key={`${note.id}-${idx}`}>{inf}</h2>)} */}
             {noteToDisplay}
->>>>>>> 31e27f41f7c0d37dd8d7bd899d9a7bb8e650be4a
         </div>
     )
 }
