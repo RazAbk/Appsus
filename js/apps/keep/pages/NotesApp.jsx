@@ -1,5 +1,6 @@
 import { notesService } from "../services/note-service.js";
 import { NotesList } from "../cmps/NotesList.jsx";
+import { NoteAdd } from "../cmps/NoteAdd.jsx";
 
 export class NotesApp extends React.Component {
 
@@ -31,7 +32,9 @@ export class NotesApp extends React.Component {
         //Reveal function buttons
         this.functionBtns.current.classList.add('inside-form-visible');
         // Reveal second input
-        this.secondInput.current.classList.add('inside-form-visible');
+        if(this.state.inputType !== 'text'){
+            this.secondInput.current.classList.add('inside-form-visible');
+        }
         // Reveal add button
         this.addNote.current.classList.add('inside-form-visible');
     }
@@ -59,7 +62,11 @@ export class NotesApp extends React.Component {
         //Reveal function buttons
         this.functionBtns.current.classList.add('inside-form-visible');
         // Reveal second input
-        this.secondInput.current.classList.add('inside-form-visible');
+        if(type !== 'text'){
+            this.secondInput.current.classList.add('inside-form-visible');
+        }else{
+            this.secondInput.current.classList.remove('inside-form-visible');
+        }
         // Reveal add button
         this.addNote.current.classList.add('inside-form-visible');
 
@@ -84,6 +91,8 @@ export class NotesApp extends React.Component {
 
     render(){
 
+        const {inputType} = this.state;
+
         return(
             <div className="notes-app">
 
@@ -91,12 +100,12 @@ export class NotesApp extends React.Component {
                     <form className="notes-input-form" ref={this.formRef}>
                         <label htmlFor="notes-title"></label>
                         <input id="notes-title" type="text" placeholder="Whats on your mind?" onFocus={this.onEnterForm} onBlur={this.onLeaveForm}/>
-                        <div className="second-input" ref={this.secondInput}>
+                        <div className={`second-input ${inputType !== 'text' ? 'inside-form-visible' : ''}`} ref={this.secondInput}>
                             <label htmlFor="notes-content"></label>
                             <input   id="notes-content" type="text" placeholder="Take a note" onFocus={this.onEnterForm} onBlur={this.onLeaveForm}/>
                         </div>
                         <div className="choose-type-btns" ref={this.functionBtns}>
-                            <i tabIndex="-1" onFocus={(ev)=>{ev.target.click()}} onBlur={(ev)=>{ev.target.blur()}} onClick={() => {this.onSetInputType('txt')}} className="far fa-file-alt"></i>
+                            <i tabIndex="-1" onFocus={(ev)=>{ev.target.click()}} onBlur={(ev)=>{ev.target.blur()}} onClick={() => {this.onSetInputType('text')}} className="far fa-file-alt"></i>
                             <i tabIndex="-1" onFocus={(ev)=>{ev.target.click()}} onBlur={(ev)=>{ev.target.blur()}} onClick={() => {this.onSetInputType('todo')}} className="fas fa-list-ul"></i>
                             <i tabIndex="-1" onFocus={(ev)=>{ev.target.click()}} onBlur={(ev)=>{ev.target.blur()}} onClick={() => {this.onSetInputType('image')}} className="far fa-image"></i>
                             <i tabIndex="-1" onFocus={(ev)=>{ev.target.click()}} onBlur={(ev)=>{ev.target.blur()}} onClick={() => {this.onSetInputType('video')}} className="fab fa-youtube"></i>
