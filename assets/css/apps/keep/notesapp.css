@@ -61,6 +61,14 @@
     border-radius: 5px;
     margin: 0.5rem;
     word-break: break-all;
+    display: inline-block;
+
+    break-inside: avoid;
+    overflow: hidden;
+}
+
+.note img{
+    max-width: 200px;
 }
 
 .notes-pinned{
@@ -83,10 +91,11 @@
 }
 
 .cards-container{
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 
-    align-items: baseline;
+    align-items: baseline; */
+    column-count: 3;
     width: 100%;
 }
 

@@ -1,53 +1,61 @@
+import { notesService } from "../services/note-service.js";
+import { NotesList } from "../cmps/NotesList.jsx";
+
 export class NotesApp extends React.Component {
 
+    state = {
+        notes: []
+    }
+
+
+    componentDidMount(){
+        this.loadNotes();
+    }
+
+    loadNotes = () => {
+        notesService.query().then(notes => {
+            this.setState({notes})
+        })
+    }
+
+    onInputFocus = (ev) => {
+        console.dir(ev.target)
+    }
+
     render(){
+
+        // const pinnedNotes;
+        // const generalNotes;
+
         return(
             <div className="notes-app">
 
                 <section className="notes-input notes-layout">
-                    <form className="notes-input-form">
+                    <form className="notes-input-form" ref={this.formRef}>
                         <label htmlFor="notes-title"></label>
                         <input id="notes-title" type="text" placeholder="Whats on your mind?"/>
                         <label htmlFor="notes-content"></label>
-                        <input id="notes-content" type="text" placeholder="Take a note"/>
+                        <input id="notes-content" type="text" placeholder="Take a note" onFocus={this.onInputFocus}/>
                     </form>
                 </section>
 
                 <section className="notes-cards notes-layout">
-                        <h2>pinned</h2>
+                    <h2>pinned</h2>
                     <div className="notes-pinned">
                         <div className="cards-container">
-                            <div className="note" > quibusdam officiis aliquid autem!</div>
-                            <div className="note" > quibusdam officaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiis aliquid autem!</div>
-                            <div className="note" > quibusdam officiaaaaaaaaaaaaaaaais aliquid autem!</div>
-                            <div className="note" > quibusdam ofusdam officiis alusdam officiis alficiis aliquid autem!</div>
-
-                         
+                            
+                            {/* Notes list */}
+                            <NotesList notes={this.state.notes}/>
+                        
                         </div>
-                    </div>
-                        <h2>notes</h2>
+                        </div>
+
+                    <h2>notes</h2>
                     <div className="notes-general">
                         <div className="cards-container">
-                            <div className="note" >aliquid autem!</div>
-                            <div className="note" > quibusdam officiis aliquid autem!</div>
-
-                            <div className="note" > quibusdamaaaaaaaaaaaaaa officiis aliquid autem!</div>
-                            <div className="note" > quibusdam officiis aliquid autem!</div>
-                            <div className="note" > quibusdam officiis aliquid autem!</div>
-                            <div className="note" > quibusdam officiis aliquid autem!</div>
-                            <div className="note" > quibusdam officiis alusdam officiis alusdam officiis alusdam officiis alusdam officiis alusdam officiis aliquid autem!</div>
-                            <div className="note" > quibusdam officiis aliquid autem!</div>
-                            <div className="note" > quibusdam officaaaaaaaaaaaaaaaaaaiis aliquid autem!</div>
-                            <div className="note" > quibusdam officiis aliquid autem!</div>
-                            <div className="note" > quibusdam officiis aliquid autem!</div>
-                            <div className="note" > quibusdam officiis aliquid autem!</div>
-                            <div className="note" > quibusdam officiis aliquid usdam officiis alusdam officiis alusdam officiis alusdam officiis alautem!</div>
-                            <div className="note" > quibusdam officiis aliquid autem!</div>
-                            <div className="note" > quibusdam officiis aliquid autem!</div>
-                            <div className="note" > quibusdam officaaaaaaaaaaaaaaaaaaaaaaiis aliquid autem!</div>
-                            <div className="note" > quibusdam officiis aliquid autem!</div>
-
-
+                        
+                            {/* Notes list */}
+                            <NotesList notes={this.state.notes}/>
 
                         </div>
 
