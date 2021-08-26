@@ -26,18 +26,21 @@
     transition: 0.3s;
 }
 
-/* .notes-input input:focus {
-    padding: 5rem 0;
-}
- */
-
-
 .notes-input-form{
+    position: relative;
     display: flex;
     flex-direction: column;
+
+    height: 1.5rem;
+    transition: 0.3s;
+}
+
+.expand-form{
+    height: 8rem;
 }
 
 .notes-input-form input{
+    width: 100%;
     border: none;
     height: 2rem;
     font-size: 1.5rem;
@@ -50,12 +53,35 @@
     border:none;
 }
 
+.choose-type-btns{
+    position: absolute;
+    bottom: 0;
+    z-index: 300;
+
+    transition: 0.3s;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+.choose-type-btns>*{
+    font-size: 1.5rem;
+    padding-inline-end: 1rem;
+}
+
+.second-input{
+    padding-top: 0.8rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.inside-form-visible{
+    opacity: 1;
+    pointer-events:visible;
+}
 
 /* Notes Layout */
-.notes-cards{
-    
-    
-}
 
 .note{
     position: relative;
