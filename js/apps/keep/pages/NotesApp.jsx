@@ -14,6 +14,7 @@ export class NotesApp extends React.Component {
         this.formRef = React.createRef();
         this.functionBtns = React.createRef();
         this.secondInput = React.createRef();
+        this.addNote = React.createRef();
     }
 
     loadNotes = () => {
@@ -31,6 +32,8 @@ export class NotesApp extends React.Component {
         this.functionBtns.current.classList.add('inside-form-visible');
         // Reveal second input
         this.secondInput.current.classList.add('inside-form-visible');
+        // Reveal add button
+        this.addNote.current.classList.add('inside-form-visible');
     }
 
     onLeaveForm = (ev) => {
@@ -43,6 +46,8 @@ export class NotesApp extends React.Component {
             this.functionBtns.current.classList.remove('inside-form-visible');
             // UnReveal second input
             this.secondInput.current.classList.remove('inside-form-visible');
+            // UnReveal add button
+            this.addNote.current.classList.remove('inside-form-visible');
     }
 
     onSetInputType = (type) => {
@@ -55,7 +60,9 @@ export class NotesApp extends React.Component {
         this.functionBtns.current.classList.add('inside-form-visible');
         // Reveal second input
         this.secondInput.current.classList.add('inside-form-visible');
-        // console.log(this.formRef.current)
+        // Reveal add button
+        this.addNote.current.classList.add('inside-form-visible');
+
     }
 
     // Crud
@@ -94,6 +101,7 @@ export class NotesApp extends React.Component {
                             <i tabIndex="-1" onFocus={(ev)=>{ev.target.click()}} onBlur={(ev)=>{ev.target.blur()}} onClick={() => {this.onSetInputType('image')}} className="far fa-image"></i>
                             <i tabIndex="-1" onFocus={(ev)=>{ev.target.click()}} onBlur={(ev)=>{ev.target.blur()}} onClick={() => {this.onSetInputType('video')}} className="fab fa-youtube"></i>
                         </div>
+                        <button tabIndex="-1" onFocus={(ev)=>{ev.target.click()}} onBlur={(ev)=>{ev.target.blur()}} onClick={() => {console.log('add note')}} ref={this.addNote} className="add-note-btn">add note</button>
                     </form>
                 </section>
 
@@ -101,30 +109,24 @@ export class NotesApp extends React.Component {
                     <h2>pinned</h2>
                     <div className="notes-pinned">
                         <div className="cards-container">
-                            
-                            {/* Notes list */}
                             <NotesList
                                 notes={this.state.notes.filter(note => note.isPinned)}
                                 onDeleteNote={this.onDeleteNote}
                                 onToggleNotePin={this.onToggleNotePin}
                                 onDuplicateNote={this.onDuplicateNote}
                             />
-                        
                         </div>
                         </div>
 
                     <h2>notes</h2>
                     <div className="notes-general">
                         <div className="cards-container">
-                        
-                            {/* Notes list */}
                             <NotesList
                                 notes={this.state.notes.filter(note => !note.isPinned)}
                                 onDeleteNote={this.onDeleteNote}
                                 onToggleNotePin={this.onToggleNotePin}
                                 onDuplicateNote={this.onDuplicateNote}
                             />
-
                         </div>
 
                     </div>

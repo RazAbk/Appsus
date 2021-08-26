@@ -64,9 +64,34 @@
     pointer-events: none;
 }
 
+.choose-type-btns i{
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.choose-type-btns i:hover{
+    transform: scale(1.2);
+}
+
 .choose-type-btns>*{
     font-size: 1.5rem;
     padding-inline-end: 1rem;
+}
+
+.add-note-btn{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.add-note-btn:hover{
+    transform: scale(1.1);
 }
 
 .second-input{
