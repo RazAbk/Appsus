@@ -6,8 +6,7 @@ export const notesService = {
     deleteNote,
     toggleNotePin,
     duplicateNote,
-    getNoteById
-
+    createNote
 };
 
 const NOTES_KEY = "notesDB";
@@ -53,13 +52,18 @@ function query() {
 
 // Crud
 
-// function isNote(noteId) {
-//   const curentNote = gNotes.find(note => { note.id === noteId })
-//   // return curentNote
-//   console.log(gNotes)
+function createNote(info, type) {
+    const newNote = {
+        id: utilService.makeId(5),
+        type,
+        isPinned: true,
+        info,
+        style: { backgroundColor: "#00d" }
+    }
 
-
-// }
+    gNotes.push(newNote);
+    _saveNotesToStorage();
+}
 
 function deleteNote(noteId) {
     const deleteIdx = _getNoteIdx(noteId);

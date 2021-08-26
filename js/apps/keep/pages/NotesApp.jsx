@@ -2,16 +2,17 @@ import { Screen } from "../../../cmps/Screen.jsx";
 import { notesService } from "../services/note-service.js";
 import { NotesList } from "../cmps/NotesList.jsx";
 import { NoteEdit } from "../cmps/NoteEdit.jsx";
+import { NoteAdd } from "../cmps/NoteAdd.jsx";
 
 export class NotesApp extends React.Component {
-
     state = {
         notes: [],
-        isEditMode: false
+        isEditMode: false,
+        inputType: 'note-txt'
     }
 
-
-    componentDidMount() {
+    
+    componentDidMount(){
         this.loadNotes();
     }
 
@@ -21,9 +22,11 @@ export class NotesApp extends React.Component {
         })
     }
 
-    onInputFocus = (ev) => {
-        console.dir(ev.target)
+    setInputType = (type) => {
+        this.setState({...this.state, inputType: type})
     }
+   
+    // Crud
 
     onDeleteNote = (noteId) => {
         notesService.deleteNote(noteId);
@@ -46,24 +49,19 @@ export class NotesApp extends React.Component {
 
 
 
+    onCreateNote = (info) => {
+        notesService.createNote(info,this.state.inputType);
+        this.loadNotes();
+    }
 
-    // notesService.editNote(noteId)
+    render(){
 
+        const {inputType} = this.state;
 
-
-    render() {
-        const { isEditMode } = this.state
-        return (
+        return(
             <div className="notes-app">
 
-                <section className="notes-input notes-layout">
-                    <form className="notes-input-form" ref={this.formRef}>
-                        <label htmlFor="notes-title"></label>
-                        <input id="notes-title" type="text" placeholder="Whats on your mind?" />
-                        <label htmlFor="notes-content"></label>
-                        <input id="notes-content" type="text" placeholder="Take a note" onFocus={this.onInputFocus} />
-                    </form>
-                </section>
+               <NoteAdd inputType={inputType} setInputType={this.setInputType} creatNote={this.onCreateNote}/>
 
                 <section className="notes-cards notes-layout">
                     <h2>pinned</h2>
@@ -80,15 +78,12 @@ export class NotesApp extends React.Component {
                                 isEditMode={isEditMode}
 
                             />
-
                         </div>
                     </div>
 
                     <h2>notes</h2>
                     <div className="notes-general">
                         <div className="cards-container">
-
-                            {/* Notes list */}
                             <NotesList
                                 notes={this.state.notes.filter(note => !note.isPinned)}
                                 onDeleteNote={this.onDeleteNote}
@@ -99,7 +94,6 @@ export class NotesApp extends React.Component {
 
 
                             />
-
                         </div>
 
                     </div>

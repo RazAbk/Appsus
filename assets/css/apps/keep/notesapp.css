@@ -3,10 +3,8 @@
     width: 100%;
     max-height: calc( 100vh - 140px);
     min-height: calc( 100vh - 140px);
-    /* height: 100%; */
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
     overflow-y: scroll;
 }
@@ -23,18 +21,20 @@
     transition: 0.3s;
 }
 
-
-/* .notes-input input:focus {
-    padding: 5rem 0;
-}
- */
-
 .notes-input-form {
+    position: relative;
     display: flex;
     flex-direction: column;
+    height: 1.5rem;
+    transition: 0.3s;
+}
+
+.expand-form {
+    height: 8rem;
 }
 
 .notes-input-form input {
+    width: 100%;
     border: none;
     height: 2rem;
     font-size: 1.5rem;
@@ -47,10 +47,59 @@
     border: none;
 }
 
+.choose-type-btns {
+    position: absolute;
+    bottom: 0;
+    z-index: 300;
+    transition: 0.3s;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.choose-type-btns i {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.choose-type-btns i:hover {
+    transform: scale(1.2);
+}
+
+.choose-type-btns>* {
+    font-size: 1.5rem;
+    padding-inline-end: 1rem;
+}
+
+.add-note-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.add-note-btn:hover {
+    transform: scale(1.1);
+}
+
+.optional-input {
+    padding-top: 0.8rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.inside-form-visible {
+    opacity: 1;
+    pointer-events: visible;
+}
+
 
 /* Notes Layout */
-
-.notes-cards {}
 
 .note {
     position: relative;
