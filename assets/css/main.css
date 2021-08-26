@@ -5,6 +5,8 @@
 @import url(/assets/css/parts/helpers.css);
 @import url(/assets//css/parts/animations.css);
 
+@import url(/assets/css/apps/keep/notesapp.css);
+
 *{
     box-sizing: border-box;
     padding: 0;
@@ -25,5 +27,5 @@ body {
 main{
     display: flex;
     justify-content: center;
-    /* height: 100%; */
+    height: 100%;
 }

@@ -85,6 +85,54 @@ const gEmails = storageService.loadFromStorage(EMAIL_KEY) || [{
         composer: 'yossi@Gmail.com',
         receiver: 'user@appsus.com'
     },
+    {
+        id: utilService.makeId(4),
+        subject: 'Hello mr',
+        body: 'I like you',
+        isRead: false,
+        isStared: false,
+        isChecked: false,
+        folder: 'inbox',
+        sentAt: Date.now(),
+        composer: 'yossi@Gmail.com',
+        receiver: 'user@appsus.com'
+    },
+    {
+        id: utilService.makeId(4),
+        subject: 'Hello mr',
+        body: 'I like you',
+        isRead: false,
+        isStared: false,
+        isChecked: false,
+        folder: 'inbox',
+        sentAt: Date.now(),
+        composer: 'yossi@Gmail.com',
+        receiver: 'user@appsus.com'
+    },
+    {
+        id: utilService.makeId(4),
+        subject: 'Hello mr',
+        body: 'I like you',
+        isRead: false,
+        isStared: false,
+        isChecked: false,
+        folder: 'inbox',
+        sentAt: Date.now(),
+        composer: 'yossi@Gmail.com',
+        receiver: 'user@appsus.com'
+    },
+    {
+        id: utilService.makeId(4),
+        subject: 'Hello mr',
+        body: 'I like you',
+        isRead: false,
+        isStared: false,
+        isChecked: false,
+        folder: 'inbox',
+        sentAt: Date.now(),
+        composer: 'yossi@Gmail.com',
+        receiver: 'user@appsus.com'
+    },
 ];
 _saveEmailsToStorage();
 
