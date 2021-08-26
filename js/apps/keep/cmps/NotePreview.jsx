@@ -1,33 +1,35 @@
 import { NoteTxt } from "./NoteTxt.jsx";
 import { NoteImg } from './NoteImg.jsx'
+import { NoteTodos } from './NoteTodos.jsx'
 
-export function NotePreview({ note }){
+export function NotePreview({ note }) {
 
-    const {info} = note;
-    
+    const { info } = note;
+
     let noteToDisplay;
 
-    switch(note.type){
+    switch (note.type) {
         case 'note-txt':
             noteToDisplay = <NoteTxt info={info} />
-        break;
+            break;
         case 'note-img':
             noteToDisplay = <NoteImg info={info} />
-        break;
+            break;
         case 'note-video':
             noteToDisplay = '<NoteVideo info={info} />'
-        break;
+            break;
         case 'note-todos':
-            noteToDisplay = '<NoteTodos info={info} />'
-        break;
+            noteToDisplay = <NoteTodos info={info} id={note.id} />
+            break;
     }
 
-    console.log(noteToDisplay)
 
-    return(
+
+    return (
         <div className={`note ${note.type}`}>
-            {/* {Object.keys(info).map((inf,idx) => <h2 key={`${note.id}-${idx}`}>{inf}</h2>)} */}
+            {/* Note Content */}
             {noteToDisplay}
+            {/* Note nav bar */}
         </div>
     )
 }

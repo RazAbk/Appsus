@@ -6,44 +6,43 @@ export const notesService = {
 };
 
 const NOTES_KEY = "notesDB";
-const gNotes = storageService.loadFromStorage(NOTES_KEY) || [
-  {
-    id: utilService.makeId(5),
-    type: "note-txt",
-    isPinned: true,
-    info: { txt: "Fullstack Me Baby!" },
-    style: { backgroundColor: "#00d" }
-  },
-  {
-    id: utilService.makeId(5),
-    type: "note-img",
-    isPinned: false,
-    info: { url: "http://some-img/me", title: "Bobi and Me" },
-    style: { backgroundColor: "#00d" }
-  },
-  {
-    id: utilService.makeId(5),
-    type: "note-todos",
-    isPinned: false,
-    info: {
-      label: "Get my stuff together",
-      todos: [
-        { txt: "Driving liscence", doneAt: null },
-        { txt: "Coding power", doneAt: 187111111 },
-      ],
+const gNotes = storageService.loadFromStorage(NOTES_KEY) || [{
+        id: utilService.makeId(5),
+        type: "note-txt",
+        isPinned: true,
+        info: { txt: "Fullstack Me Baby!" },
+        style: { backgroundColor: "#00d" }
     },
-    style: { backgroundColor: "#00d" }
-  },
-  {
-    id: utilService.makeId(5),
-    type: "note-video",
-    isPinned: false,
-    info: { url: "https://www.youtube.com/watch?v=EIm4HvDgQCM", title: "funny vid" },
-    style: { backgroundColor: "#00d" }
-  },
+    {
+        id: utilService.makeId(5),
+        type: "note-img",
+        isPinned: false,
+        info: { url: "/assets/img/cat.jpg", title: "Bobi and Me" },
+        style: { backgroundColor: "#00d" }
+    },
+    {
+        id: utilService.makeId(5),
+        type: "note-todos",
+        isPinned: false,
+        info: {
+            label: "Get my stuff together",
+            todos: [
+                { txt: "Driving liscence", doneAt: null },
+                { txt: "Coding power", doneAt: 187111111 },
+            ],
+        },
+        style: { backgroundColor: "#00d" }
+    },
+    {
+        id: utilService.makeId(5),
+        type: "note-video",
+        isPinned: false,
+        info: { url: "https://www.youtube.com/watch?v=EIm4HvDgQCM", title: "funny vid" },
+        style: { backgroundColor: "#00d" }
+    },
 ];
 
-function query(){
+function query() {
     return Promise.resolve(gNotes);
 }
 
@@ -55,6 +54,6 @@ function query(){
 
 
 
-function _saveNotesToStorage(){
-    storageService.saveToStorage(NOTES_KEY,gNotes);
+function _saveNotesToStorage() {
+    storageService.saveToStorage(NOTES_KEY, gNotes);
 }

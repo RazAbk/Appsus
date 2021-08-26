@@ -1,11 +1,8 @@
 
-export function NoteImg({ note }) {
+export function NoteImg({ info }) {
+    console.log(info)
     return (
-        <h1></h1>
+        <img className="img-Note" src={`${info.url}`} />
     )
-
-
-
-
 
 }
