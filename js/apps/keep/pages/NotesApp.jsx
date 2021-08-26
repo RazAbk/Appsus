@@ -11,8 +11,8 @@ export class NotesApp extends React.Component {
         inputType: 'note-txt'
     }
 
-    
-    componentDidMount(){
+
+    componentDidMount() {
         this.loadNotes();
     }
 
@@ -23,9 +23,9 @@ export class NotesApp extends React.Component {
     }
 
     setInputType = (type) => {
-        this.setState({...this.state, inputType: type})
+        this.setState({ ...this.state, inputType: type })
     }
-   
+
     // Crud
 
     onDeleteNote = (noteId) => {
@@ -50,18 +50,18 @@ export class NotesApp extends React.Component {
 
 
     onCreateNote = (info) => {
-        notesService.createNote(info,this.state.inputType);
+        notesService.createNote(info, this.state.inputType);
         this.loadNotes();
     }
 
-    render(){
+    render() {
 
-        const {inputType, isEditMode} = this.state;
+        const { inputType, isEditMode } = this.state;
 
-        return(
+        return (
             <div className="notes-app">
 
-               <NoteAdd inputType={inputType} setInputType={this.setInputType} creatNote={this.onCreateNote}/>
+                <NoteAdd inputType={inputType} setInputType={this.setInputType} creatNote={this.onCreateNote} />
 
                 <section className="notes-cards notes-layout">
                     <h2>pinned</h2>
