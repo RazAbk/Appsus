@@ -5,6 +5,7 @@ export const notesService = {
     query,
     deleteNote,
     toggleNotePin,
+    duplicateNote
 
 };
 
@@ -63,6 +64,16 @@ function toggleNotePin(noteId) {
     const toggleIdx = _getNoteIdx(noteId);
     if (toggleIdx !== -1) {
         gNotes[toggleIdx].isPinned = !gNotes[toggleIdx].isPinned;
+        _saveNotesToStorage();
+    }
+}
+
+function duplicateNote(noteId) {
+    const duplicateIdx = _getNoteIdx(noteId);
+    if(duplicateIdx !== -1){
+    const duplicateIdx = _getNoteIdx(noteId);
+        const newCopy = JSON.parse(JSON.stringify(gNotes[duplicateIdx]));
+        gNotes.push(newCopy);
         _saveNotesToStorage();
     }
 }
