@@ -24,9 +24,6 @@ export class NotesApp extends React.Component {
 
     render(){
 
-        // const pinnedNotes;
-        // const generalNotes;
-
         return(
             <div className="notes-app">
 
@@ -45,7 +42,7 @@ export class NotesApp extends React.Component {
                         <div className="cards-container">
                             
                             {/* Notes list */}
-                            <NotesList notes={this.state.notes}/>
+                            <NotesList notes={this.state.notes.filter(note => note.isPinned)}/>
                         
                         </div>
                         </div>
@@ -55,7 +52,7 @@ export class NotesApp extends React.Component {
                         <div className="cards-container">
                         
                             {/* Notes list */}
-                            <NotesList notes={this.state.notes}/>
+                            <NotesList notes={this.state.notes.filter(note => !note.isPinned)}/>
 
                         </div>
 
