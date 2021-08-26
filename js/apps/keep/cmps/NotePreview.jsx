@@ -1,7 +1,7 @@
 import { NoteTxt } from "./NoteTxt.jsx";
 import { NoteImg } from './NoteImg.jsx'
 
-export function NotePreview({ note, onDeleteNote }){
+export function NotePreview({ note, onDeleteNote, onToggleNotePin }){
 
     const {info} = note;
     
@@ -48,7 +48,7 @@ export function NotePreview({ note, onDeleteNote }){
             </div>
             <div className="note-funcs">
                 <i onClick={() => {onDeleteNote(note.id)}} className="fas fa-trash"></i>
-                <i className="fas fa-thumbtack"></i>
+                <i onClick={() => {onToggleNotePin(note.id)}} className="fas fa-thumbtack"></i>
                 <i className="fas fa-palette"></i>
                 <i className="fas fa-clone"></i>
                 <i className="fas fa-edit"></i>

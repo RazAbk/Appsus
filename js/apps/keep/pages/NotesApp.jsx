@@ -23,10 +23,12 @@ export class NotesApp extends React.Component {
     }
 
     onDeleteNote = (noteId) => {
-        console.log('got here')
-        console.log(noteId)
-
         notesService.deleteNote(noteId);
+        this.loadNotes();
+    }
+
+    onToggleNotePin = (noteId) => {
+        notesService.toggleNotePin(noteId);
         this.loadNotes();
     }
 
@@ -50,7 +52,11 @@ export class NotesApp extends React.Component {
                         <div className="cards-container">
                             
                             {/* Notes list */}
-                            <NotesList notes={this.state.notes.filter(note => note.isPinned)} onDeleteNote={this.onDeleteNote}/>
+                            <NotesList
+                                notes={this.state.notes.filter(note => note.isPinned)}
+                                onDeleteNote={this.onDeleteNote}
+                                onToggleNotePin={this.onToggleNotePin}
+                            />
                         
                         </div>
                         </div>
@@ -60,7 +66,11 @@ export class NotesApp extends React.Component {
                         <div className="cards-container">
                         
                             {/* Notes list */}
-                            <NotesList notes={this.state.notes.filter(note => !note.isPinned)} onDeleteNote={this.onDeleteNote}/>
+                            <NotesList
+                                notes={this.state.notes.filter(note => !note.isPinned)}
+                                onDeleteNote={this.onDeleteNote}
+                                onToggleNotePin={this.onToggleNotePin}
+                            />
 
                         </div>
 
