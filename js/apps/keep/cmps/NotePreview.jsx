@@ -1,6 +1,7 @@
 import { NoteTxt } from "./NoteTxt.jsx";
 import { NoteImg } from './NoteImg.jsx'
 import { NoteTodos } from './NoteTodos.jsx'
+import { NoteVideo } from "./NoteVideo.jsx";
 
 export function NotePreview({ note, onDeleteNote, onToggleNotePin }) {
     const { info } = note
@@ -14,7 +15,7 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin }) {
             noteToDisplay = <NoteImg info={info} />
             break;
         case 'note-video':
-            noteToDisplay = '<NoteVideo info={info} />'
+            noteToDisplay = <NoteVideo info={info} />
             break;
         case 'note-todos':
             noteToDisplay = <NoteTodos info={info} id={note.id} />

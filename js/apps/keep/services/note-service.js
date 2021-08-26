@@ -40,7 +40,7 @@ const gNotes = storageService.loadFromStorage(NOTES_KEY) || [{
         id: utilService.makeId(5),
         type: "note-video",
         isPinned: false,
-        info: { url: "https://www.youtube.com/watch?v=EIm4HvDgQCM", title: "funny vid" },
+        info: { url: "https://www.youtube.com/watch?v=3OF7ikaSfcc", title: "funny vid" },
         style: { backgroundColor: "#00d" }
     },
 ];
