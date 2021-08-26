@@ -1,5 +1,5 @@
 .notes-app{
-    background-color: rgb(255, 200, 200);
+    background-color: rgb(241, 241, 232);
     width: 100%;
     max-height: calc( 100vh - 140px);
     min-height: calc( 100vh - 140px);
@@ -20,15 +20,16 @@
     margin-block-start: 1rem;
     background-color: rgb(255, 255, 255);
     border-radius: 5px;
+    border: 1px rgba(87, 87, 87, 0.349) solid;
 
     padding: 0.5rem;
     transition: 0.3s;
 }
 
-.notes-input input:focus {
+/* .notes-input input:focus {
     padding: 5rem 0;
 }
-
+ */
 
 
 .notes-input-form{
@@ -89,7 +90,9 @@
 }
 
 .notes-cards h2{
-    margin-block-end: 3rem;
+    margin: 1rem 0;
+    color:rgb(94, 94, 94);
+    font-size: 1.2rem;
 }
 
 .cards-container{
@@ -113,7 +116,6 @@
 }
 
 .note-funcs .fas{
-
     transition: 0.2s;
 }
 .note-funcs .fas:hover{
