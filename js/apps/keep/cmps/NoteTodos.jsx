@@ -3,6 +3,7 @@ export function NoteTodos({ info, id }) {
     let todos = info.todos
 
     const toggleTodo = (ev) => {
+        console.log(ev)
         ev.target.classList.toggle('put-line');
     }
 
