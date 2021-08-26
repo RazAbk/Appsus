@@ -1,5 +1,4 @@
 export function NoteTxt({ info, isEditMode }) {
-    console.log(isEditMode)
 
     if (!isEditMode) {
 

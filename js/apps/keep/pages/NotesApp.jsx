@@ -56,7 +56,7 @@ export class NotesApp extends React.Component {
 
     render(){
 
-        const {inputType} = this.state;
+        const {inputType, isEditMode} = this.state;
 
         return(
             <div className="notes-app">

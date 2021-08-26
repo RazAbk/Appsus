@@ -5,12 +5,11 @@ import { NoteVideo } from "./NoteVideo.jsx";
 
 
 
-export function NotePreview({ note, onDeleteNote, onToggleNotePin, onIsEditMode, isEditMode }) {
+export function NotePreview({ note, onDeleteNote, onToggleNotePin, onIsEditMode, isEditMode, onDuplicateNote }) {
 
     // let noteToEdit = false
     let currNote = React.createRef();
     let noteToDisplay;
-    console.log(onIsEditMode)
 
     const { info } = note
 
@@ -47,18 +46,10 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onIsEditMode,
 
     }
 
-    const toggleEditModal = (ev) => {
-        const elNote = ev.target.parentElement.parentElement;
-        elNote.style.backgroundColor = 'red';
-    }
-
     const toggleEditMode = () => {
-        console.log('hi')
-        console.log(currNote.current)
         onIsEditMode(true)
         
         currNote.current.classList.add('note-edit')
-
     }
 
 
@@ -72,9 +63,7 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onIsEditMode,
                 <i onClick={() => { onDeleteNote(note.id) }} className="fas fa-trash"></i>
                 <i onClick={() => { onToggleNotePin(note.id) }} className="fas fa-thumbtack"></i>
                 <i className="fas fa-palette"></i>
-                <i className="fas fa-clone"></i>
-                {/* <i onClick={() => { onEditNote(note.id); console.log('hey');  }} className={`fas fa-edit`}></i> */}
-                {/* <i onClick={toggleEditModal} className={`fas fa-edit`}></i> */}
+                <i onClick={() => { onDuplicateNote(note.id) }} className="fas fa-clone"></i>
                 <i onClick={toggleEditMode} className={`fas fa-edit`}></i>
                 <i className="fas fa-at"></i>
             </div>
