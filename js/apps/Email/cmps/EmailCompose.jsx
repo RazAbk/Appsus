@@ -15,10 +15,6 @@ export function EmailCompose({ userComposer, onCreateNewEmail }) {
 
         emailService.createEmail(subject, body, 'sent', composer, reciver)
 
-
-
-
-
     }
     const handleChange = (ev) => {
 
@@ -42,17 +38,17 @@ export function EmailCompose({ userComposer, onCreateNewEmail }) {
             <section className="email-details">
                 <div className="email-details-header">
                     <h2 className="email-new-msg">new message</h2>
-                    <div className="details-back" onClick={() => { onCreateNewEmail() }}>X</div>
+                    <div className="details-back" onClick={() => { onCreateNewEmail(false) }}>X</div>
                 </div>
                 <div className="details-composer">
                     <h2 className="composer-email">from: {userComposer.email}</h2>
                 </div>
                 <form className="email-metadata compose">
                     <div className="compose-subject">
-                        <h2>to:</h2><input name="text-reciver" className="email-input" onChange={handleChange} />
+                        to:<input name="text-reciver" className="email-input" onChange={handleChange} />
                     </div>
                     <div className="compose-reciever">
-                        <h2>subject:</h2><input name="text-subject" className="email-input" onChange={handleChange} />
+                        subject:<input name="text-subject" className="email-input" onChange={handleChange} />
                     </div>
 
                     <div className="compose-body">

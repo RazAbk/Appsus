@@ -30,7 +30,7 @@ export class EmailApp extends React.Component {
         })
     }
     onSelectedEmail = (email) => {
-       
+
         this.setState({ selectedEmail: email })
     }
 
@@ -42,7 +42,7 @@ export class EmailApp extends React.Component {
     onSetFolderFilter = (folder) => {
         let thisFilterBy = this.state.filterBy;
 
-        if(!thisFilterBy){
+        if (!thisFilterBy) {
             thisFilterBy = {
                 folder,
                 searchTxt: '',
@@ -50,11 +50,11 @@ export class EmailApp extends React.Component {
                 isStared: false,
             }
         } else {
-            thisFilterBy = {...thisFilterBy, folder: folder}
+            thisFilterBy = { ...thisFilterBy, folder: folder }
 
         }
-        
-        this.setState({...this.state, filterBy: thisFilterBy}, this.loadEmails)
+
+        this.setState({ ...this.state, filterBy: thisFilterBy }, this.loadEmails)
     }
 
     onCheckEmail = (emailId) => {
@@ -65,13 +65,9 @@ export class EmailApp extends React.Component {
         emailService.toggleCheckAllEmails(this.state.filterBy, isChecked);
         this.loadEmails();
     }
-    onCreateNewEmail = () => {
-        let { isNewEmail } = this.state
-        isNewEmail = !isNewEmail
-        this.setState({ isNewEmail })
-
-        console.log('new email')
-
+    onCreateNewEmail = (isOn) => {
+        console.log(isOn)
+        this.setState({ isNewEmail: isOn })
     }
 
     render() {
@@ -81,10 +77,11 @@ export class EmailApp extends React.Component {
 
         return (
             <div className="email-app main-layout">
-                <Screen isOpen={this.state.selectedEmail} closeModal={this.onSelectedEmail} />
+                <Screen isOpen={selectedEmail} closeModal={this.onSelectedEmail} />
+                <Screen isOpen={isNewEmail} closeModal={this.onCreateNewEmail} />
                 <div className="emails-left-layout">
                     <nav className="email-folders">
-                        <i className="fas fa-plus new-compose" onClick={() => this.onCreateNewEmail()}></i>
+                        <i className="fas fa-plus new-compose" onClick={() => this.onCreateNewEmail(true)}></i>
                         <div className="inbox" onClick={() => { this.onSetFolderFilter('inbox') }}>inbox</div>
                         <div className="starred" onClick={() => { this.onSetFolderFilter('starred') }}>starred</div>
                         <div className="sent" onClick={() => { this.onSetFolderFilter('sent') }}>sent</div>
@@ -95,7 +92,7 @@ export class EmailApp extends React.Component {
 
                 <div className="emails-right-layout">
                     <div className="email-filter">
-                        <EmailFilter onSetFilter={this.onSetFilter} currentFolder={this.state.filterBy ? this.state.filterBy.folder : 'inbox'}/>
+                        <EmailFilter onSetFilter={this.onSetFilter} currentFolder={this.state.filterBy ? this.state.filterBy.folder : 'inbox'} />
                     </div>
                     <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} onCheckEmail={this.onCheckEmail} onCheckAllEmails={this.onCheckAllEmails} />
 
