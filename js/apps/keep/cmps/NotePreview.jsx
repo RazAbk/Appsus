@@ -1,17 +1,5 @@
-<<<<<<< HEAD
-import { NoteImg } from "./NoteImg.jsx";
-import { NotesList } from "./NotesList";
-
-export function NotePreview({ note }) {
-
-    const { info } = note;
-
-    return (
-        <div className="note">
-            {Object.keys(info).map((inf, idx) => <h2 key={`${note.id}-${idx}`}>{inf}</h2>)}
-            <NoteImg note={note} />
-=======
 import { NoteTxt } from "./NoteTxt.jsx";
+import { NoteImg } from './NoteImg.jsx'
 
 export function NotePreview({ note }){
 
@@ -23,14 +11,23 @@ export function NotePreview({ note }){
         case 'note-txt':
             noteToDisplay = <NoteTxt info={info} />
         break;
-        default:
-            noteToDisplay = '';
+        case 'note-img':
+            noteToDisplay = <NoteImg info={info} />
+        break;
+        case 'note-video':
+            noteToDisplay = '<NoteVideo info={info} />'
+        break;
+        case 'note-todos':
+            noteToDisplay = '<NoteTodos info={info} />'
+        break;
     }
+
+    console.log(noteToDisplay)
 
     return(
         <div className={`note ${note.type}`}>
-            {Object.keys(info).map((inf,idx) => <h2 key={`${note.id}-${idx}`}>{inf}</h2>)}
->>>>>>> 4f0b476500114569d6897be982d96e307667b96d
+            {/* {Object.keys(info).map((inf,idx) => <h2 key={`${note.id}-${idx}`}>{inf}</h2>)} */}
+            {noteToDisplay}
         </div>
     )
 }
