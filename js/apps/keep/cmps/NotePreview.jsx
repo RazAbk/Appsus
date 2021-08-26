@@ -3,7 +3,16 @@ import { NoteTxt } from "./NoteTxt.jsx";
 export function NotePreview({ note }){
 
     const {info} = note;
-    console.log(note.type)
+    
+    let noteToDisplay;
+
+    switch(note.type){
+        case 'note-txt':
+            noteToDisplay = <NoteTxt info={info} />
+        break;
+        default:
+            noteToDisplay = '';
+    }
 
     return(
         <div className={`note ${note.type}`}>
