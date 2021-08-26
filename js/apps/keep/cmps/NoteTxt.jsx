@@ -1,7 +1,7 @@
 export function NoteTxt({ info }){
 
     return(
-        <div className="note">
+        <div className="note-txt">
             {info.txt}
         </div>
     )

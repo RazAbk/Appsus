@@ -2,7 +2,7 @@ import { NoteTxt } from "./NoteTxt.jsx";
 import { NoteImg } from './NoteImg.jsx'
 import { NoteTodos } from './NoteTodos.jsx'
 
-export function NotePreview({ note, onDeleteNote, onToggleNotePin }) {
+export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNote }) {
     const { info } = note
     let noteToDisplay;
 
@@ -21,27 +21,17 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin }) {
             break;
     }
 
-    const displayFuncs = (ev) => {
+    const displayFuncs = (ev, isShown) => {
         const elFuncs = ev.target.getElementsByClassName('note-funcs')[0];
         ev.stopPropagation();
         if (elFuncs) {
-            elFuncs.classList.add('expand-note')
+            if(isShown) elFuncs.classList.add('expand-note');
+            else elFuncs.classList.remove('expand-note');
         }
     }
-
-
-    const hideFuncs = (ev) => {
-        const elFuncs = ev.target.getElementsByClassName('note-funcs')[0];
-        ev.stopPropagation();
-        if (elFuncs) {
-            elFuncs.classList.remove('expand-note')
-        }
-    }
-
-
 
     return (
-        <div className={`note ${note.type}`} onMouseEnter={displayFuncs} onMouseLeave={hideFuncs}>
+        <div className={`note ${note.type}`} onMouseEnter={(ev)=>{displayFuncs(ev, true)}} onMouseLeave={(ev)=>{displayFuncs(ev, false)}}>
             <div className="note-content">
                 {noteToDisplay}
             </div>
@@ -49,7 +39,7 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin }) {
                 <i onClick={() => { onDeleteNote(note.id) }} className="fas fa-trash"></i>
                 <i onClick={() => { onToggleNotePin(note.id) }} className="fas fa-thumbtack"></i>
                 <i className="fas fa-palette"></i>
-                <i className="fas fa-clone"></i>
+                <i  onClick={() => {onDuplicateNote(note.id)}} className="fas fa-clone"></i>
                 <i className="fas fa-edit"></i>
                 <i className="fas fa-at"></i>
             </div>

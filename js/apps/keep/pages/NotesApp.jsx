@@ -32,6 +32,11 @@ export class NotesApp extends React.Component {
         this.loadNotes();
     }
 
+    onDuplicateNote = (noteId) => {
+        notesService.duplicateNote(noteId);
+        this.loadNotes();
+    }
+
     render(){
 
         return(
@@ -56,6 +61,7 @@ export class NotesApp extends React.Component {
                                 notes={this.state.notes.filter(note => note.isPinned)}
                                 onDeleteNote={this.onDeleteNote}
                                 onToggleNotePin={this.onToggleNotePin}
+                                onDuplicateNote={this.onDuplicateNote}
                             />
                         
                         </div>
@@ -70,6 +76,7 @@ export class NotesApp extends React.Component {
                                 notes={this.state.notes.filter(note => !note.isPinned)}
                                 onDeleteNote={this.onDeleteNote}
                                 onToggleNotePin={this.onToggleNotePin}
+                                onDuplicateNote={this.onDuplicateNote}
                             />
 
                         </div>
