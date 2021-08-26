@@ -94,7 +94,7 @@
     transform: scale(1.1);
 }
 
-.second-input{
+.optional-input{
     padding-top: 0.8rem;
     opacity: 0;
     pointer-events: none;

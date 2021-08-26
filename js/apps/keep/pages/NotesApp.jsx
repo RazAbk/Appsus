@@ -5,7 +5,7 @@ import { NoteAdd } from "../cmps/NoteAdd.jsx";
 export class NotesApp extends React.Component {
     state = {
         notes: [],
-        inputType: 'text'
+        inputType: 'note-txt'
     }
 
     componentDidMount(){
@@ -39,6 +39,11 @@ export class NotesApp extends React.Component {
         this.loadNotes();
     }
 
+    onCreateNote = (info) => {
+        notesService.createNote(info,this.state.inputType);
+        this.loadNotes();
+    }
+
     render(){
 
         const {inputType} = this.state;
@@ -46,7 +51,7 @@ export class NotesApp extends React.Component {
         return(
             <div className="notes-app">
 
-               <NoteAdd inputType={inputType} setInputType={this.setInputType} />
+               <NoteAdd inputType={inputType} setInputType={this.setInputType} creatNote={this.onCreateNote}/>
 
                 <section className="notes-cards notes-layout">
                     <h2>pinned</h2>
