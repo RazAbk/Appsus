@@ -5,7 +5,8 @@ export const notesService = {
     query,
     deleteNote,
     toggleNotePin,
-    duplicateNote
+    duplicateNote,
+    getNoteById
 
 };
 
@@ -52,6 +53,14 @@ function query() {
 
 // Crud
 
+// function isNote(noteId) {
+//   const curentNote = gNotes.find(note => { note.id === noteId })
+//   // return curentNote
+//   console.log(gNotes)
+
+
+// }
+
 function deleteNote(noteId) {
     const deleteIdx = _getNoteIdx(noteId);
     if (deleteIdx !== -1) {
@@ -70,8 +79,8 @@ function toggleNotePin(noteId) {
 
 function duplicateNote(noteId) {
     const duplicateIdx = _getNoteIdx(noteId);
-    if(duplicateIdx !== -1){
-    const duplicateIdx = _getNoteIdx(noteId);
+    if (duplicateIdx !== -1) {
+        const duplicateIdx = _getNoteIdx(noteId);
         const newCopy = JSON.parse(JSON.stringify(gNotes[duplicateIdx]));
         gNotes.push(newCopy);
         _saveNotesToStorage();
@@ -85,4 +94,12 @@ function _saveNotesToStorage() {
 function _getNoteIdx(noteId) {
     const idx = gNotes.findIndex(note => noteId === note.id);
     return idx;
+}
+
+function getNoteById(noteId) {
+    console.log(noteId)
+    const note = gNotes.find(note => note.id === noteId)
+    console.log(note)
+    return note
+
 }

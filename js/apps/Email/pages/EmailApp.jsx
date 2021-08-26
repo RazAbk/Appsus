@@ -82,11 +82,11 @@ export class EmailApp extends React.Component {
                 <div className="emails-left-layout">
                     <nav className="email-folders">
                         <i className="fas fa-plus new-compose" onClick={() => this.onCreateNewEmail(true)}></i>
-                        <div className="inbox" onClick={() => { this.onSetFolderFilter('inbox') }}>inbox</div>
-                        <div className="starred" onClick={() => { this.onSetFolderFilter('starred') }}>starred</div>
-                        <div className="sent" onClick={() => { this.onSetFolderFilter('sent') }}>sent</div>
-                        <div className="trash" onClick={() => { this.onSetFolderFilter('trash') }}>trash</div>
-                        <div className="drafts" onClick={() => { this.onSetFolderFilter('drafts') }}>drafts</div>
+                        <i className="far fa-envelope" onClick={() => { this.onSetFolderFilter('inbox') }}></i>
+                        <i className="far fa-star" onClick={() => { this.onSetFolderFilter('starred') }}></i>
+                        <i className="far fa-paper-plane" onClick={() => { this.onSetFolderFilter('sent') }}></i>
+                        <i className="fas fa-trash-alt" onClick={() => { this.onSetFolderFilter('trash') }}></i>
+                        <i className="far fa-sticky-note" onClick={() => { this.onSetFolderFilter('drafts') }}></i>
                     </nav>
                 </div>
 

@@ -1,8 +1,19 @@
-export function NoteTxt({ info }){
+export function NoteTxt({ info, isEditMode }) {
+    console.log(isEditMode)
 
-    return(
-        <div className="note-txt">
-            {info.txt}
-        </div>
-    )
+    if (!isEditMode) {
+
+        return (
+
+            <div className="note-txt">
+                {info.txt}
+            </div>
+        )
+    } else {
+        return (
+
+            <div>edit mode!</div>
+        )
+
+    }
 }

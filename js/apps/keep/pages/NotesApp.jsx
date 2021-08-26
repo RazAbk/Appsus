@@ -1,20 +1,23 @@
+import { Screen } from "../../../cmps/Screen.jsx";
 import { notesService } from "../services/note-service.js";
 import { NotesList } from "../cmps/NotesList.jsx";
+import { NoteEdit } from "../cmps/NoteEdit.jsx";
 
 export class NotesApp extends React.Component {
 
     state = {
-        notes: []
+        notes: [],
+        isEditMode: false
     }
 
 
-    componentDidMount(){
+    componentDidMount() {
         this.loadNotes();
     }
 
     loadNotes = () => {
         notesService.query().then(notes => {
-            this.setState({notes})
+            this.setState({ notes })
         })
     }
 
@@ -36,18 +39,29 @@ export class NotesApp extends React.Component {
         notesService.duplicateNote(noteId);
         this.loadNotes();
     }
+    onIsEditMode = (noteMode) => {
+        this.setState({ isEditMode: noteMode })
 
-    render(){
+    }
 
-        return(
+
+
+
+    // notesService.editNote(noteId)
+
+
+
+    render() {
+        const { isEditMode } = this.state
+        return (
             <div className="notes-app">
 
                 <section className="notes-input notes-layout">
                     <form className="notes-input-form" ref={this.formRef}>
                         <label htmlFor="notes-title"></label>
-                        <input id="notes-title" type="text" placeholder="Whats on your mind?"/>
+                        <input id="notes-title" type="text" placeholder="Whats on your mind?" />
                         <label htmlFor="notes-content"></label>
-                        <input id="notes-content" type="text" placeholder="Take a note" onFocus={this.onInputFocus}/>
+                        <input id="notes-content" type="text" placeholder="Take a note" onFocus={this.onInputFocus} />
                     </form>
                 </section>
 
@@ -55,28 +69,35 @@ export class NotesApp extends React.Component {
                     <h2>pinned</h2>
                     <div className="notes-pinned">
                         <div className="cards-container">
-                            
+
                             {/* Notes list */}
                             <NotesList
                                 notes={this.state.notes.filter(note => note.isPinned)}
                                 onDeleteNote={this.onDeleteNote}
                                 onToggleNotePin={this.onToggleNotePin}
                                 onDuplicateNote={this.onDuplicateNote}
+                                onIsEditMode={this.onIsEditMode}
+                                isEditMode={isEditMode}
+
                             />
-                        
+
                         </div>
-                        </div>
+                    </div>
 
                     <h2>notes</h2>
                     <div className="notes-general">
                         <div className="cards-container">
-                        
+
                             {/* Notes list */}
                             <NotesList
                                 notes={this.state.notes.filter(note => !note.isPinned)}
                                 onDeleteNote={this.onDeleteNote}
                                 onToggleNotePin={this.onToggleNotePin}
                                 onDuplicateNote={this.onDuplicateNote}
+                                onIsEditMode={this.onIsEditMode}
+                                isEditMode={isEditMode}
+
+
                             />
 
                         </div>

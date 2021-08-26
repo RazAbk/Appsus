@@ -5,7 +5,7 @@ export function NoteVideo({ info }) {
     return (
         <div className="note-video">
             <iframe src={newUrl}></iframe>
-            {/* <p>{info.title}</p> */}
+            <p>{info.title}</p>
         </div>
     )
 
