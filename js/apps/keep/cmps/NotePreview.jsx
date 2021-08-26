@@ -1,7 +1,7 @@
 import { NoteTxt } from "./NoteTxt.jsx";
 import { NoteImg } from './NoteImg.jsx'
 
-export function NotePreview({ note }){
+export function NotePreview({ note, onDeleteNote }){
 
     const {info} = note;
     
@@ -22,12 +22,38 @@ export function NotePreview({ note }){
         break;
     }
 
-    console.log(noteToDisplay)
+    const displayFuncs = (ev) => {
+        const elFuncs = ev.target.getElementsByClassName('note-funcs')[0];
+        ev.stopPropagation();
+        if(elFuncs){
+            elFuncs.classList.add('expand-note')
+        }
+    }
+    
+    
+    const hideFuncs = (ev) => {
+        const elFuncs = ev.target.getElementsByClassName('note-funcs')[0];
+        ev.stopPropagation();
+        if(elFuncs){
+            elFuncs.classList.remove('expand-note')
+        }
+    }
+
+
 
     return(
-        <div className={`note ${note.type}`}>
-            {/* {Object.keys(info).map((inf,idx) => <h2 key={`${note.id}-${idx}`}>{inf}</h2>)} */}
-            {noteToDisplay}
+        <div className={`note ${note.type}`} onMouseEnter={displayFuncs} onMouseLeave={hideFuncs}>
+            <div className="note-content">
+                {noteToDisplay}
+            </div>
+            <div className="note-funcs">
+                <i onClick={() => {onDeleteNote(note.id)}} className="fas fa-trash"></i>
+                <i className="fas fa-thumbtack"></i>
+                <i className="fas fa-palette"></i>
+                <i className="fas fa-clone"></i>
+                <i className="fas fa-edit"></i>
+                <i className="fas fa-at"></i>
+            </div>
         </div>
     )
 }
