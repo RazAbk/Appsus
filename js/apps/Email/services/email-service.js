@@ -9,7 +9,8 @@ export const emailService = {
     toggleCheckEmailById,
     cleanAllCheckedEmails,
     toggleCheckAllEmails,
-    moveFolder
+    moveFolder,
+    toggleEmailRead
 }
 
 const EMAIL_KEY = 'emailsDB'
@@ -151,8 +152,7 @@ function query(filterBy) {
                     email.composer.toLowerCase().includes(searchTxt) ||
                     email.receiver.toLowerCase().includes(searchTxt)
 
-                ) && email.isRead === isRead && email.isStared === isStared &&
-                email.folder === folder
+                )  && email.folder === folder
             )
         })
         return Promise.resolve(filteredEmails);
@@ -172,9 +172,6 @@ function moveFolder(emailId, folder){
     }
     _saveEmailsToStorage();
 }
-
-
-
 
 function createEmail(subject, body, folder = 'inbox', composer, receiver = loggedInUser.email) {
     const email = {
@@ -220,6 +217,12 @@ function toggleCheckAllEmails(filterBy, isChecked) {
 function cleanAllCheckedEmails() {
     gEmails.forEach(email => (email.isChecked = false))
     _saveEmailsToStorage();
+}
+
+function toggleEmailRead(emailId){
+    const emailIdx = _getEmailIdxById(emailId);
+    gEmails[emailIdx].isRead = !gEmails[emailIdx].isRead;
+    _saveEmailsToStorage(); 
 }
 
 function _saveEmailsToStorage() {
