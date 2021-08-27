@@ -109,10 +109,10 @@ export function EmailCompose({ draftToEdit, userComposer, onCreateNewEmail, isOp
                     </div>
                     <form className="email-metadata compose">
                         <div className="compose-receiver">
-                            to:<input name="text-receiver" className="email-input" defaultValue={draftToEdit ? draftToEdit.subject : ''} autoComplete="off" onChange={handleChange} />
+                            to:<input name="text-receiver" className="email-input" defaultValue={draftToEdit ? draftToEdit.composer : ''} autoComplete="off" onChange={handleChange} />
                         </div>
                         <div className="compose-subject">
-                            subject:<input name="text-subject" className="email-input" defaultValue={draftToEdit ? draftToEdit.receiver : ''} autoComplete="off" onChange={handleChange} />
+                            subject:<input name="text-subject" className="email-input" defaultValue={draftToEdit ? draftToEdit.subject : ''} autoComplete="off" onChange={handleChange} />
                         </div>
 
                         <div className="compose-body">
