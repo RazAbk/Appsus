@@ -39,7 +39,7 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onEditMode, s
 
 
     const hideFuncs = (ev) => {
-        const elFuncs = ev.target.getElementsByClassName('note')[0];
+        const elFuncs = ev.target.getElementsByClassName('note-funcs')[0];
         ev.stopPropagation();
         if (elFuncs) {
             elFuncs.classList.remove('expand-note')
