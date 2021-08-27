@@ -45,8 +45,6 @@ export class NotesApp extends React.Component {
         this.setState({ selectedNote: noteId })
     }
     onSaveEdit = (noteId, info) => {
-      
-        console.log(info);
         notesService.editNote(noteId, info)
         this.setState({ selectedNote: null })
 

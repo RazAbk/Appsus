@@ -7,7 +7,7 @@ import { NoteVideo } from "./NoteVideo.jsx";
 
 export function NotePreview({ note, onDeleteNote, onToggleNotePin, onEditMode, selectedNote, onSaveEdit }) {
 
-    
+
     // let noteToEdit = false
     let currNote = React.createRef();
     let noteToDisplay;
@@ -19,7 +19,7 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onEditMode, s
             noteToDisplay = <NoteTxt noteId={note.id} info={info} selectedNote={selectedNote} onSaveEdit={onSaveEdit} />
             break;
         case `note-img`:
-            noteToDisplay = <NoteImg info={info} />
+            noteToDisplay = <NoteImg noteId={note.id} info={info} selectedNote={selectedNote} onSaveEdit={onSaveEdit} />
             break;
         case `note-video`:
             noteToDisplay = <NoteVideo info={info} />

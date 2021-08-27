@@ -198,3 +198,15 @@
 .note {
     cursor: pointer;
 }
+
+.edit-inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-inputs>* {
+    font-family: 'Assistant', sans-serif;
+    font-size: 1.2rem;
+    padding: 0.3rem 0;
+    margin-block-start: 1rem;
+}

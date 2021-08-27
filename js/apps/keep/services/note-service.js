@@ -53,6 +53,7 @@ function query() {
 
 // Crud
 function editNote(noteId, info) {
+    console.log(info)
 
     const idx = _getNoteIdx(noteId)
     console.log(info)
