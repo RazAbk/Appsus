@@ -7,7 +7,8 @@ export class NotesApp extends React.Component {
     state = {
         notes: [],
         selectedNote: null,
-        inputType: 'note-txt'
+        inputType: 'note-txt',
+        backgroundColor: null
     }
 
 
@@ -57,11 +58,18 @@ export class NotesApp extends React.Component {
     onGoBack = () => {
         this.setState({ selectedNote: null })
     }
+    onChangeColor = (ev) => {
+        this.setState({backgroundColor: ev.target.value})
+
+        // this.setState({ backgroundColor: color })
+    }
+
+    // }
 
 
     render() {
 
-        const { inputType, selectedNote } = this.state;
+        const { inputType, selectedNote, backgroundColor } = this.state;
 
         return (
             <div className="notes-app">
@@ -83,6 +91,9 @@ export class NotesApp extends React.Component {
                                 selectedNote={selectedNote}
                                 onSaveEdit={this.onSaveEdit}
                                 onGoBack={this.onGoBack}
+                                onChangeColor={this.onChangeColor}
+                                backgroundColor={backgroundColor}
+
 
                             />
                         </div>
@@ -100,6 +111,8 @@ export class NotesApp extends React.Component {
                                 selectedNote={selectedNote}
                                 onSaveEdit={this.onSaveEdit}
                                 onGoBack={this.onGoBack}
+                                onChangeColor={this.onChangeColor}
+                                backgroundColor={backgroundColor}
 
 
                             />

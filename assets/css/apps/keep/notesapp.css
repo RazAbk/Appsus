@@ -1,5 +1,5 @@
 .notes-app {
-    background-color: rgb(241, 241, 232);
+    background-color: rgb(255 255 255);
     width: 100%;
     max-height: calc( 100vh - 140px);
     min-height: calc( 100vh - 140px);
@@ -11,6 +11,27 @@
 
 
 /* Notes Input */
+
+input {
+    outline: none;
+    border: navajowhite;
+    box-shadow: 0 0 3px;
+}
+
+input:hover {
+    transition: 0.5s;
+    background-color: #e8ddd0;
+}
+
+button {
+    border: none;
+    box-shadow: 0 0 3px;
+}
+
+.color-input {
+    position: absolute;
+    opacity: 0;
+}
 
 .notes-input {
     margin-block-start: 1rem;
@@ -27,6 +48,10 @@
     flex-direction: column;
     height: 1.5rem;
     transition: 0.3s;
+}
+
+.add-input {
+    box-shadow: none;
 }
 
 .expand-form {
@@ -80,6 +105,7 @@
     opacity: 0;
     pointer-events: none;
     transition: 0.3s;
+    font-size: 1.7rem;
 }
 
 .add-note-btn:hover {
@@ -103,7 +129,7 @@
 
 .note {
     position: relative;
-    background-color: rgb(175, 175, 175);
+    background-color: rgb(255 212 212 / 16%);
     border-radius: 5px;
     margin: 0.5rem;
     word-break: break-all;
@@ -111,6 +137,7 @@
     break-inside: avoid;
     overflow: hidden;
     padding: 2rem;
+    box-shadow: 0px 0px 1.5px 0px;
 }
 
 .note img {
@@ -180,7 +207,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(238, 238, 238, 0.9);
+    background-color: rgb(246 246 246);
     font-size: 2rem;
     border-radius: 5px;
     z-index: 500;
@@ -217,16 +244,6 @@
     cursor: pointer;
     display: flex;
     justify-content: center;
-}
-
-.edit-inputs>*:not(:nth-child(3)):hover {
-    transition: 0.5s;
-    background-color: #e8ddd0;
-}
-
-.edit-save:hover {
-    transition: 0.5s;
-    background-color: #e8ddd0;
 }
 
 .btn.edit-goback {

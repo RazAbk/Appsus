@@ -5,7 +5,7 @@ import { NoteVideo } from "./NoteVideo.jsx";
 
 
 
-export function NotePreview({ note, onDeleteNote, onToggleNotePin, onEditMode, selectedNote, onSaveEdit, onGoBack }) {
+export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNote, onEditMode, selectedNote, onSaveEdit, onGoBack, onChangeColor, backgroundColor }) {
 
 
     // let noteToEdit = false
@@ -50,25 +50,25 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onEditMode, s
 
     const toggleEditMode = () => {
         onEditMode(note.id)
-
     }
 
 
-
     return (
-        <div className={`note ${note.type} ${selectedNote === note.id ? 'note-edit' : ''}`} onMouseEnter={displayFuncs} onMouseLeave={hideFuncs} ref={currNote}>
+        <div className={`note ${note.type} ${selectedNote === note.id ? 'note-edit' : ''}`} onMouseEnter={displayFuncs}
+            onMouseLeave={hideFuncs} ref={currNote} style={{ backgroundColor: (backgroundColor ? backgroundColor : 'rgb(255 212 212 / 16%);') }}>
             <div className="note-content">
                 {noteToDisplay}
             </div>
             <div className={`note-funcs ${selectedNote === note.id ? 'edit-func' : ''}`}>
                 <i onClick={() => { onDeleteNote(note.id) }} className="fas fa-trash"></i>
                 <i onClick={() => { onToggleNotePin(note.id) }} className="fas fa-thumbtack"></i>
-                <i className="fas fa-palette"></i>
+                <label className="fas fa-palette" htmlFor="color-input"><input className="color-input" id="color-input" type="color" onChange={(ev) => { onChangeColor(ev) }} /></label>
                 <i onClick={() => { onDuplicateNote(note.id) }} className="fas fa-clone"></i>
                 <i onClick={toggleEditMode} className={`fas fa-edit`}></i>
                 <i className="fas fa-at"></i>
             </div>
 
-        </div>
+        </div >
     )
+
 }
