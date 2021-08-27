@@ -127,7 +127,6 @@
     position:absolute;
     z-index: 300;
     width: 3rem;
-    /* height: 31.3rem; */
     height: calc( 100vh - 240px );
     background-color: rgb(75, 75, 75);
     border-radius: 5px;
@@ -143,7 +142,6 @@
     width: 15rem;
     background-color: rgba(75, 75, 75, 0.97);
     box-shadow: 6px 0px 8px 0px #3d3d3dc9;
-    ;
 }
 
 .email-folders>* {
@@ -155,10 +153,13 @@
     font-size: 1.5rem;
     transform: translateX(10%);
     cursor: pointer;
+    margin-block-end: 1rem;
+    transition: 0.3s;
 }
 
-.email-folders>* {
-    margin-block-end: 1rem;
+.email-folders>*:hover {
+    background-color: rgb(255, 241, 181);
+    transform: scale(1.1);
 }
 
 

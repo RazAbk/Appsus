@@ -1,6 +1,6 @@
 import { EmailPreview } from "./EmailPreview.jsx";
 
-export function EmailList({ emails, onSelectedEmail, onCheckEmail, onCheckAllEmails }) {
+export function EmailList({ emails, onSelectedEmail, onCheckEmail, onCheckAllEmails, onTrashEmail }) {
 
     return (
         <div className="emails-body">
@@ -24,7 +24,7 @@ export function EmailList({ emails, onSelectedEmail, onCheckEmail, onCheckAllEma
 
                 <div className="emails-sort">
                     <div className="sort-selected">
-                        <h3>s</h3>
+                    <i className="far fa-star"></i>
                     </div>
                     <div className="sort-starred">
 
@@ -34,7 +34,11 @@ export function EmailList({ emails, onSelectedEmail, onCheckEmail, onCheckAllEma
                     </div>
 
                 </div>
-                {emails.map(email => <EmailPreview key={email.id} email={email} onSelectedEmail={onSelectedEmail} onCheckEmail={onCheckEmail} />)}
+                {emails.map(email => <EmailPreview key={email.id} email={email}
+                                                    onSelectedEmail={onSelectedEmail}
+                                                    onCheckEmail={onCheckEmail}
+                                                    trashEmail={onTrashEmail}
+                                    />)}
             </div>
 
         </div>

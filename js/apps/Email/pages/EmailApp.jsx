@@ -13,7 +13,8 @@ export class EmailApp extends React.Component {
         emails: [],
         filterBy: null,
         selectedEmail: null,
-        isNewEmail: false
+        isNewEmail: false,
+        checkedEmails: []
     }
 
     componentDidMount() {
@@ -65,8 +66,14 @@ export class EmailApp extends React.Component {
         emailService.toggleCheckAllEmails(this.state.filterBy, isChecked);
         this.loadEmails();
     }
+
     onCreateNewEmail = (isOn) => {
         this.setState({ isNewEmail: isOn })
+    }
+    
+    onTrashEmail= (emailId) => {
+        emailService.moveFolder(emailId, 'trash');
+        this.loadEmails()
     }
 
     render() {
@@ -96,7 +103,7 @@ export class EmailApp extends React.Component {
                         <div className="email-filter">
                             <EmailFilter onSetFilter={this.onSetFilter} currentFolder={this.state.filterBy ? this.state.filterBy.folder : 'inbox'} />
                         </div>
-                        <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} onCheckEmail={this.onCheckEmail} onCheckAllEmails={this.onCheckAllEmails} />
+                        <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} onCheckEmail={this.onCheckEmail} onCheckAllEmails={this.onCheckAllEmails} onTrashEmail={this.onTrashEmail} />
 
                     </div>
                     {selectedEmail && <EmailDetails email={selectedEmail} onSelectedEmail={this.onSelectedEmail} />}

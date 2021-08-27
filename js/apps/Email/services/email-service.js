@@ -5,11 +5,11 @@ export const emailService = {
     createEmail,
     getLoggedUser,
     query,
-    getEmailById,
     isUserTheComposer,
     toggleCheckEmailById,
     cleanAllCheckedEmails,
-    toggleCheckAllEmails
+    toggleCheckAllEmails,
+    moveFolder
 }
 
 const EMAIL_KEY = 'emailsDB'
@@ -161,6 +161,18 @@ function query(filterBy) {
     }
 }
 
+// Crud
+function moveFolder(emailId, folder){
+    const emailIdx = _getEmailIdxById(emailId);
+    if(gEmails[emailIdx].folder === 'trash' && folder === 'trash'){
+        gEmails.splice(emailIdx, 1);
+        console.log('delete email')
+    } else{
+        gEmails[emailIdx].folder = folder;
+    }
+    _saveEmailsToStorage();
+}
+
 
 
 
@@ -183,11 +195,6 @@ function createEmail(subject, body, folder = 'inbox', composer, receiver = logge
 
 function getLoggedUser() {
     return loggedInUser;
-}
-
-function getEmailById(id) {
-
-
 }
 
 function isUserTheComposer(composer) {
@@ -217,4 +224,8 @@ function cleanAllCheckedEmails() {
 
 function _saveEmailsToStorage() {
     storageService.saveToStorage(EMAIL_KEY, gEmails)
+}
+
+function _getEmailIdxById(emailId){
+    return gEmails.findIndex(email => email.id === emailId)
 }
