@@ -34,14 +34,16 @@ header{
 .unread-emails{
     position:absolute;
 
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -60%);
     display: inline-block;
     border-radius: 50px;
     padding: 0.1rem 0.2rem;
-    color:white;
+    color:#fffbf5;
     background-color: red;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     border: 3px solid black;
+
+    transition: 0.3s;
 }
 
 .active i{

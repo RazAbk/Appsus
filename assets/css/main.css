@@ -4,8 +4,9 @@
 @import url('./apps/email/emailapp.css');
 @import url('./parts/helpers.css');
 @import url('./parts/animations.css');
-
 @import url('./apps/keep/notesapp.css');
+@import url('./cmps/UserMsg.css');
+
 
 *{
     box-sizing: border-box;

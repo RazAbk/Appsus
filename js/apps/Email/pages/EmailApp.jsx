@@ -15,8 +15,9 @@ export class EmailApp extends React.Component {
         filterBy: null,
         selectedEmail: null,
         isNewEmail: false,
-        checkedEmails: []
+        checkedEmails: [],
     }
+
 
     componentDidMount() {
         this.loadEmails();
@@ -97,7 +98,6 @@ export class EmailApp extends React.Component {
             <div className="email-app main-layout">
                     <React.Fragment>
                         <Screen isOpen={selectedEmail} closeModal={this.onSelectedEmail} />
-                        <Screen isOpen={isNewEmail} closeModal={this.onCreateNewEmail} />
                     </React.Fragment>
                 <div className="email-layout">
                     <div className="emails-left-layout">
@@ -119,7 +119,7 @@ export class EmailApp extends React.Component {
 
                     </div>
                     {selectedEmail && <EmailDetails email={selectedEmail} onSelectedEmail={this.onSelectedEmail} />}
-                    {isNewEmail && <EmailCompose userComposer={emailService.getLoggedUser()} onCreateNewEmail={this.onCreateNewEmail} />}
+                    {isNewEmail && <EmailCompose userComposer={emailService.getLoggedUser()} onCreateNewEmail={this.onCreateNewEmail} draftInterval={this.state.draftInterval} isOpen={isNewEmail} />}
                 </div>
             </div>
         )
