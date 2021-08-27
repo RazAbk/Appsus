@@ -5,11 +5,11 @@ export const emailService = {
     createEmail,
     getLoggedUser,
     query,
-    getEmailById,
     isUserTheComposer,
     toggleCheckEmailById,
     cleanAllCheckedEmails,
-    toggleCheckAllEmails
+    toggleCheckAllEmails,
+    moveFolder
 }
 
 const EMAIL_KEY = 'emailsDB'
@@ -142,7 +142,6 @@ const loggedInUser = { email: 'user@appsus.com', fullname: 'Mahatma Appsus' }
 function query(filterBy) {
     if (filterBy) {
         let { searchTxt, isRead, isStared, folder } = filterBy;
-        console.log(filterBy)
 
         const filteredEmails = gEmails.filter(email => {
             return (
@@ -160,6 +159,18 @@ function query(filterBy) {
     } else {
         return Promise.resolve(gEmails.filter(email => email.folder === 'inbox'));
     }
+}
+
+// Crud
+function moveFolder(emailId, folder){
+    const emailIdx = _getEmailIdxById(emailId);
+    if(gEmails[emailIdx].folder === 'trash' && folder === 'trash'){
+        gEmails.splice(emailIdx, 1);
+        console.log('delete email')
+    } else{
+        gEmails[emailIdx].folder = folder;
+    }
+    _saveEmailsToStorage();
 }
 
 
@@ -186,11 +197,6 @@ function getLoggedUser() {
     return loggedInUser;
 }
 
-function getEmailById(id) {
-
-
-}
-
 function isUserTheComposer(composer) {
     return composer === loggedInUser.email;
 }
@@ -205,7 +211,6 @@ function toggleCheckEmailById(emailId) {
 }
 
 function toggleCheckAllEmails(filterBy, isChecked) {
-    console.log('filterBy: ', filterBy)
     query(filterBy).then(emailsToToggle => {
         emailsToToggle.forEach(email => { email.isChecked = isChecked });
         _saveEmailsToStorage();
@@ -219,4 +224,8 @@ function cleanAllCheckedEmails() {
 
 function _saveEmailsToStorage() {
     storageService.saveToStorage(EMAIL_KEY, gEmails)
+}
+
+function _getEmailIdxById(emailId){
+    return gEmails.findIndex(email => email.id === emailId)
 }

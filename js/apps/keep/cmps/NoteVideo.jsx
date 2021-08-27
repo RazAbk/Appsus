@@ -1,6 +1,7 @@
 export function NoteVideo({ info }) {
 
-    const newUrl = info.url.replace('watch?v=', `embed/`)
+    let newUrl = info.url.replace('watch?v=', `embed/`);
+    newUrl = newUrl.replace('youtube', 'youtube-nocookie');
    
     return (
         <div className="note-video">

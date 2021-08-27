@@ -85,7 +85,7 @@ function createNote(info, type) {
     const newNote = {
         id: utilService.makeId(5),
         type,
-        isPinned: true,
+        isPinned: false,
         info,
         style: { backgroundColor: "#00d" }
     }

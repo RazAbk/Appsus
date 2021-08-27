@@ -13,7 +13,8 @@ export class EmailApp extends React.Component {
         emails: [],
         filterBy: null,
         selectedEmail: null,
-        isNewEmail: false
+        isNewEmail: false,
+        checkedEmails: []
     }
 
     componentDidMount() {
@@ -26,14 +27,12 @@ export class EmailApp extends React.Component {
 
     loadEmails = () => {
         const emails = emailService.query(this.state.filterBy).then(emails => {
-            this.setState({ emails });
+            this.setState({ emails, checkedEmails: emails.filter(email => email.isChecked) });
         })
     }
     onSelectedEmail = (email) => {
-
         this.setState({ selectedEmail: email })
     }
-
 
     onSetFilter = (filterBy) => {
         this.setState({ filterBy }, this.loadEmails)
@@ -59,15 +58,21 @@ export class EmailApp extends React.Component {
 
     onCheckEmail = (emailId) => {
         emailService.toggleCheckEmailById(emailId);
+        this.loadEmails();
     }
 
     onCheckAllEmails = (isChecked) => {
         emailService.toggleCheckAllEmails(this.state.filterBy, isChecked);
         this.loadEmails();
     }
+
     onCreateNewEmail = (isOn) => {
-        console.log(isOn)
         this.setState({ isNewEmail: isOn })
+    }
+    
+    onMoveEmail= (emailId, folder) => {
+        emailService.moveFolder(emailId, folder);
+        this.loadEmails()
     }
 
     render() {
@@ -77,28 +82,32 @@ export class EmailApp extends React.Component {
 
         return (
             <div className="email-app main-layout">
-                <Screen isOpen={selectedEmail} closeModal={this.onSelectedEmail} />
-                <Screen isOpen={isNewEmail} closeModal={this.onCreateNewEmail} />
-                <div className="emails-left-layout">
-                    <nav className="email-folders">
-                        <i className="fas fa-plus new-compose" onClick={() => this.onCreateNewEmail(true)}></i>
-                        <i className="far fa-envelope" onClick={() => { this.onSetFolderFilter('inbox') }}></i>
-                        <i className="far fa-star" onClick={() => { this.onSetFolderFilter('starred') }}></i>
-                        <i className="far fa-paper-plane" onClick={() => { this.onSetFolderFilter('sent') }}></i>
-                        <i className="fas fa-trash-alt" onClick={() => { this.onSetFolderFilter('trash') }}></i>
-                        <i className="far fa-sticky-note" onClick={() => { this.onSetFolderFilter('drafts') }}></i>
-                    </nav>
-                </div>
-
-                <div className="emails-right-layout">
-                    <div className="email-filter">
-                        <EmailFilter onSetFilter={this.onSetFilter} currentFolder={this.state.filterBy ? this.state.filterBy.folder : 'inbox'} />
+                    <React.Fragment>
+                        <Screen isOpen={selectedEmail} closeModal={this.onSelectedEmail} />
+                        <Screen isOpen={isNewEmail} closeModal={this.onCreateNewEmail} />
+                    </React.Fragment>
+                <div className="email-layout">
+                    <div className="emails-left-layout">
+                        <nav className="email-folders">
+                            <i className="fas fa-plus new-compose" onClick={() => this.onCreateNewEmail(true)}></i>
+                            <i className="far fa-envelope" onClick={() => { this.onSetFolderFilter('inbox') }}></i>
+                            <i className="far fa-star" onClick={() => { this.onSetFolderFilter('starred') }}></i>
+                            <i className="far fa-paper-plane" onClick={() => { this.onSetFolderFilter('sent') }}></i>
+                            <i className="fas fa-trash-alt" onClick={() => { this.onSetFolderFilter('trash') }}></i>
+                            <i className="far fa-sticky-note" onClick={() => { this.onSetFolderFilter('drafts') }}></i>
+                        </nav>
                     </div>
-                    <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} onCheckEmail={this.onCheckEmail} onCheckAllEmails={this.onCheckAllEmails} />
 
+                    <div className="emails-right-layout">
+                        <div className="email-filter">
+                            <EmailFilter onSetFilter={this.onSetFilter} currentFolder={this.state.filterBy ? this.state.filterBy.folder : 'inbox'} />
+                        </div>
+                        <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} onCheckEmail={this.onCheckEmail} onCheckAllEmails={this.onCheckAllEmails} onMoveEmail={this.onMoveEmail} checkedEmails={this.state.checkedEmails}/>
+
+                    </div>
+                    {selectedEmail && <EmailDetails email={selectedEmail} onSelectedEmail={this.onSelectedEmail} />}
+                    {isNewEmail && <EmailCompose userComposer={emailService.getLoggedUser()} onCreateNewEmail={this.onCreateNewEmail} />}
                 </div>
-                {selectedEmail && <EmailDetails email={selectedEmail} onSelectedEmail={this.onSelectedEmail} />}
-                {isNewEmail && <EmailCompose userComposer={emailService.getLoggedUser()} onCreateNewEmail={this.onCreateNewEmail} />}
             </div>
         )
     }

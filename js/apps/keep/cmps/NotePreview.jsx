@@ -64,9 +64,7 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onEditMode, s
                 <i onClick={() => { onDeleteNote(note.id) }} className="fas fa-trash"></i>
                 <i onClick={() => { onToggleNotePin(note.id) }} className="fas fa-thumbtack"></i>
                 <i className="fas fa-palette"></i>
-                <i className="fas fa-clone"></i>
-                {/* <i onClick={() => { onEditNote(note.id); console.log('hey');  }} className={`fas fa-edit`}></i> */}
-                {/* <i onClick={toggleEditModal} className={`fas fa-edit`}></i> */}
+                <i onClick={() => { onDuplicateNote(note.id) }} className="fas fa-clone"></i>
                 <i onClick={toggleEditMode} className={`fas fa-edit`}></i>
                 <i className="fas fa-at"></i>
             </div>

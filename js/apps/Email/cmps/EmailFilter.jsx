@@ -20,7 +20,7 @@ export class EmailFilter extends React.Component {
 
     render(){
         return(
-            <input type="text" placeholder="Search" onChange={this.handleChange} ></input>
+            <input type="text" placeholder="Search" onChange={this.handleChange} autoComplete="off" ></input>
         )
     }
 }
