@@ -5,7 +5,7 @@ import { NoteVideo } from "./NoteVideo.jsx";
 
 
 
-export function NotePreview({ note, onDeleteNote, onToggleNotePin, onEditMode, selectedNote, onSaveEdit }) {
+export function NotePreview({ note, onDeleteNote, onToggleNotePin, onEditMode, selectedNote, onSaveEdit, onGoBack }) {
 
 
     // let noteToEdit = false
@@ -16,16 +16,16 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onEditMode, s
 
     switch (note.type) {
         case `note-txt`:
-            noteToDisplay = <NoteTxt noteId={note.id} info={info} selectedNote={selectedNote} onSaveEdit={onSaveEdit} />
+            noteToDisplay = <NoteTxt noteId={note.id} info={info} selectedNote={selectedNote} onSaveEdit={onSaveEdit} onGoBack={onGoBack} />
             break;
         case `note-img`:
-            noteToDisplay = <NoteImg noteId={note.id} info={info} selectedNote={selectedNote} onSaveEdit={onSaveEdit} />
+            noteToDisplay = <NoteImg noteId={note.id} info={info} selectedNote={selectedNote} onSaveEdit={onSaveEdit} onGoBack={onGoBack} />
             break;
         case `note-video`:
-            noteToDisplay = <NoteVideo info={info} />
+            noteToDisplay = <NoteVideo noteId={note.id} info={info} selectedNote={selectedNote} onSaveEdit={onSaveEdit} onGoBack={onGoBack} />
             break;
         case `note-todos`:
-            noteToDisplay = <NoteTodos noteId={note.id} info={info} selectedNote={selectedNote} onSaveEdit={onSaveEdit} />
+            noteToDisplay = <NoteTodos noteId={note.id} info={info} selectedNote={selectedNote} onSaveEdit={onSaveEdit} onGoBack={onGoBack} />
             break;
     }
 

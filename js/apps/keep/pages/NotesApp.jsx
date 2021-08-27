@@ -49,11 +49,15 @@ export class NotesApp extends React.Component {
         this.setState({ selectedNote: null })
 
     }
-    
+
     onCreateNote = (info) => {
         notesService.createNote(info, this.state.inputType);
         this.loadNotes();
     }
+    onGoBack = () => {
+        this.setState({ selectedNote: null })
+    }
+
 
     render() {
 
@@ -78,8 +82,9 @@ export class NotesApp extends React.Component {
                                 onEditMode={this.onEditMode}
                                 selectedNote={selectedNote}
                                 onSaveEdit={this.onSaveEdit}
-                                
-                                />
+                                onGoBack={this.onGoBack}
+
+                            />
                         </div>
                     </div>
 
@@ -94,6 +99,7 @@ export class NotesApp extends React.Component {
                                 onEditMode={this.onEditMode}
                                 selectedNote={selectedNote}
                                 onSaveEdit={this.onSaveEdit}
+                                onGoBack={this.onGoBack}
 
 
                             />

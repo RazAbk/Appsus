@@ -1,4 +1,4 @@
-export function NoteImg({ noteId, info, selectedNote, onSaveEdit }) {
+export function NoteImg({ noteId, info, selectedNote, onSaveEdit, onGoBack }) {
 
     const urlRef = React.createRef()
     const urlTitle = React.createRef()
@@ -30,9 +30,12 @@ export function NoteImg({ noteId, info, selectedNote, onSaveEdit }) {
                 <div className="edit-inputs">
                     <input type="text" placeholder="enter new image url" ref={urlRef} />
                     <input type="text" placeholder="enter new image title" ref={urlTitle} />
+                    <div className="edit-buttons">
+                        <button className="btn edit-save" onClick={() => handleRef()}> save! </button>
+                        <button className="btn edit-goback" onClick={() => onGoBack()}> go back </button>
 
+                    </div>
                 </div>
-                <button onClick={() => handleRef()}> save!</button>
 
             </div>
         )
