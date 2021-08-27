@@ -25,7 +25,6 @@ export function NoteAdd({inputType, setInputType, creatNote}){
     }
 
     const onLeaveForm = (ev) => {
-            // console.log(ev.target.id) 
             // Shrink
             const form = ev.target.form;
             form.classList.remove('expand-form')
@@ -88,10 +87,10 @@ export function NoteAdd({inputType, setInputType, creatNote}){
         <section className="notes-input notes-layout">
             <form className="notes-input-form" ref={formRef}>
                 <label htmlFor="notes-title"></label>
-                <input id="notes-title" type="text" placeholder="What's on your mind..." onFocus={onEnterForm} onBlur={onLeaveForm} ref={input1}/>
+                <input id="notes-title" type="text" placeholder="What's on your mind..." autoComplete="off" onFocus={onEnterForm} onBlur={onLeaveForm} ref={input1}/>
                 <div className={`optional-input ${inputType !== 'note-txt' ? 'inside-form-visible' : ''}`} ref={optionalInputDiv}>
                     <label htmlFor="notes-content"></label>
-                    <input   id="notes-content" type="text" placeholder={(inputType === 'note-todos' ? 'Let\'s make some tasks (use , to separate)' : 'Url goes here')} onFocus={onEnterForm} onBlur={onLeaveForm} ref={input2}/>
+                    <input id="notes-content" type="text" placeholder={(inputType === 'note-todos' ? 'Let\'s make some tasks (use , to separate)' : 'Url goes here')} autoComplete="off" onFocus={onEnterForm} onBlur={onLeaveForm} ref={input2}/>
                 </div>
                 <div className="choose-type-btns" ref={functionBtns}>
                     <i tabIndex="-1" onFocus={(ev)=>{ev.target.click()}} onBlur={(ev)=>{ev.target.blur()}} onClick={() => {onSetInputType('note-txt')}} style={{color: (inputType === 'note-txt' ? '#efc718' : 'black')}} className="far fa-file-alt"></i>

@@ -77,28 +77,32 @@ export class EmailApp extends React.Component {
 
         return (
             <div className="email-app main-layout">
-                <Screen isOpen={selectedEmail} closeModal={this.onSelectedEmail} />
-                <Screen isOpen={isNewEmail} closeModal={this.onCreateNewEmail} />
-                <div className="emails-left-layout">
-                    <nav className="email-folders">
-                        <i className="fas fa-plus new-compose" onClick={() => this.onCreateNewEmail(true)}></i>
-                        <i className="far fa-envelope" onClick={() => { this.onSetFolderFilter('inbox') }}></i>
-                        <i className="far fa-star" onClick={() => { this.onSetFolderFilter('starred') }}></i>
-                        <i className="far fa-paper-plane" onClick={() => { this.onSetFolderFilter('sent') }}></i>
-                        <i className="fas fa-trash-alt" onClick={() => { this.onSetFolderFilter('trash') }}></i>
-                        <i className="far fa-sticky-note" onClick={() => { this.onSetFolderFilter('drafts') }}></i>
-                    </nav>
-                </div>
-
-                <div className="emails-right-layout">
-                    <div className="email-filter">
-                        <EmailFilter onSetFilter={this.onSetFilter} currentFolder={this.state.filterBy ? this.state.filterBy.folder : 'inbox'} />
+                {/* <div className="email-layout"> */}
+                    <React.Fragment>
+                        <Screen isOpen={selectedEmail} closeModal={this.onSelectedEmail} />
+                        <Screen isOpen={isNewEmail} closeModal={this.onCreateNewEmail} />
+                    </React.Fragment>
+                    <div className="emails-left-layout">
+                        <nav className="email-folders">
+                            <i className="fas fa-plus new-compose" onClick={() => this.onCreateNewEmail(true)}></i>
+                            <i className="far fa-envelope" onClick={() => { this.onSetFolderFilter('inbox') }}></i>
+                            <i className="far fa-star" onClick={() => { this.onSetFolderFilter('starred') }}></i>
+                            <i className="far fa-paper-plane" onClick={() => { this.onSetFolderFilter('sent') }}></i>
+                            <i className="fas fa-trash-alt" onClick={() => { this.onSetFolderFilter('trash') }}></i>
+                            <i className="far fa-sticky-note" onClick={() => { this.onSetFolderFilter('drafts') }}></i>
+                        </nav>
                     </div>
-                    <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} onCheckEmail={this.onCheckEmail} onCheckAllEmails={this.onCheckAllEmails} />
 
-                </div>
-                {selectedEmail && <EmailDetails email={selectedEmail} onSelectedEmail={this.onSelectedEmail} />}
-                {isNewEmail && <EmailCompose userComposer={emailService.getLoggedUser()} onCreateNewEmail={this.onCreateNewEmail} />}
+                    <div className="emails-right-layout">
+                        <div className="email-filter">
+                            <EmailFilter onSetFilter={this.onSetFilter} currentFolder={this.state.filterBy ? this.state.filterBy.folder : 'inbox'} />
+                        </div>
+                        <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} onCheckEmail={this.onCheckEmail} onCheckAllEmails={this.onCheckAllEmails} />
+
+                    </div>
+                    {selectedEmail && <EmailDetails email={selectedEmail} onSelectedEmail={this.onSelectedEmail} />}
+                    {isNewEmail && <EmailCompose userComposer={emailService.getLoggedUser()} onCreateNewEmail={this.onCreateNewEmail} />}
+                {/* </div> */}
             </div>
         )
     }

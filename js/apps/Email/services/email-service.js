@@ -142,7 +142,6 @@ const loggedInUser = { email: 'user@appsus.com', fullname: 'Mahatma Appsus' }
 function query(filterBy) {
     if (filterBy) {
         let { searchTxt, isRead, isStared, folder } = filterBy;
-        console.log(filterBy)
 
         const filteredEmails = gEmails.filter(email => {
             return (
@@ -205,7 +204,6 @@ function toggleCheckEmailById(emailId) {
 }
 
 function toggleCheckAllEmails(filterBy, isChecked) {
-    console.log('filterBy: ', filterBy)
     query(filterBy).then(emailsToToggle => {
         emailsToToggle.forEach(email => { email.isChecked = isChecked });
         _saveEmailsToStorage();
