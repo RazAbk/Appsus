@@ -28,9 +28,15 @@ button {
     box-shadow: 0 0 3px;
 }
 
+label {
+    cursor: pointer;
+}
+
 .color-input {
     position: absolute;
     opacity: 0;
+    width: 1px;
+    height: 1px;
 }
 
 .notes-input {
@@ -202,7 +208,6 @@ button {
     display: flex;
     flex-direction: column;
     width: 40vw;
-    height: 50vh;
     position: fixed;
     top: 50%;
     left: 50%;

@@ -16,14 +16,14 @@ const gNotes = storageService.loadFromStorage(NOTES_KEY) || [{
         type: "note-txt",
         isPinned: true,
         info: { txt: "Fullstack Me Baby!" },
-        style: { backgroundColor: "#00d" }
+        style: { backgroundColor: "rgb(255 212 212 / 16%)" }
     },
     {
         id: utilService.makeId(5),
         type: "note-img",
         isPinned: false,
         info: { url: "/assets/img/cat.jpg", title: "Bobi and Me" },
-        style: { backgroundColor: "#00d" }
+        style: { backgroundColor: "rgb(255 212 212 / 16%)" }
     },
     {
         id: utilService.makeId(5),
@@ -36,31 +36,36 @@ const gNotes = storageService.loadFromStorage(NOTES_KEY) || [{
                 { txt: "Coding power", doneAt: 187111111 },
             ],
         },
-        style: { backgroundColor: "#00d" }
+        style: { backgroundColor: "rgb(255 212 212 / 16%)" }
     },
     {
         id: utilService.makeId(5),
         type: "note-video",
         isPinned: false,
         info: { url: "https://www.youtube.com/watch?v=3OF7ikaSfcc", title: "funny vid" },
-        style: { backgroundColor: "#00d" }
+        style: { backgroundColor: "rgb(255 212 212 / 16%)" }
     },
 ];
+_saveNotesToStorage()
 
 function query() {
+
     return Promise.resolve(gNotes);
 }
 
 // Crud
 function editNote(noteId, info) {
-    console.log(info)
-
+    console.log(Object.keys(info)[0])
+    console.log(gNotes);
     const idx = _getNoteIdx(noteId)
-    console.log(info)
-    gNotes[idx].info = info
-
-
-
+    console.log(idx)
+    if (Object.keys(info)[0] === 'backgroundColor') {
+        console.log(info)
+        gNotes[idx].style = info
+    } else {
+        gNotes[idx].info = info
+    }
+    _saveNotesToStorage()
 }
 
 

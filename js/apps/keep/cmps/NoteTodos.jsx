@@ -1,4 +1,4 @@
-export function NoteTodos({ noteId, info, selectedNote, onSaveEdit,onGoBack }) {
+export function NoteTodos({ noteId, info, selectedNote, onSaveEdit, onGoBack }) {
 
     const todos = info.todos
     const todosRef = React.createRef();
@@ -35,10 +35,10 @@ export function NoteTodos({ noteId, info, selectedNote, onSaveEdit,onGoBack }) {
         return (
             <div className="edit-note">
                 <div className="edit-inputs-todos">
-                    <input className="edit-label" name="label" type="text" placeholder="enter label" ref={labelRef} />
+                    <input className="edit-label" name="label" type="text" defaultValue={info.label} ref={labelRef} />
                     < ul className="todos-list" ref={todosRef}>
                         {todos.map((todo, idx) =>
-                            <li className="edit-list" key={`${todo.id}-${idx}`}><input type="text" placeholder={todo.txt} /> </li>)}
+                            <li className="edit-list" key={`${todo.id}-${idx}`}><input type="text" defaultValue={todo.txt} /> </li>)}
                     </ul>
                 </div>
                 <div className="edit-buttons ">

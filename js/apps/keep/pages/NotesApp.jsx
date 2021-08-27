@@ -8,7 +8,7 @@ export class NotesApp extends React.Component {
         notes: [],
         selectedNote: null,
         inputType: 'note-txt',
-        backgroundColor: null
+
     }
 
 
@@ -26,8 +26,6 @@ export class NotesApp extends React.Component {
         this.setState({ ...this.state, inputType: type })
     }
 
-    // Crud
-
     onDeleteNote = (noteId) => {
         notesService.deleteNote(noteId);
         this.loadNotes();
@@ -42,34 +40,34 @@ export class NotesApp extends React.Component {
         notesService.duplicateNote(noteId);
         this.loadNotes();
     }
+
     onEditMode = (noteId) => {
         this.setState({ selectedNote: noteId })
     }
+
     onSaveEdit = (noteId, info) => {
         notesService.editNote(noteId, info)
         this.setState({ selectedNote: null })
-
     }
 
     onCreateNote = (info) => {
         notesService.createNote(info, this.state.inputType);
         this.loadNotes();
     }
+
     onGoBack = () => {
         this.setState({ selectedNote: null })
     }
-    onChangeColor = (ev) => {
-        this.setState({backgroundColor: ev.target.value})
 
-        // this.setState({ backgroundColor: color })
+    onGetColor = (noteId, style) => {
+        notesService.editNote(noteId, style)
+        this.loadNotes()
     }
-
-    // }
 
 
     render() {
 
-        const { inputType, selectedNote, backgroundColor } = this.state;
+        const { inputType, selectedNote } = this.state;
 
         return (
             <div className="notes-app">
@@ -80,8 +78,6 @@ export class NotesApp extends React.Component {
                     <h2>pinned</h2>
                     <div className="notes-pinned">
                         <div className="cards-container">
-
-                            {/* Notes list */}
                             <NotesList
                                 notes={this.state.notes.filter(note => note.isPinned)}
                                 onDeleteNote={this.onDeleteNote}
@@ -91,10 +87,7 @@ export class NotesApp extends React.Component {
                                 selectedNote={selectedNote}
                                 onSaveEdit={this.onSaveEdit}
                                 onGoBack={this.onGoBack}
-                                onChangeColor={this.onChangeColor}
-                                backgroundColor={backgroundColor}
-
-
+                                onGetColor={this.onGetColor}
                             />
                         </div>
                     </div>
@@ -111,10 +104,7 @@ export class NotesApp extends React.Component {
                                 selectedNote={selectedNote}
                                 onSaveEdit={this.onSaveEdit}
                                 onGoBack={this.onGoBack}
-                                onChangeColor={this.onChangeColor}
-                                backgroundColor={backgroundColor}
-
-
+                                onGetColor={this.onGetColor}
                             />
                         </div>
 

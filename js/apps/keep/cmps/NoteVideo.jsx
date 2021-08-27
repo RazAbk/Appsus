@@ -1,18 +1,27 @@
 export function NoteVideo({ noteId, info, selectedNote, onSaveEdit, onGoBack }) {
 
+    let newUrl;
     const videoRef = React.createRef()
+
     const handleRef = () => {
         const setInfo = { url: videoRef.current.value, }
-        console.log(setInfo)
 
         onSaveEdit(noteId, setInfo)
     }
 
-    let newUrl = info.url.replace('watch?v=', `embed/`);
-    newUrl = newUrl.replace('youtube', 'youtube-nocookie');
+        newUrl = info.url.replace('watch?v=', `embed/`);
+        newUrl = newUrl.replace('youtube', 'youtube-nocookie');
+
+    // const setCorrectUrl = () => {
+    //     debugger
+    //     newUrl = info.url.replace('watch?v=', `embed/`);
+    //     newUrl = newUrl.replace('youtube', 'youtube-nocookie');
+    //     console.log(newUrl)
+    //     return newUrl
+    // }
+
 
     if (!selectedNote || selectedNote != noteId) {
-
         return (
             <div className="note-video">
                 <iframe src={newUrl}></iframe>
@@ -24,7 +33,8 @@ export function NoteVideo({ noteId, info, selectedNote, onSaveEdit, onGoBack }) 
             <div className="note-video">
                 <div className="edit-inputs">
                     <iframe src={newUrl}></iframe>
-                    <input type="text" placeholder="enter new url video" ref={videoRef} />
+                    <p>enter new url</p>
+                    <input type="text" defaultValue={newUrl} ref={videoRef} />
                     <div className="edit-buttons">
                         <button className="btn edit-save" onClick={() => handleRef()}> save! </button>
                         <button className="btn edit-goback fas fa-times" onClick={() => onGoBack()}></button>

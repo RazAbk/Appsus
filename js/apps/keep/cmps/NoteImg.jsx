@@ -28,12 +28,13 @@ export function NoteImg({ noteId, info, selectedNote, onSaveEdit, onGoBack }) {
             <div className="edit-note">
                 <img className="img-Note" src={`${info.url}`} />
                 <div className="edit-inputs">
-                    <input type="text" placeholder="enter new image url" ref={urlRef} />
-                    <input type="text" placeholder="enter new image title" ref={urlTitle} />
+                    <p>enter new url and title </p>
+                    <input type="text" defaultValue={info.url} ref={urlRef} />
+                    <input type="text" defaultValue={info.title} ref={urlTitle} />
                     <div className="edit-buttons">
                         <button className="btn edit-save" onClick={() => handleRef()}> save! </button>
                         <button className="btn edit-goback fas fa-times" onClick={() => onGoBack()}></button>
-                        
+
                     </div>
                 </div>
             </div>

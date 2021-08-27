@@ -1,4 +1,4 @@
-export function NoteTxt({ noteId, info, selectedNote, onSaveEdit, onGoBack }) {
+export function NoteTxt({ noteId, info, selectedNote, onSaveEdit, onGoBack}) {
     let setInfo;
 
     const txtRef = React.createRef()
@@ -18,7 +18,7 @@ export function NoteTxt({ noteId, info, selectedNote, onSaveEdit, onGoBack }) {
         return (
             <div className="edit-note">
                 <form className="edit-inputs-todos">
-                    <input className="txt" ref={txtRef} name="text" type=" text" placeholder={info.txt} />
+                    <input className="txt" ref={txtRef} name="text" type=" text" defaultValue={info.txt} />
                 </form>
                 <div className="edit-buttons">
                     <button className="btn edit-save" onClick={() => handleRef()}> save! </button>
