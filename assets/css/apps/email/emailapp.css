@@ -75,6 +75,16 @@
     padding: 0 0.3rem;
 }
 
+.email-trash{
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.email-trash:hover{
+    color:red;
+    transform: scale(1.1);
+}
+
 .emails-sort {
     background-color: rgba(92, 0, 0, 0.267);
 }
@@ -100,7 +110,22 @@
     transform: translateY(12%);
 }
 
-.emails-func select {}
+.func-right{
+    display: flex;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.func-right h3{
+    margin-inline-end: 0.5rem;
+}
+
+
+
+.emails-func .func-right select {
+    border-radius: 5px;
+    padding: 0.3rem;
+}
 
 .email-filter {
     display: flex;

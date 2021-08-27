@@ -1,7 +1,7 @@
 import { utilService } from "../../../services/util.service.js"
 import { LongTxt } from "../../../cmps/LongTxt.jsx"
 
-export function EmailPreview({ email, onSelectedEmail, onCheckEmail, trashEmail }) {
+export function EmailPreview({ email, onSelectedEmail, onCheckEmail, moveEmail }) {
 
     const {time, date} = utilService.getFormattedDateNTime(email.sentAt)
 
@@ -18,7 +18,7 @@ export function EmailPreview({ email, onSelectedEmail, onCheckEmail, trashEmail 
                 <LongTxt text={email.subject} maxSize={60} />
                 <p>{`${time} ${date}`}</p>
                 <div>⬜</div>
-                <i onClick={(ev) => {ev.stopPropagation(); trashEmail(email.id);}} className="fas fa-trash-alt"></i>
+                <i onClick={(ev) => {ev.stopPropagation(); moveEmail(email.id, 'trash');}} className="fas fa-trash-alt email-trash"></i>
             </div>
         </div>
     )

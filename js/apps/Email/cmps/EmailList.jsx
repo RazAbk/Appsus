@@ -1,6 +1,6 @@
 import { EmailPreview } from "./EmailPreview.jsx";
 
-export function EmailList({ emails, onSelectedEmail, onCheckEmail, onCheckAllEmails, onTrashEmail }) {
+export function EmailList({ emails, onSelectedEmail, onCheckEmail, onCheckAllEmails, onMoveEmail, checkedEmails }) {
 
     return (
         <div className="emails-body">
@@ -13,9 +13,16 @@ export function EmailList({ emails, onSelectedEmail, onCheckEmail, onCheckAllEma
                 </div>
 
                 <div className="func-right">
-                    <select name="filter" >
-                        <option value="name"></option>
-                    </select>
+                    {(checkedEmails.length > 0) && 
+                        <React.Fragment>
+                            <h3>move to:</h3>
+                            <select name="filter" onChange={(ev)=>{checkedEmails.map(email=>{onMoveEmail(email.id, ev.target.value)})}}>
+                                <option value="inbox"></option>
+                                <option value="inbox">inbox</option>
+                                <option value="trash">trash</option>
+                            </select>
+                        </React.Fragment>
+                    }
                 </div>
             </div>
 
@@ -37,7 +44,7 @@ export function EmailList({ emails, onSelectedEmail, onCheckEmail, onCheckAllEma
                 {emails.map(email => <EmailPreview key={email.id} email={email}
                                                     onSelectedEmail={onSelectedEmail}
                                                     onCheckEmail={onCheckEmail}
-                                                    trashEmail={onTrashEmail}
+                                                    moveEmail={onMoveEmail}
                                     />)}
             </div>
 
