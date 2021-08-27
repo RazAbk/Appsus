@@ -6,7 +6,7 @@ export function EmailPreview({ email, onSelectedEmail, onCheckEmail, moveEmail }
     const {time, date} = utilService.getFormattedDateNTime(email.sentAt)
 
     return (
-        <div className="email-preview" onClick={(ev) => {onSelectedEmail(email) }}>
+        <div className={`email-preview ${(email.isRead ? '': 'email-unread')}`} onClick={(ev) => {onSelectedEmail(email) }}>
             <div className="email-left">
                 <label htmlFor="checked-email"  ></label>
                 {email.isChecked && <input type="checkbox" name="checked-email"  onChange={()=>{onSelectedEmail(null);onCheckEmail(email.id)}} className="email-checkbox" checked />}
@@ -14,10 +14,12 @@ export function EmailPreview({ email, onSelectedEmail, onCheckEmail, moveEmail }
                 <i className="far fa-star"></i>
                 <p>{email.composer}</p>
             </div>
-            <div className="email-right">
+            <div className="email-center">
                 <LongTxt text={email.subject} maxSize={60} />
+            </div>
+            <div className="email-right">
                 <p>{`${time} ${date}`}</p>
-                <div>⬜</div>
+                {email.isRead ? <i className="far fa-envelope-open"></i> : <i className="fas fa-envelope"></i>}
                 <i onClick={(ev) => {ev.stopPropagation(); moveEmail(email.id, 'trash');}} className="fas fa-trash-alt email-trash"></i>
             </div>
         </div>

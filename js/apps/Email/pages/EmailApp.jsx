@@ -29,7 +29,6 @@ export class EmailApp extends React.Component {
         const emails = emailService.query(this.state.filterBy).then(emails => {
             this.setState({ emails, checkedEmails: emails.filter(email => email.isChecked) });
         })
-        
     }
     onSelectedEmail = (email) => {
         this.setState({ selectedEmail: email })

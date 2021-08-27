@@ -59,6 +59,10 @@
     background-color: rgb(221, 221, 221);
 }
 
+.email-unread{
+    background-color: rgb(153, 153, 153);
+}
+
 .email-left {
     display: flex;
 }
