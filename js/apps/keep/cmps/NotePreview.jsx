@@ -60,7 +60,7 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onEditMode, s
             <div className="note-content">
                 {noteToDisplay}
             </div>
-            <div className="note-funcs">
+            <div className={`note-funcs ${selectedNote === note.id ? 'edit-func' : ''}`}>
                 <i onClick={() => { onDeleteNote(note.id) }} className="fas fa-trash"></i>
                 <i onClick={() => { onToggleNotePin(note.id) }} className="fas fa-thumbtack"></i>
                 <i className="fas fa-palette"></i>

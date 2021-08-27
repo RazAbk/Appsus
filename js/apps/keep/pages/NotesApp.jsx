@@ -65,7 +65,7 @@ export class NotesApp extends React.Component {
 
         return (
             <div className="notes-app">
-
+                {selectedNote && <Screen isOpen={selectedNote} closeModal={this.onGoBack} />}
                 <NoteAdd inputType={inputType} setInputType={this.setInputType} creatNote={this.onCreateNote} />
 
                 <section className="notes-cards notes-layout">

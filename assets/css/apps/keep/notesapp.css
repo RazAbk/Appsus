@@ -200,31 +200,113 @@
 
 .edit-inputs>* {
     font-family: 'Assistant', sans-serif;
-    font-size: 1.2rem;
-    padding: 0.8rem 0;
+    font-size: 1.5rem;
     margin-block-start: 1rem;
+    padding: 0.5rem;
+    border-radius: 5px;
 }
 
-.btn {
-    height: 3rem;
-    width: 4rem;
-    font-size: 1.2rem;
-    background: #e7e7b8;
+.edit-buttons {
+    display: flex;
+    justify-content: center;
 }
 
 .edit-buttons>* {
-    padding: 0.4rem;
+    background: #f6f3ef;
     border-radius: 5px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+.edit-inputs>*:not(:nth-child(3)):hover {
+    transition: 0.5s;
+    background-color: #e8ddd0;
+}
+
+.edit-save:hover {
+    transition: 0.5s;
+    background-color: #e8ddd0;
 }
 
 .btn.edit-goback {
-    width: 6rem;
     margin-inline-start: 1.5rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0.4rem;
+    margin-block-start: 0.5em;
+    margin-inline-end: 0.5em;
 }
 
 .edit-note {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.edit-note>* {
+    width: 100%;
+    margin-block-start: 0.3rem;
+}
+
+.todos-list>* {
+    margin-block-start: 0.3rem;
+}
+
+.edit-save {
+    width: 10.5rem;
+    height: 4rem;
+    font-size: 2.4rem;
+    align-items: center;
+}
+
+.edit-inputs .txt {
+    margin-block-end: 5rem;
+}
+
+.edit-func {
+    display: flex;
+    max-width: none;
+    justify-content: space-evenly;
+}
+
+.note-edit {
+    padding: 2rem 2rem 3.5rem 2rem;
+}
+
+.edit-list>* {
+    font-family: 'Assistant', sans-serif;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.edit-inputs-todos>* {
+    font-family: 'Assistant', sans-serif;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 100%
+}
+
+.note-todos.note-edit {
+    justify-content: space-evenly;
+}
+
+.note-content {
+    height: 100%;
+}
+
+.edit-input-todos {
+    width: 100%;
+}
+
+li.edit-list {
+    margin-inline-start: 0.3rem;
 }

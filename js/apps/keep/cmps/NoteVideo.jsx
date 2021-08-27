@@ -1,4 +1,4 @@
-export function NoteVideo({ noteId, info, selectedNote, onSaveEdit }) {
+export function NoteVideo({ noteId, info, selectedNote, onSaveEdit, onGoBack }) {
 
     const videoRef = React.createRef()
     const handleRef = () => {
@@ -25,8 +25,11 @@ export function NoteVideo({ noteId, info, selectedNote, onSaveEdit }) {
                 <div className="edit-inputs">
                     <iframe src={newUrl}></iframe>
                     <input type="text" placeholder="enter new url video" ref={videoRef} />
+                    <div className="edit-buttons">
+                        <button className="btn edit-save" onClick={() => handleRef()}> save! </button>
+                        <button className="btn edit-goback fas fa-times" onClick={() => onGoBack()}></button>
+                    </div>
                 </div>
-                <button onClick={() => handleRef()}> save!</button>
             </div>
         )
 
