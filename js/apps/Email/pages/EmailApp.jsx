@@ -61,6 +61,11 @@ export class EmailApp extends React.Component {
         this.loadEmails();
     }
 
+    onEmailStarToggle = (emailId) => {
+        emailService.toggleEmailStar(emailId);
+        this.loadEmails();
+    }
+
     onCheckEmail = (emailId) => {
         emailService.toggleCheckEmailById(emailId);
         this.loadEmails();
@@ -107,7 +112,7 @@ export class EmailApp extends React.Component {
                         <div className="email-filter">
                             <EmailFilter onSetFilter={this.onSetFilter} currentFolder={this.state.filterBy ? this.state.filterBy.folder : 'inbox'} />
                         </div>
-                        <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} onCheckEmail={this.onCheckEmail} onCheckAllEmails={this.onCheckAllEmails} onMoveEmail={this.onMoveEmail} checkedEmails={this.state.checkedEmails} emailReadToggle={this.onEmailReadToggle}/>
+                        <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} onCheckEmail={this.onCheckEmail} onCheckAllEmails={this.onCheckAllEmails} onMoveEmail={this.onMoveEmail} checkedEmails={this.state.checkedEmails} emailReadToggle={this.onEmailReadToggle} emailStarToggle={this.onEmailStarToggle}/>
 
                     </div>
                     {selectedEmail && <EmailDetails email={selectedEmail} onSelectedEmail={this.onSelectedEmail} />}

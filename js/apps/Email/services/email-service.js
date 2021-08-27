@@ -10,7 +10,8 @@ export const emailService = {
     cleanAllCheckedEmails,
     toggleCheckAllEmails,
     moveFolder,
-    toggleEmailRead
+    toggleEmailRead,
+    toggleEmailStar
 }
 
 const EMAIL_KEY = 'emailsDB'
@@ -19,7 +20,7 @@ const gEmails = storageService.loadFromStorage(EMAIL_KEY) || [{
         subject: 'Hello there',
         body: 'I would like to know you better',
         isRead: false,
-        isStared: false,
+        isStared: true,
         isChecked: false,
         folder: 'inbox',
         sentAt: Date.now(),
@@ -30,7 +31,7 @@ const gEmails = storageService.loadFromStorage(EMAIL_KEY) || [{
         id: utilService.makeId(4),
         subject: 'Hello body',
         body: 'I would like to know you',
-        isRead: false,
+        isRead: true,
         isStared: false,
         isChecked: false,
         folder: 'sent',
@@ -54,8 +55,8 @@ const gEmails = storageService.loadFromStorage(EMAIL_KEY) || [{
         id: utilService.makeId(4),
         subject: 'Hello mahatma',
         body: 'I would like to have fun',
-        isRead: false,
-        isStared: false,
+        isRead: true,
+        isStared: true,
         isChecked: false,
         folder: 'sent',
         sentAt: Date.now(),
@@ -66,8 +67,8 @@ const gEmails = storageService.loadFromStorage(EMAIL_KEY) || [{
         id: utilService.makeId(4),
         subject: 'Hello mister',
         body: 'Lets build a better tomorrow',
-        isRead: false,
-        isStared: false,
+        isRead: true,
+        isStared: true,
         isChecked: false,
         folder: 'inbox',
         sentAt: Date.now(),
@@ -114,7 +115,7 @@ const gEmails = storageService.loadFromStorage(EMAIL_KEY) || [{
         id: utilService.makeId(4),
         subject: 'Hello mr',
         body: 'I like you',
-        isRead: false,
+        isRead: true,
         isStared: false,
         isChecked: false,
         folder: 'inbox',
@@ -127,7 +128,7 @@ const gEmails = storageService.loadFromStorage(EMAIL_KEY) || [{
         subject: 'Hello mr',
         body: 'I like you',
         isRead: false,
-        isStared: false,
+        isStared: true,
         isChecked: false,
         folder: 'inbox',
         sentAt: Date.now(),
@@ -144,7 +145,7 @@ function query(filterBy) {
     if (filterBy) {
         let { searchTxt, isRead, isStared, folder } = filterBy;
 
-        const filteredEmails = gEmails.filter(email => {
+        let filteredEmails = gEmails.filter(email => {
             return (
                 (
                     email.subject.toLowerCase().includes(searchTxt) ||
@@ -152,9 +153,13 @@ function query(filterBy) {
                     email.composer.toLowerCase().includes(searchTxt) ||
                     email.receiver.toLowerCase().includes(searchTxt)
 
-                )  && email.folder === folder
+                )  && (email.folder === folder || ( folder === 'starred' && isStared && email.isStared))
             )
         })
+        // if(folder === 'starred'){
+            // console.log('got here')
+            // filteredEmails = filteredEmails.filter(email => email.isStared);
+        // } 
         return Promise.resolve(filteredEmails);
     } else {
         return Promise.resolve(gEmails.filter(email => email.folder === 'inbox'));
@@ -222,6 +227,12 @@ function cleanAllCheckedEmails() {
 function toggleEmailRead(emailId){
     const emailIdx = _getEmailIdxById(emailId);
     gEmails[emailIdx].isRead = !gEmails[emailIdx].isRead;
+    _saveEmailsToStorage(); 
+}
+
+function toggleEmailStar(emailId){
+    const emailIdx = _getEmailIdxById(emailId);
+    gEmails[emailIdx].isStared = !gEmails[emailIdx].isStared;
     _saveEmailsToStorage(); 
 }
 

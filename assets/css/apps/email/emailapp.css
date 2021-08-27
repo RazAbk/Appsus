@@ -63,6 +63,10 @@
     background-color: rgb(170, 154, 154);
 }
 
+.email-stared{
+    color: rgb(221, 140, 9);
+}
+
 .email-left {
     display: flex;
 }

@@ -1,7 +1,7 @@
 import { utilService } from "../../../services/util.service.js"
 import { LongTxt } from "../../../cmps/LongTxt.jsx"
 
-export function EmailPreview({ email, onSelectedEmail, onCheckEmail, moveEmail, emailReadToggle }) {
+export function EmailPreview({ email, onSelectedEmail, onCheckEmail, moveEmail, emailReadToggle, emailStarToggle }) {
 
     const {time, date} = utilService.getFormattedDateNTime(email.sentAt)
 
@@ -11,7 +11,10 @@ export function EmailPreview({ email, onSelectedEmail, onCheckEmail, moveEmail, 
                 <label htmlFor="checked-email"  ></label>
                 {email.isChecked && <input type="checkbox" name="checked-email"  onChange={()=>{onSelectedEmail(null);onCheckEmail(email.id)}} className="email-checkbox" checked />}
                 {!email.isChecked && <input type="checkbox" name="checked-email"  onChange={()=>{onSelectedEmail(null);onCheckEmail(email.id)}} className="email-checkbox" />}
-                <i className="far fa-star"></i>
+                <div onClick={(ev) => {ev.stopPropagation(); emailStarToggle(email.id)}} className="email-star">
+                    {email.isStared ? <i className="fas fa-star email-stared"></i> : <i className="far fa-star"></i>}
+                </div>
+                
                 <p>{email.composer}</p>
             </div>
             <div className="email-center">
