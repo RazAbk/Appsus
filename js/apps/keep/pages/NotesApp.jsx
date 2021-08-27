@@ -1,13 +1,12 @@
 import { Screen } from "../../../cmps/Screen.jsx";
 import { notesService } from "../services/note-service.js";
 import { NotesList } from "../cmps/NotesList.jsx";
-import { NoteEdit } from "../cmps/NoteEdit.jsx";
 import { NoteAdd } from "../cmps/NoteAdd.jsx";
 
 export class NotesApp extends React.Component {
     state = {
         notes: [],
-        isEditMode: false,
+        selectedNote: null,
         inputType: 'note-txt'
     }
 
@@ -42,13 +41,17 @@ export class NotesApp extends React.Component {
         notesService.duplicateNote(noteId);
         this.loadNotes();
     }
-    onIsEditMode = (noteMode) => {
-        this.setState({ isEditMode: noteMode })
+    onEditMode = (noteId) => {
+        this.setState({ selectedNote: noteId })
+    }
+    onSaveEdit = (noteId, info) => {
+      
+        console.log(info);
+        notesService.editNote(noteId, info)
+        this.setState({ selectedNote: null })
 
     }
-
-
-
+    
     onCreateNote = (info) => {
         notesService.createNote(info, this.state.inputType);
         this.loadNotes();
@@ -56,7 +59,7 @@ export class NotesApp extends React.Component {
 
     render() {
 
-        const { inputType, isEditMode } = this.state;
+        const { inputType, selectedNote } = this.state;
 
         return (
             <div className="notes-app">
@@ -74,10 +77,11 @@ export class NotesApp extends React.Component {
                                 onDeleteNote={this.onDeleteNote}
                                 onToggleNotePin={this.onToggleNotePin}
                                 onDuplicateNote={this.onDuplicateNote}
-                                onIsEditMode={this.onIsEditMode}
-                                isEditMode={isEditMode}
-
-                            />
+                                onEditMode={this.onEditMode}
+                                selectedNote={selectedNote}
+                                onSaveEdit={this.onSaveEdit}
+                                
+                                />
                         </div>
                     </div>
 
@@ -89,8 +93,9 @@ export class NotesApp extends React.Component {
                                 onDeleteNote={this.onDeleteNote}
                                 onToggleNotePin={this.onToggleNotePin}
                                 onDuplicateNote={this.onDuplicateNote}
-                                onIsEditMode={this.onIsEditMode}
-                                isEditMode={isEditMode}
+                                onEditMode={this.onEditMode}
+                                selectedNote={selectedNote}
+                                onSaveEdit={this.onSaveEdit}
 
 
                             />

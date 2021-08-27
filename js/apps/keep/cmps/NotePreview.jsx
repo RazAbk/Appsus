@@ -5,27 +5,27 @@ import { NoteVideo } from "./NoteVideo.jsx";
 
 
 
-export function NotePreview({ note, onDeleteNote, onToggleNotePin, onIsEditMode, isEditMode }) {
+export function NotePreview({ note, onDeleteNote, onToggleNotePin, onEditMode, selectedNote, onSaveEdit }) {
 
+    
     // let noteToEdit = false
     let currNote = React.createRef();
     let noteToDisplay;
-    console.log(onIsEditMode)
 
     const { info } = note
 
     switch (note.type) {
-        case 'note-txt':
-            noteToDisplay = <NoteTxt info={info} isEditMode={isEditMode} />
+        case `note-txt`:
+            noteToDisplay = <NoteTxt noteId={note.id} info={info} selectedNote={selectedNote} onSaveEdit={onSaveEdit} />
             break;
-        case 'note-img':
+        case `note-img`:
             noteToDisplay = <NoteImg info={info} />
             break;
-        case 'note-video':
+        case `note-video`:
             noteToDisplay = <NoteVideo info={info} />
             break;
-        case 'note-todos':
-            noteToDisplay = <NoteTodos info={info} id={note.id} />
+        case `note-todos`:
+            noteToDisplay = <NoteTodos noteId={note.id} info={info} selectedNote={selectedNote} onSaveEdit={onSaveEdit} />
             break;
     }
 
@@ -47,24 +47,16 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onIsEditMode,
 
     }
 
-    const toggleEditModal = (ev) => {
-        const elNote = ev.target.parentElement.parentElement;
-        elNote.style.backgroundColor = 'red';
-    }
 
     const toggleEditMode = () => {
-        console.log('hi')
-        console.log(currNote.current)
-        onIsEditMode(true)
-        
-        currNote.current.classList.add('note-edit')
+        onEditMode(note.id)
 
     }
 
 
 
     return (
-        <div className={`note ${note.type}`} onMouseEnter={displayFuncs} onMouseLeave={hideFuncs} ref={currNote}>
+        <div className={`note ${note.type} ${selectedNote === note.id ? 'note-edit' : ''}`} onMouseEnter={displayFuncs} onMouseLeave={hideFuncs} ref={currNote}>
             <div className="note-content">
                 {noteToDisplay}
             </div>
