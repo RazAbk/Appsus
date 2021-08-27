@@ -48,7 +48,7 @@
     justify-content: space-between;
     align-items: center;
     margin: 0.5rem 0.3rem;
-    background-color: #fff;
+    background-color: rgb(233, 233, 233);
     height: 3rem;
     border-radius: 5px;
     transition: 0.3s;
@@ -56,11 +56,11 @@
 }
 
 .email-preview:hover {
-    background-color: rgb(221, 221, 221);
+    background-color: rgb(255, 237, 188);
 }
 
 .email-unread{
-    background-color: rgb(153, 153, 153);
+    background-color: rgb(170, 154, 154);
 }
 
 .email-left {
