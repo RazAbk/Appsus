@@ -53,33 +53,15 @@ function query() {
 
 // Crud
 function editNote(noteId, info) {
-    const note = gNotes.find(note => note.id === noteId)
+
     const idx = _getNoteIdx(noteId)
-
-    switch (note.type) {
-        case 'note-txt':
-            editNoteTxt(idx, info)
-            break;
-        case 'note-todos':
-            editNoteTodos(idx, info)
-    }
-
-
-}
-
-function editNoteTxt(idx, info) {
-    console.log();
+    console.log(info)
     gNotes[idx].info = info
-    console.log(gNotes[idx].info);
-    _saveNotesToStorage()
-}
 
-function editNoteTodos(idx, val) {
-    console.log(val)
 
-    // gNotes[idx].info.todos.map(todo => { todo.txt = val })
 
 }
+
 
 function createNote(info, type) {
     const newNote = {
