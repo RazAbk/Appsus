@@ -77,11 +77,11 @@ export class EmailApp extends React.Component {
 
         return (
             <div className="email-app main-layout">
-                {/* <div className="email-layout"> */}
                     <React.Fragment>
                         <Screen isOpen={selectedEmail} closeModal={this.onSelectedEmail} />
                         <Screen isOpen={isNewEmail} closeModal={this.onCreateNewEmail} />
                     </React.Fragment>
+                <div className="email-layout">
                     <div className="emails-left-layout">
                         <nav className="email-folders">
                             <i className="fas fa-plus new-compose" onClick={() => this.onCreateNewEmail(true)}></i>
@@ -102,7 +102,7 @@ export class EmailApp extends React.Component {
                     </div>
                     {selectedEmail && <EmailDetails email={selectedEmail} onSelectedEmail={this.onSelectedEmail} />}
                     {isNewEmail && <EmailCompose userComposer={emailService.getLoggedUser()} onCreateNewEmail={this.onCreateNewEmail} />}
-                {/* </div> */}
+                </div>
             </div>
         )
     }
