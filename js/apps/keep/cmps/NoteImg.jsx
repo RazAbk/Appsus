@@ -36,7 +36,6 @@ export function NoteImg({ noteId, info, selectedNote, onSaveEdit, onGoBack }) {
                         
                     </div>
                 </div>
-
             </div>
         )
 
