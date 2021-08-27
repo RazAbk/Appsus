@@ -11,7 +11,8 @@ export const emailService = {
     toggleCheckAllEmails,
     moveFolder,
     toggleEmailRead,
-    toggleEmailStar
+    toggleEmailStar,
+    getUnReadEmailsCount
 }
 
 const EMAIL_KEY = 'emailsDB'
@@ -234,6 +235,15 @@ function toggleEmailStar(emailId){
     const emailIdx = _getEmailIdxById(emailId);
     gEmails[emailIdx].isStared = !gEmails[emailIdx].isStared;
     _saveEmailsToStorage(); 
+}
+
+function getUnReadEmailsCount(){
+    let sum = 0;
+    gEmails.forEach(email => {
+        if(!email.isRead) sum++;
+    });
+
+    return sum;
 }
 
 function _saveEmailsToStorage() {

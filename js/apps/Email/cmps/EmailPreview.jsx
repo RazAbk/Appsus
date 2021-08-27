@@ -6,7 +6,7 @@ export function EmailPreview({ email, onSelectedEmail, onCheckEmail, moveEmail, 
     const {time, date} = utilService.getFormattedDateNTime(email.sentAt)
 
     return (
-        <div className={`email-preview ${(email.isRead ? '': 'email-unread')}`} onClick={(ev) => {onSelectedEmail(email); (!email.isRead && emailReadToggle(email.id))}}>
+        <div className={`email-preview ${(email.isRead ? '': 'email-unread')}`} onClick={() => {onSelectedEmail(email); (!email.isRead && emailReadToggle(email.id))}}>
             <div className="email-left">
                 <label htmlFor="checked-email"  ></label>
                 {email.isChecked && <input type="checkbox" name="checked-email"  onChange={()=>{onSelectedEmail(null);onCheckEmail(email.id)}} className="email-checkbox" checked />}

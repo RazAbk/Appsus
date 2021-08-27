@@ -56,11 +56,11 @@
 }
 
 .email-preview:hover {
-    background-color: rgb(255, 237, 188);
+    background-color: rgb(255, 243, 211);
 }
 
 .email-unread{
-    background-color: rgb(170, 154, 154);
+    background-color: rgb(184, 176, 176);
 }
 
 .email-stared{

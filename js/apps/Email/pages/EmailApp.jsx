@@ -4,6 +4,7 @@ import { EmailList } from '../cmps/EmailList.jsx'
 import { EmailFilter } from '../cmps/EmailFilter.jsx';
 import { EmailDetails } from '../cmps/EmailDetails.jsx';
 import { EmailCompose } from '../cmps/EmailCompose.jsx';
+import { eventBusService } from '../../../services/event-bus-service.js';
 
 
 
@@ -58,6 +59,7 @@ export class EmailApp extends React.Component {
 
     onEmailReadToggle = (emailId) => {
         emailService.toggleEmailRead(emailId);
+        eventBusService.emit('update-unread-emails', emailService.getUnReadEmailsCount());
         this.loadEmails();
     }
 

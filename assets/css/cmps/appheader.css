@@ -13,8 +13,33 @@ header{
     height: 80px;
 }
 
-.nav-bar>*{
-    margin-inline-start: 0.75rem;
+.nav-bar a i{
+    margin-inline-start: 1.75rem;
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 2rem;
+    color: black;
+
+    transition: 0.3s;
+}
+
+.nav-bar a i:hover{
+    color:rgb(134, 134, 134);
+    transform: scale(1.3)
+}
+
+.nav-bar .fa-envelope{
+    position: relative;
+}
+
+.unread-emails{
+    position:absolute;
+
+    transform: translate(-50%, -50%);
+    display: inline-block;
+    border-radius: 50px;
+    padding: 0.1rem 0.2rem;
+    color:white;
+    background-color: red;
+    font-size: 0.9rem;
+    border: 3px solid black;
 }
