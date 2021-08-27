@@ -1,4 +1,4 @@
-export function NoteTxt({ noteId, info, selectedNote, onSaveEdit }) {
+export function NoteTxt({ noteId, info, selectedNote, onSaveEdit, onGoback }) {
     let setInfo;
 
     const txtRef = React.createRef()
