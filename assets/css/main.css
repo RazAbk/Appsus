@@ -1,17 +1,10 @@
-/* @import url(/assets/css/parts/layout.css); */
 @import url('../css/parts/layout.css');
-/* @import url(/assets/css/cmps/appheader.css); */
 @import url('../css/cmps/appheader.css');
-/* @import url(/assets/css/cmps/appfooter.css); */
 @import url('../css/cmps/appfooter.css');
-/* @import url(/assets/css/apps/email/emailapp.css); */
 @import url('./apps/email/emailapp.css');
-/* @import url(/assets/css/parts/helpers.css); */
 @import url('./parts/helpers.css');
-/* @import url(/assets//css/parts/animations.css); */
 @import url('./parts/animations.css');
 
-/* @import url(/assets/css/apps/keep/notesapp.css); */
 @import url('./apps/keep/notesapp.css');
 
 *{

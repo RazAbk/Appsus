@@ -43,3 +43,10 @@ header{
     font-size: 0.9rem;
     border: 3px solid black;
 }
+
+.active i{
+    color:rgb(221, 201, 174) !important;
+}
+.my-active i{
+    color:rgb(221, 201, 174) !important;
+}

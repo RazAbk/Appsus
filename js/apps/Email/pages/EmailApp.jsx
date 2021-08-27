@@ -41,13 +41,14 @@ export class EmailApp extends React.Component {
 
     onSetFolderFilter = (folder) => {
         let thisFilterBy = this.state.filterBy;
+        const isStared = folder === 'starred' ? true : false;
 
         if (!thisFilterBy) {
             thisFilterBy = {
                 folder,
                 searchTxt: '',
                 isRead: false,
-                isStared: false,
+                isStared: isStared,
             }
         } else {
             thisFilterBy = { ...thisFilterBy, folder: folder }

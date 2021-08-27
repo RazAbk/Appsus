@@ -144,7 +144,12 @@ const loggedInUser = { email: 'user@appsus.com', fullname: 'Mahatma Appsus' }
 
 function query(filterBy) {
     if (filterBy) {
-        let { searchTxt, isRead, isStared, folder } = filterBy;
+        const { searchTxt, isRead, isStared, folder } = filterBy;
+        let starFilter = false;
+
+        if( folder === 'starred' ){
+            starFilter = true;
+        }
 
         let filteredEmails = gEmails.filter(email => {
             return (
@@ -154,18 +159,21 @@ function query(filterBy) {
                     email.composer.toLowerCase().includes(searchTxt) ||
                     email.receiver.toLowerCase().includes(searchTxt)
 
-                )  && (email.folder === folder || ( folder === 'starred' && isStared && email.isStared))
+                )  && ( email.folder === folder || starFilter)
             )
-        })
-        // if(folder === 'starred'){
-            // console.log('got here')
-            // filteredEmails = filteredEmails.filter(email => email.isStared);
-        // } 
+        });
+
+        if( folder === 'starred' ){
+            filteredEmails = filteredEmails.filter( email => email.isStared );
+        }
+
         return Promise.resolve(filteredEmails);
     } else {
         return Promise.resolve(gEmails.filter(email => email.folder === 'inbox'));
     }
 }
+
+// && ( folder === 'starred' && isStared && email.isStared)
 
 // Crud
 function moveFolder(emailId, folder){
