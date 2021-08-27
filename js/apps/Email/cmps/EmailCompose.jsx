@@ -1,6 +1,7 @@
 import { emailService } from '../services/email-service.js'
 
 export function EmailCompose({ userComposer, onCreateNewEmail }) {
+
     let email = {
         composer: emailService.getLoggedUser().email,
         reciver: '',
@@ -8,12 +9,16 @@ export function EmailCompose({ userComposer, onCreateNewEmail }) {
         subject: ''
     }
 
-
-
     const sendEmail = () => {
-        const { subject, body, composer, reciver } = email
+        const { subject, body, composer, reciver } = email;
 
-        emailService.createEmail(subject, body, 'sent', composer, reciver)
+        if(!subject || !body || !reciver){
+            console.log('add user msg error')
+            return;
+        } else{
+            emailService.createEmail(subject, body, 'sent', composer, reciver);
+            onCreateNewEmail(false)
+        }
 
     }
     const handleChange = (ev) => {
@@ -28,9 +33,7 @@ export function EmailCompose({ userComposer, onCreateNewEmail }) {
             case 'text-subject':
                 email.subject = ev.target.value
                 break;
-
         }
-
     }
 
     return (
@@ -45,23 +48,18 @@ export function EmailCompose({ userComposer, onCreateNewEmail }) {
                 </div>
                 <form className="email-metadata compose">
                     <div className="compose-subject">
-                        to:<input name="text-reciver" className="email-input" onChange={handleChange} />
+                        to:<input name="text-reciver" className="email-input" autoComplete="off" onChange={handleChange} />
                     </div>
                     <div className="compose-reciever">
-                        subject:<input name="text-subject" className="email-input" onChange={handleChange} />
+                        subject:<input name="text-subject" className="email-input" autoComplete="off" onChange={handleChange} />
                     </div>
 
                     <div className="compose-body">
                         <textarea name="text-input" className="compose-input" type="text" placeholder="enter text here" onChange={handleChange}></textarea>
-                        {/* <p>{email.body}</p> */}
                     </div>
                 </form>
-                <button onClick={() => { sendEmail() }}>send email</button>
+                <button onClick={() => { sendEmail() }} className="send-email-btn">Send</button>
             </section >
-
         </section>
     )
-
 }
-// const {date, time} = utilService.getFormattedDateNTime(email.sentAt)
-{/* <h2 className="time">{`${time} ${date}`}</h2> */ }

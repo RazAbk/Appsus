@@ -66,7 +66,6 @@ export class EmailApp extends React.Component {
         this.loadEmails();
     }
     onCreateNewEmail = (isOn) => {
-        console.log(isOn)
         this.setState({ isNewEmail: isOn })
     }
 

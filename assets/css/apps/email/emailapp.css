@@ -202,7 +202,7 @@
 
 .header-details {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 .email-details-header {
@@ -232,29 +232,34 @@
     background-color: rgba(204, 204, 204, 0.349);
     padding: 0.5rem 1rem;
     font-size: 1.5rem;
+    /* height: 100%; */
 }
 
 .email-metadata.compose {
     flex-direction: column;
+    height: 100%;
 }
 
 .compose-reciever {
+    display: flex;
+    align-items: center;
     border: none;
     background-color: rgba(204, 204, 204, 0.349);
-    display: flex;
     width: 100%;
 }
 
 .compose-subject {
+    display: flex;
+    align-items: center;
     border: none;
     background-color: rgba(204, 204, 204, 0.349);
-    display: flex;
     width: 100%;
 }
 
 .compose-input {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
+    flex-grow: 5;
     background-color: rgba(204, 204, 204, 0.349);
     border: none;
     font-size: 1.3rem;
@@ -263,7 +268,12 @@
 
 .compose-body {
     width: 100%;
-    height: 492px;
+    height: 100%;
+}
+
+.compose-body textarea{
+    /* flex-grow: 1; */
+    height: 95%;
 }
 
 .email-body {
@@ -275,11 +285,27 @@
 .email-input {
     width: 100%;
     height: 100%;
+    outline: none;
     background-color: rgba(204, 204, 204, 0.35);
     border: none;
     border: none;
     font-size: 1.3rem;
     padding: 1rem;
+}
+
+.send-email-btn{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    width: 3rem;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.send-email-btn:hover{
+    background-color: rgb(151, 151, 151);
+    transform: scale(1.1);
 }
 
 .time {

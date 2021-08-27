@@ -1,4 +1,5 @@
 import { utilService } from "../../../services/util.service.js"
+import { LongTxt } from "../../../cmps/LongTxt.jsx"
 
 export function EmailPreview({ email, onSelectedEmail, onCheckEmail }) {
 
@@ -14,7 +15,7 @@ export function EmailPreview({ email, onSelectedEmail, onCheckEmail }) {
                 <p>{email.composer}</p>
             </div>
             <div className="email-right">
-                <p>{email.subject}</p>
+                <LongTxt text={email.subject} maxSize={60} />
                 <p>{`${time} ${date}`}</p>
                 <div>⬜</div>
                 <div>🟡</div>
