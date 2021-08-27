@@ -33,7 +33,8 @@ export class EmailApp extends React.Component {
         })
     }
     onSelectedEmail = (email) => {
-        this.setState({ selectedEmail: email })
+        this.setState({ selectedEmail: email });
+        this.loadEmails();
     }
 
     onSetFilter = (filterBy) => {
@@ -118,8 +119,9 @@ export class EmailApp extends React.Component {
                         <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} onCheckEmail={this.onCheckEmail} onCheckAllEmails={this.onCheckAllEmails} onMoveEmail={this.onMoveEmail} checkedEmails={this.state.checkedEmails} emailReadToggle={this.onEmailReadToggle} emailStarToggle={this.onEmailStarToggle}/>
 
                     </div>
-                    {selectedEmail && <EmailDetails email={selectedEmail} onSelectedEmail={this.onSelectedEmail} />}
-                    {isNewEmail && <EmailCompose userComposer={emailService.getLoggedUser()} onCreateNewEmail={this.onCreateNewEmail} draftInterval={this.state.draftInterval} isOpen={isNewEmail} />}
+                    {( selectedEmail && selectedEmail.folder !== 'drafts' ) && <EmailDetails email={selectedEmail} onSelectedEmail={this.onSelectedEmail} />}
+                    {isNewEmail && <EmailCompose userComposer={emailService.getLoggedUser()} onCreateNewEmail={this.onCreateNewEmail} isOpen={isNewEmail} />}
+                    {( selectedEmail && selectedEmail.folder === 'drafts' ) && <EmailCompose draftToEdit={selectedEmail} userComposer={emailService.getLoggedUser()} onCreateNewEmail={this.onCreateNewEmail} isOpen={isNewEmail} onSelectedEmail={this.onSelectedEmail} />}
                 </div>
             </div>
         )

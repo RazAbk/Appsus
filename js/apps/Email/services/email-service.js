@@ -10,9 +10,11 @@ export const emailService = {
     cleanAllCheckedEmails,
     toggleCheckAllEmails,
     moveFolder,
+    deleteEmail,
     toggleEmailRead,
     toggleEmailStar,
-    getUnReadEmailsCount
+    getUnReadEmailsCount,
+    draftToMail
 }
 
 const EMAIL_KEY = 'emailsDB'
@@ -126,14 +128,14 @@ const gEmails = storageService.loadFromStorage(EMAIL_KEY) || [{
     },
     {
         id: utilService.makeId(4),
-        subject: 'Hello mr',
-        body: 'I like you',
+        subject: 'Dear yonatan',
+        body: 'I need to think what to write here before sending dont I?',
         isRead: false,
-        isStared: true,
+        isStared: false,
         isChecked: false,
-        folder: 'inbox',
+        folder: 'drafts',
         sentAt: Date.now(),
-        composer: 'yossi@Gmail.com',
+        composer: 'yonatan@Gmail.com',
         receiver: 'user@appsus.com'
     },
 ];
@@ -184,6 +186,12 @@ function moveFolder(emailId, folder){
     } else{
         gEmails[emailIdx].folder = folder;
     }
+    _saveEmailsToStorage();
+}
+
+function deleteEmail(emailId){
+    const emailIdx = _getEmailIdxById(emailId);
+    gEmails.splice(emailIdx,1);
     _saveEmailsToStorage();
 }
 
@@ -243,6 +251,12 @@ function toggleEmailStar(emailId){
     const emailIdx = _getEmailIdxById(emailId);
     gEmails[emailIdx].isStared = !gEmails[emailIdx].isStared;
     _saveEmailsToStorage(); 
+}
+
+function draftToMail(emailId, email){
+    const emailIdx = _getEmailIdxById(emailId);
+    gEmails[emailIdx] = email;
+    gEmails[emailIdx].folder = 'sent';
 }
 
 function getUnReadEmailsCount(){
