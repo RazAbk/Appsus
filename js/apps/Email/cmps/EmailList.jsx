@@ -1,6 +1,6 @@
 import { EmailPreview } from "./EmailPreview.jsx";
 
-export function EmailList({ emails, onSelectedEmail, onCheckEmail, onCheckAllEmails, onMoveEmail, checkedEmails, emailReadToggle, emailStarToggle }) {
+export function EmailList({ emails, onSelectedEmail, onCheckEmail, onCheckAllEmails, onMoveEmail, checkedEmails, emailReadToggle, emailStarToggle, onSetDraft }) {
 
     return (
         <div className="emails-body">
@@ -9,7 +9,7 @@ export function EmailList({ emails, onSelectedEmail, onCheckEmail, onCheckAllEma
                 <div className="func-left">
                     <label htmlFor="checked-all-emails" ></label>
                     <input type="checkbox" name="checked-all-emails" className="email-checkbox" onChange={(ev) => {onCheckAllEmails(ev.nativeEvent.target.checked)}} />
-                    <i className="fas fa-sync-alt refresh"></i>
+                    {/* <i className="fas fa-sync-alt refresh"></i> */}
                 </div>
 
                 <div className="func-right">
@@ -29,7 +29,7 @@ export function EmailList({ emails, onSelectedEmail, onCheckEmail, onCheckAllEma
 
             <div className="emails-list">
 
-                <div className="emails-sort">
+                {/* <div className="emails-sort">
                     <div className="sort-selected">
                     <i className="far fa-star"></i>
                     </div>
@@ -40,13 +40,14 @@ export function EmailList({ emails, onSelectedEmail, onCheckEmail, onCheckAllEma
 
                     </div>
 
-                </div>
+                </div> */}
                 {emails.map(email => <EmailPreview key={email.id} email = {email}
                                                     onSelectedEmail = {onSelectedEmail}
                                                     onCheckEmail = {onCheckEmail}
                                                     moveEmail = {onMoveEmail}
                                                     emailReadToggle = {emailReadToggle}
                                                     emailStarToggle = {emailStarToggle}
+                                                    onSetDraft = {onSetDraft}
                                     />)}
             </div>
 

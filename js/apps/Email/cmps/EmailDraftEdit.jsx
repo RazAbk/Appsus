@@ -1,87 +1,63 @@
 import { emailService } from '../services/email-service.js';
-import { eventBusService } from '../../../services/event-bus-service.js';
+import { eventBusService } from "../../../services/event-bus-service.js";
 import { Screen } from '../../../cmps/Screen.jsx';
 
-export function EmailCompose({ userComposer, onCreateNewEmail, isOpen }) {
+export function EmailDraftEdit ( { draft, onDraftEdit } ){
+
+    const initialDraft = JSON.parse(JSON.stringify(draft));
 
     // EventBus for draft confirm message
     let removeEventBus = eventBusService.on('user-answer', (answer) => {
         if(answer === 'yes'){
-            const { subject, body, composer, receiver } = draft;
-            emailService.createEmail(subject ? subject : '', body ? body : '', 'drafts', composer, receiver ? receiver : '');
+            emailService.saveDraft(draft.id, draft)
+        } else{
+            emailService.saveDraft(draft.id, initialDraft)
         }
 
         clearEventBus();
-        onCreateNewEmail(false);
-        clearInterval(draftInterval);
+        onDraftEdit(false);
     });
-    
+
     const clearEventBus = () => {
         removeEventBus();
     }
 
-    let email = {
-        composer: emailService.getLoggedUser().email,
-        receiver: '',
-        body: '',
-        subject: ''
-    }
-
-    // Draft
-    var draft = null;
-    var isDraftUpToDate = true;
-
-    var draftInterval = setInterval(() => {
-        _saveDraft();
-    }, 3000);
-    
-    const _saveDraft = () => {
-        if(isDraftUpToDate) return;
-        draft = email;
-        isDraftUpToDate = true;
-    }
-
-    // When exit from the edit mode
-    const exitEditMode = () => {
+    const exitEditMode = () =>{
         eventBusService.emit('user-msg', {txt:'Save draft before exit?', type:'confirm', time: 1000*999999})
     }
 
-    
-
-    // Handle input changes
     const handleChange = (ev) => {
-        
+
         switch (ev.target.name) {
             case 'text-receiver':
-                email.receiver = ev.target.value
+                draft.receiver = ev.target.value
                 break;
             case 'text-input':
-                email.body = ev.target.value
+                draft.body = ev.target.value
                 break;
             case 'text-subject':
-                email.subject = ev.target.value
+                draft.subject = ev.target.value
                 break;
         }
-        isDraftUpToDate = false;
-        _saveDraft();
     }
 
-    // Send email
     const sendEmail = () => {
-        const { subject, body, composer, receiver } = email;
+        const { subject, body, receiver } = draft;
 
         if(!subject || !body || !receiver){
             eventBusService.emit('user-msg', {txt:'Fill all fields!', type:'message', time: 2000})
             return;
         } else{
-            emailService.createEmail(subject, body, 'sent', composer, receiver);
-            onCreateNewEmail(false)
+            // Change the time to now
+            emailService.draftToMail(draft.id, draft);
+            onDraftEdit(null);
         }
     }
 
+
     return (
         <React.Fragment>
-            <Screen isOpen={isOpen} closeModal={() => {exitEditMode()}} />
+            <Screen isOpen={true} closeModal={() => {exitEditMode()}} />
             <section className="email-compose">
                 <section className="email-details">
                     <div className="email-details-header">
@@ -89,18 +65,18 @@ export function EmailCompose({ userComposer, onCreateNewEmail, isOpen }) {
                         <div className="details-back" onClick={() => {exitEditMode()}}>X</div>
                     </div>
                     <div className="details-composer">
-                        <h2 className="composer-email">from: {userComposer.email}</h2>
+                        <h2 className="composer-email">from: {draft.composer}</h2>
                     </div>
                     <form className="email-metadata compose">
                         <div className="compose-receiver">
-                            to:<input name="text-receiver" className="email-input" autoComplete="off" onChange={handleChange} />
+                            to:<input name="text-receiver" className="email-input" defaultValue={draft.receiver} autoComplete="off" onChange={handleChange} />
                         </div>
                         <div className="compose-subject">
-                            subject:<input name="text-subject" className="email-input" autoComplete="off" onChange={handleChange} />
+                            subject:<input name="text-subject" className="email-input" defaultValue={draft.subject} autoComplete="off" onChange={handleChange} />
                         </div>
 
                         <div className="compose-body">
-                            <textarea name="text-input" className="compose-input" type="text" placeholder="enter text here" onChange={handleChange}></textarea>
+                            <textarea name="text-input" className="compose-input" type="text" defaultValue={draft.body} placeholder="enter text here" onChange={handleChange}></textarea>
                         </div>
                     </form>
                     <button onClick={() => { sendEmail() }} className="send-email-btn">Send</button>

@@ -4,11 +4,12 @@ const { Route, Switch } = ReactRouterDOM;
 
 import { Home } from './js/pages/Home.jsx'
 import { About } from './js/pages/About.jsx';
-import { EmailApp } from './js/apps/email/pages/EmailApp.jsx'
+import { EmailApp } from './js/apps/Email/pages/EmailApp.jsx'
 import { NotesApp } from './js/apps/keep/pages/NotesApp.jsx';
 import { BooksApp } from './js/apps/book/pages/BooksApp.jsx';
 import { AppHeader } from './js/cmps/AppHeader.jsx';
 import { AppFooter } from './js/cmps/AppFooter.jsx';
+import { UserMsg } from './js/cmps/userMsg.jsx';
 
 export function App() {
     return (
@@ -28,6 +29,7 @@ export function App() {
             <footer>
                 <AppFooter />
             </footer>
+            <UserMsg />
         </Router>
 
     )

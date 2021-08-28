@@ -1,10 +1,18 @@
 .main-layout{
-    width: 80%;
-    min-width: 700px;
+    /* width: 80%; */
 }
 
 .notes-layout{
-    /* width: 800px;
-    max-width: 1200px; */
     width: 80%;
+}
+
+@media (min-width: 770px){
+    .main-layout{
+        width: 80%;
+        min-width: 700px;
+    }
+    
+    .notes-layout{
+        width: 80%;
+    }    
 }

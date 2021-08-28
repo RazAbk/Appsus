@@ -30,7 +30,7 @@ class _AppHeader extends React.Component {
     return (
         <div className="header main-layout">
             <div className="logo">
-                <h1>Appsus</h1>
+              <i className="fas fa-shapes"></i>
             </div>
             <nav className="nav-bar">
                     <NavLink activeClassName="my-active" exact to='/' ><i className="fas fa-home"></i></NavLink>

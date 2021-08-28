@@ -1,22 +1,24 @@
 header{
     background-color: rgb(0, 134, 224);
+    padding: 0 0.5rem;
+}
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.logo{
+    font-size: 2.5rem
 }
 
 .header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 80px;
+    height: 70px;
+    padding: 0 0.5rem;
 }
 
 .nav-bar a i{
-    margin-inline-start: 1.75rem;
+    margin-inline-start: 1rem;
     text-decoration: none;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: black;
 
     transition: 0.3s;
@@ -34,12 +36,46 @@ header{
 .unread-emails{
     position:absolute;
 
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -60%);
     display: inline-block;
     border-radius: 50px;
-    padding: 0.1rem 0.2rem;
-    color:white;
+    padding: 0.075rem 0.1rem;
+    color:#fffbf5;
     background-color: red;
-    font-size: 0.9rem;
+    font-size: 1rem;
     border: 3px solid black;
+
+    transition: 0.3s;
+}
+
+.active i{
+    color:rgb(221, 201, 174) !important;
+}
+.my-active i{
+    color:rgb(221, 201, 174) !important;
+}
+
+
+@media (min-width: 770px){
+    header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .header{
+        height: 80px;
+    }
+    
+    .nav-bar a i{
+        margin-inline-start: 1.75rem;
+        font-size: 2rem;
+    }
+    
+    .unread-emails{
+        padding: 0.1rem 0.2rem;
+        background-color: red;
+        font-size: 1.2rem;
+    }
 }

@@ -1,12 +1,26 @@
 import { utilService } from "../../../services/util.service.js"
 import { LongTxt } from "../../../cmps/LongTxt.jsx"
 
-export function EmailPreview({ email, onSelectedEmail, onCheckEmail, moveEmail, emailReadToggle, emailStarToggle }) {
+export function EmailPreview({ email, onSelectedEmail, onCheckEmail, moveEmail, emailReadToggle, emailStarToggle, onSetDraft }) {
 
     const {time, date} = utilService.getFormattedDateNTime(email.sentAt)
 
+    const onEmailPreviewClick = () => {
+        if(email.folder !== 'drafts') {
+            onSelectedEmail(email)
+        } else{
+            onSetDraft(email);
+            return;
+        }
+        
+        if(!email.isRead){
+            emailReadToggle(email.id)
+        }
+
+    }
+
     return (
-        <div className={`email-preview ${(email.isRead ? '': 'email-unread')}`} onClick={() => {onSelectedEmail(email); (!email.isRead && emailReadToggle(email.id))}}>
+        <div className={`email-preview ${(email.isRead ? '': 'email-unread')}`} onClick={(email) => { onEmailPreviewClick(email) }}>
             <div className="email-left">
                 <label htmlFor="checked-email"  ></label>
                 {email.isChecked && <input type="checkbox" name="checked-email"  onChange={()=>{onSelectedEmail(null);onCheckEmail(email.id)}} className="email-checkbox" checked />}

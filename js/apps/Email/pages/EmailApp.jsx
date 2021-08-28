@@ -4,6 +4,7 @@ import { EmailList } from '../cmps/EmailList.jsx'
 import { EmailFilter } from '../cmps/EmailFilter.jsx';
 import { EmailDetails } from '../cmps/EmailDetails.jsx';
 import { EmailCompose } from '../cmps/EmailCompose.jsx';
+import { EmailDraftEdit } from '../cmps/EmailDraftEdit.jsx'
 import { eventBusService } from '../../../services/event-bus-service.js';
 
 
@@ -15,11 +16,14 @@ export class EmailApp extends React.Component {
         filterBy: null,
         selectedEmail: null,
         isNewEmail: false,
-        checkedEmails: []
+        draft: null,
+        checkedEmails: [],
+        isNavBarExpand: false
     }
 
     componentDidMount() {
         this.loadEmails();
+
     }
 
     componentWillUnmount() {
@@ -41,13 +45,14 @@ export class EmailApp extends React.Component {
 
     onSetFolderFilter = (folder) => {
         let thisFilterBy = this.state.filterBy;
+        const isStared = folder === 'starred' ? true : false;
 
         if (!thisFilterBy) {
             thisFilterBy = {
                 folder,
                 searchTxt: '',
                 isRead: false,
-                isStared: false,
+                isStared: isStared,
             }
         } else {
             thisFilterBy = { ...thisFilterBy, folder: folder }
@@ -79,46 +84,82 @@ export class EmailApp extends React.Component {
     }
 
     onCreateNewEmail = (isOn) => {
-        this.setState({ isNewEmail: isOn })
+        this.setState({ isNewEmail: isOn });
+    }
+
+    onDraftEdit = (inOn) => {
+        this.setState({ draft: inOn});
+        this.loadEmails();
+    }
+
+    onSetDraft = (email) => {
+        this.setState( {draft: email });
     }
     
     onMoveEmail= (emailId, folder) => {
+        const emailFolder = emailService.getEmailFolder(emailId)
+
+        if(folder === 'trash' && emailFolder === 'trash' ){
+            eventBusService.emit('user-msg', {txt:`email deleted`, type:'message', time: 2000})
+        } else{
+            eventBusService.emit('user-msg', {txt:`moved to ${folder}`, type:'message', time: 2000})
+        }
+        
         emailService.moveFolder(emailId, folder);
         this.loadEmails()
     }
 
+    onFoldersNavChange = (isOn) => {
+        if(isOn){
+            this.setState({isNavBarExpand: true})
+        } else{
+            this.setState({isNavBarExpand: false})
+        }
+    }
+
     render() {
 
-        const { emails, selectedEmail, isNewEmail } = this.state;
+        const { emails, selectedEmail, isNewEmail, draft, isNavBarExpand } = this.state;
         if (!emails) return <h1>Loading...</h1>
 
         return (
             <div className="email-app main-layout">
                     <React.Fragment>
                         <Screen isOpen={selectedEmail} closeModal={this.onSelectedEmail} />
-                        <Screen isOpen={isNewEmail} closeModal={this.onCreateNewEmail} />
                     </React.Fragment>
                 <div className="email-layout">
                     <div className="emails-left-layout">
-                        <nav className="email-folders">
-                            <i className="fas fa-plus new-compose" onClick={() => this.onCreateNewEmail(true)}></i>
-                            <i className="far fa-envelope" onClick={() => { this.onSetFolderFilter('inbox') }}></i>
-                            <i className="far fa-star" onClick={() => { this.onSetFolderFilter('starred') }}></i>
-                            <i className="far fa-paper-plane" onClick={() => { this.onSetFolderFilter('sent') }}></i>
-                            <i className="fas fa-trash-alt" onClick={() => { this.onSetFolderFilter('trash') }}></i>
-                            <i className="far fa-sticky-note" onClick={() => { this.onSetFolderFilter('drafts') }}></i>
-                        </nav>
+                        <nav className="email-folders" onMouseEnter={()=>{this.onFoldersNavChange(true)}} onMouseLeave={()=>{this.onFoldersNavChange(false)}}>
+                            {isNavBarExpand ? <i className="folder-content fas fa-plus new-compose" onClick={() => this.onCreateNewEmail(true)}><span>new email</span></i>
+                            : <i className="folder-content fas fa-plus new-compose" onClick={() => this.onCreateNewEmail(true)}></i> }
+
+                            {isNavBarExpand ? <i className="folder-content far fa-envelope" onClick={() => { this.onSetFolderFilter('inbox') }}><span>inbox</span></i>
+                            : <i className="folder-content far fa-envelope" onClick={() => { this.onSetFolderFilter('inbox') }}></i> }
+
+                            {isNavBarExpand ? <i className="folder-content far fa-star" onClick={() => { this.onSetFolderFilter('starred') }}><span>starred</span></i>
+                            : <i className="folder-content far fa-star" onClick={() => { this.onSetFolderFilter('starred') }}></i> }
+
+                            {isNavBarExpand ? <i className="folder-content far fa-paper-plane" onClick={() => { this.onSetFolderFilter('sent') }}><span>sent</span></i>
+                            : <i className="folder-content far fa-paper-plane" onClick={() => { this.onSetFolderFilter('sent') }}></i> }
+
+                            {isNavBarExpand ? <i className="folder-content fas fa-trash-alt" onClick={() => { this.onSetFolderFilter('trash') }}><span>trash</span></i>
+                            : <i className="folder-content fas fa-trash-alt" onClick={() => { this.onSetFolderFilter('trash') }}></i> }
+
+                            {isNavBarExpand ? <i className="folder-content far fa-sticky-note" onClick={() => { this.onSetFolderFilter('drafts') }}><span>drafts</span></i>
+                            : <i className="folder-content far fa-sticky-note" onClick={() => { this.onSetFolderFilter('drafts') }}></i> }
+                    </nav>
                     </div>
 
                     <div className="emails-right-layout">
                         <div className="email-filter">
                             <EmailFilter onSetFilter={this.onSetFilter} currentFolder={this.state.filterBy ? this.state.filterBy.folder : 'inbox'} />
                         </div>
-                        <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} onCheckEmail={this.onCheckEmail} onCheckAllEmails={this.onCheckAllEmails} onMoveEmail={this.onMoveEmail} checkedEmails={this.state.checkedEmails} emailReadToggle={this.onEmailReadToggle} emailStarToggle={this.onEmailStarToggle}/>
+                        <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} onCheckEmail={this.onCheckEmail} onCheckAllEmails={this.onCheckAllEmails} onMoveEmail={this.onMoveEmail} checkedEmails={this.state.checkedEmails} emailReadToggle={this.onEmailReadToggle} emailStarToggle={this.onEmailStarToggle} onSetDraft={this.onSetDraft}/>
 
                     </div>
                     {selectedEmail && <EmailDetails email={selectedEmail} onSelectedEmail={this.onSelectedEmail} />}
-                    {isNewEmail && <EmailCompose userComposer={emailService.getLoggedUser()} onCreateNewEmail={this.onCreateNewEmail} />}
+                    {isNewEmail && <EmailCompose userComposer={emailService.getLoggedUser()} onCreateNewEmail={this.onCreateNewEmail} draftInterval={this.state.draftInterval} isOpen={isNewEmail} />}
+                    {draft && <EmailDraftEdit onDraftEdit={this.onDraftEdit} draft={this.state.draft} /> }
                 </div>
             </div>
         )
