@@ -8,8 +8,8 @@
   background-color: rgb(243, 240, 230);
 
   border-radius: 5px;
-  width: 400px;
-  height: 200px;
+  width: 300px;
+  height: 150px;
   padding: 1rem;
 
   display: flex;
@@ -22,10 +22,12 @@
   top:0;
   right: 0;
   margin: 0.5rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
   cursor: pointer;
   border:none;
   background-color: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .user-msg-screen{
@@ -48,7 +50,7 @@
 }
 
 .confirm-buttons button{
-  font-size: 2rem;
+  font-size: 0.85rem;
   padding: 0.5rem 1rem;
   margin: 0 1rem;
   width: 6rem;
@@ -63,4 +65,32 @@
 .confirm-buttons button:hover{
   background-color: rgb(202, 202, 202);
   transform: scale(1.2)
+}
+
+
+@media (min-width: 770px){
+  .user-msg {
+    width: 400px;
+    height: 200px;
+    padding: 1rem;
+  }
+  
+  .user-msg-exit-btn{
+    position: absolute;
+    top:0;
+    right: 0;
+    margin: 0.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border:none;
+    background-color: transparent;
+  }
+  
+  .confirm-buttons button{
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    margin: 0 1rem;
+    width: 6rem;
+  }
+  
 }

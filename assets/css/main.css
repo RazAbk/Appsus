@@ -6,6 +6,7 @@
 @import url('./parts/animations.css');
 @import url('./apps/keep/notesapp.css');
 @import url('./cmps/UserMsg.css');
+@import url('./home.css');
 
 
 *{
@@ -30,13 +31,14 @@ main{
     display: flex;
     justify-content: center;
     height: 100%;
+    overflow-y: hidden;
 }
 
 
 @media (min-width: 770px){
     
     main{
-        flex-basis: calc( 100vh - 130px )
+        flex-basis: calc( 100vh - 120px )
     }
     
 }
