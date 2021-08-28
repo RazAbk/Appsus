@@ -55,8 +55,6 @@ function query() {
 
 // Crud
 function editNote(noteId, info) {
-    console.log(Object.keys(info)[0])
-    console.log(gNotes);
     const idx = _getNoteIdx(noteId)
     console.log(idx)
     if (Object.keys(info)[0] === 'backgroundColor') {
@@ -75,7 +73,7 @@ function createNote(info, type) {
         type,
         isPinned: false,
         info,
-        style: { backgroundColor: "#00d" }
+        style: { backgroundColor: "rgb(255 212 212 / 16%)" }
     }
 
     gNotes.push(newNote);

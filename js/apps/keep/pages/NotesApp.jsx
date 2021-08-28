@@ -27,6 +27,7 @@ export class NotesApp extends React.Component {
     }
 
     onDeleteNote = (noteId) => {
+        console.log(noteId);
         notesService.deleteNote(noteId);
         this.loadNotes();
     }

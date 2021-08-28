@@ -7,9 +7,9 @@ import { notesService } from "../services/note-service.js";
 
 
 export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNote, onEditMode, selectedNote, onSaveEdit, onGoBack, onGetColor }) {
-    console.log(note.id)
     let currNote = React.createRef();
     let noteToDisplay;
+
 
     const { info } = note
 
@@ -48,11 +48,8 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNo
         onEditMode(note.id)
     }
 
-    const ChangeColor = (ev) => {
-        console.log(note.id);
-        console.log(ev.target);
+    const changeColor = (ev, noteId) => {
 
-        console.log(noteId);
         let style = { backgroundColor: ev.target.value }
         onGetColor(noteId, style)
 
@@ -68,11 +65,14 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNo
             </div>
             <div className={`note-funcs ${selectedNote === note.id ? 'edit-func' : ''}`}>
                 <i onClick={() => { onDeleteNote(note.id) }} className="fas fa-trash"></i>
-                <i onClick={() => { onToggleNotePin(note.id) }} className="fas fa-thumbtack"></i>
-                <label className="fas fa-palette" htmlFor="color-input"><input className="color-input" id="color-input" type="color" onChange={(ev) => { ChangeColor(ev) }} /></label>
+                <i onClick={() => { onToggleNotePin(note.id); console.log('toggle', note.id); }} className="fas fa-thumbtack"></i>
+                <label className="fas fa-palette">{note.id}
+                    <input className="color-input" type="color" onInput={(ev) => changeColor(ev, note.id)} />
+                </label>
                 <i onClick={() => { onDuplicateNote(note.id) }} className="fas fa-clone"></i>
                 <i onClick={toggleEditMode} className={`fas fa-edit`}></i>
                 <i className="fas fa-at"></i>
+                <i type="color" style={{ width: '2px', height: '2px', backgroundColor: 'white' }} onClick={(ev) => { changeColor(ev, note.id) }}>aa</i>
             </div>
 
         </div >

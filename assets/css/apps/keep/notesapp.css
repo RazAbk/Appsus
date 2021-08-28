@@ -28,6 +28,10 @@ button {
     box-shadow: 0 0 3px;
 }
 
+iframe {
+    width: 100%;
+}
+
 label {
     cursor: pointer;
 }
@@ -137,13 +141,12 @@ label {
     position: relative;
     background-color: rgb(255 212 212 / 16%);
     border-radius: 5px;
-    margin: 0.5rem;
+    margin-block-end: 0.5rem;
     word-break: break-all;
-    display: inline-block;
-    break-inside: avoid;
     overflow: hidden;
     padding: 2rem;
-    box-shadow: 0px 0px 1.5px 0px;
+    box-shadow: inset 0px 0px 2px;
+    break-inside: avoid-column;
 }
 
 .note img {
@@ -171,7 +174,7 @@ label {
 }
 
 .cards-container {
-    column-count: 3;
+    columns: 3 250px;
     width: 100%;
 }
 
