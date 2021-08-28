@@ -1,12 +1,9 @@
 .email-app {
     display: flex;
     justify-content: space-between;
-    /* height: calc( 100vh - 40px); */
     height: calc( 100vh - 130px);
     width: 100%;
     margin: 0 auto;
-    /* background-color: rgba(141, 141, 141, 0.759); */
-    border-radius: 5px;
 }
 
 .email-layout{
@@ -29,10 +26,7 @@
     flex-direction: column;
     flex-grow: 1;
     background-color: rgb(75, 75, 75);
-    /* height: calc( 100% - 110px); */
-    /* height: 87%; */
     height: 100%;
-
 }
 
 .emails-list {
@@ -66,30 +60,19 @@
     color: rgb(221, 140, 9);
 }
 
-.email-left {
-    display: flex;
-}
-
+.email-left,
 .email-right {
     display: flex;
 }
 
-.email-left>* {
-    padding: 0 0.3rem;
-}
-
+.email-left>*,
 .email-right>* {
-    padding: 0 0.3rem;
+    padding: 0 0.7rem;
 }
 
 .email-trash{
     cursor: pointer;
     transition: 0.3s;
-}
-
-.email-trash:hover{
-    color:red;
-    transform: scale(1.1);
 }
 
 .emails-sort {
@@ -105,7 +88,6 @@
     border-radius: 5px;
     padding: 1rem;
     background-color: rgba(122, 122, 122, 0.4);
-    ;
 }
 
 .func-left {
@@ -126,8 +108,6 @@
 .func-right h3{
     margin-inline-end: 0.5rem;
 }
-
-
 
 .emails-func .func-right select {
     padding: 0.3rem;
@@ -166,7 +146,7 @@
     width: 15rem;
     height: 100vh;
     top:0;
-    background-color: rgba(75, 75, 75, 0.97);
+    background-color: rgba(150, 148, 137, 0.8);
     box-shadow: 6px 0px 8px 0px #3d3d3dc9;
     transition: 0.3s;
     display: flex;
@@ -204,7 +184,6 @@
     background-color: rgb(255, 241, 181);
     transform: scale(1.1) translateX(12.5%);
 }
-
 
 .folders-content{
     display: flex;
@@ -256,7 +235,6 @@
 
 .header-details {
     display: flex;
-    /* justify-content: space-between; */
 }
 
 .email-details-header {
@@ -315,7 +293,6 @@
 
 .compose-input {
     width: 100%;
-    /* height: 100%; */
     flex-grow: 5;
     background-color: rgba(204, 204, 204, 0.349);
     border: none;
@@ -329,7 +306,6 @@
 }
 
 .compose-body textarea{
-    /* flex-grow: 1; */
     height: 95%;
 }
 
@@ -345,7 +321,6 @@
     outline: none;
     background-color: rgba(204, 204, 204, 0.35);
     border: none;
-    border: none;
     font-size: 1.3rem;
     padding: 1rem;
 }
@@ -355,14 +330,11 @@
     right: 0;
     bottom: 0;
     border-radius: 20px;
-    width: 3rem;
+    width: 4rem;
+    height: 1.5rem;
+    margin: 2rem 0 0 0;
     transition: 0.3s;
     cursor: pointer;
-}
-
-.send-email-btn:hover{
-    background-color: rgb(151, 151, 151);
-    transform: scale(1.1);
 }
 
 .time {
@@ -380,60 +352,30 @@ input.email-checkbox {
 @media (min-width: 770px){
 
     .email-app {
-        display: flex;
-        justify-content: space-between;
         height: calc( 100vh - 140px);
-        width: 100%;
-        margin: 0 auto;
-        /* background-color: rgba(141, 141, 141, 0.759); */
         border-radius: 5px;
         padding: 2rem;
     }
     
-    .email-layout{
-        height: 100%;
-        width: 100%;
-        display: flex;
-    }
-    
     .emails-right-layout {
-        width: 100%;
-        height: 100%;
         padding-inline-start: 4.5rem;
     }
     
-    .emails-left-layout {
-        height: 100%;
-    }
-    
     .emails-body {
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
         padding: 1rem;
-        background-color: rgb(75, 75, 75);
         border-radius: 5px;
         height: calc( 100% - 110px);
     }
     
     .emails-list {
-        background-color: rgb(212, 212, 212);
         border-radius: 5px;
         padding: 0.5rem;
-        overflow-y: scroll;
-        height: 100%;
     }
     
     .email-preview {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         margin: 0.5rem 0.3rem;
-        background-color: rgb(233, 233, 233);
         height: 3rem;
         border-radius: 5px;
-        transition: 0.3s;
-        cursor: pointer;
     }
 
     .email-center{
@@ -446,93 +388,18 @@ input.email-checkbox {
         background-color: rgb(255, 243, 211);
     }
     
-    .email-unread{
-        background-color: rgb(184, 176, 176);
-    }
-    
-    .email-stared{
-        color: rgb(221, 140, 9);
-    }
-    
-    .email-left {
-        display: flex;
-    }
-    
-    .email-right {
-        display: flex;
-    }
-    
-    .email-left>* {
-        padding: 0 0.3rem;
-    }
-    
-    .email-right>* {
-        padding: 0 0.3rem;
-    }
-    
-    .email-trash{
-        cursor: pointer;
-        transition: 0.3s;
-    }
-    
     .email-trash:hover{
         color:red;
         transform: scale(1.1);
     }
-    
-    .emails-sort {
-        background-color: rgba(92, 0, 0, 0.267);
-    }
-    
-    .emails-func {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin: 0.5rem 0.3rem;
-        height: 2.5rem;
-        border-radius: 5px;
-        padding: 1rem;
-        background-color: rgba(122, 122, 122, 0.4);
-        ;
-    }
-    
-    .func-left {
-        display: flex;
-    }
-    
-    .func-left .refresh {
-        margin-inline-start: 1rem;
-        transform: translateY(12%);
-    }
-    
-    .func-right{
-        display: flex;
-        align-items: center;
-        transition: 0.3s;
-    }
-    
-    .func-right h3{
-        margin-inline-end: 0.5rem;
-    }
-    
-    
-    
+
     .emails-func .func-right select {
         border-radius: 5px;
-        padding: 0.3rem;
     }
     
     .email-filter {
-        position: relative;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        height: 80px;
-        background-color: #fff;
-        background-color: rgb(75, 75, 75);
         border-radius: 5px;
         margin-block-end: 2rem;
-        padding: 1rem;
     }
     
     .email-filter input {
@@ -552,15 +419,10 @@ input.email-checkbox {
         top:unset;
         transform: unset;
         position:absolute;
-        z-index: 300;
         width: 3rem;
         height: calc( 100vh - 200px );
         background-color: rgb(75, 75, 75);
         border-radius: 5px;
-        transition: 0.3s;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
         justify-content: flex-start;
         padding: 1rem 0.5rem 0.5rem 0;
     }
@@ -576,90 +438,23 @@ input.email-checkbox {
         width: 200px;
     }
     
-    .email-folders>*{
-        width: 100%;
-        white-space: nowrap;
-        margin-block-end: 1rem;
-        background-color: #fff;
-        border-radius: 50px;
-        padding: 0.5rem;
-        color: rgb(94, 80, 63);
-        font-size: 1.5rem;
-        transform: translateX(10%);
-        cursor: pointer;
-        margin-block-end: 1rem;
-        transition: 0.3s;
-    }
-    
-    
     .email-folders>*:hover {
         background-color: rgb(255, 241, 181);
         transform: scale(1.1) translateX(15%);
     }
-    
-    .folders-content{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .folder-content span{
-        padding-inline-start: 0.75rem;
-    }
-    
-  
-    .new-compose {
-        background-color: #fff;
-        border-radius: 50px;
-        padding: 0.5rem;
-        color: rgb(94, 80, 63);
-        font-size: 1.5rem;
-        transform: translateX(10%);
-        cursor: pointer;
-    }
-    
-    .email-new-msg {
-        font-size: 1.3rem;
-    }
-    
-    .composer-email {
-        font-size: 1.3rem;
-        padding: 1rem;
-    }
-    
+
     /* //Email-Details */
     
     .email-details {
-        display: flex;
-        flex-direction: column;
-        width: 90vw;
-        height: 80vh;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: rgba(238, 238, 238, 0.9);
         font-size: 2rem;
         border-radius: 5px;
-        z-index: 500;
-        animation: scale-up-center-modal .4s cubic-bezier(.39, .575, .565, 1.000) both;
-        box-shadow: 6px 4px 20px 8px #3d3d3dc9;
     }
     
     .header-details {
         display: flex;
-        /* justify-content: space-between; */
     }
     
     .email-details-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: rgba(31, 31, 31, 0.95);
-        height: 3rem;
-        border-radius: 5px 5px 0 0;
-        padding: 1rem;
-        color: white;
         font-size: 1rem;
     }
     
@@ -673,101 +468,19 @@ input.email-checkbox {
     }
     
     .email-metadata {
-        display: flex;
-        justify-content: space-between;
-        background-color: rgba(204, 204, 204, 0.349);
-        padding: 0.5rem 1rem;
         font-size: 1.5rem;
-        /* height: 100%; */
     }
 
     .email-metadata .time{
         font-size: 1.5rem;
     }
     
-    .email-metadata.compose {
-        flex-direction: column;
-        height: 100%;
-    }
-    
-    .compose-receiver {
-        display: flex;
-        align-items: center;
-        border: none;
-        background-color: rgba(204, 204, 204, 0.349);
-        width: 100%;
-    }
-    
-    .compose-subject {
-        display: flex;
-        align-items: center;
-        border: none;
-        background-color: rgba(204, 204, 204, 0.349);
-        width: 100%;
-    }
-    
-    .compose-input {
-        width: 100%;
-        /* height: 100%; */
-        flex-grow: 5;
-        background-color: rgba(204, 204, 204, 0.349);
-        border: none;
-        font-size: 1.3rem;
-        resize: none;
-    }
-    
-    .compose-body {
-        width: 100%;
-        height: 100%;
-    }
-    
     .compose-body textarea{
-        /* flex-grow: 1; */
         height: 95%;
     }
-    
-    .email-body {
-        height: 500px;
-        width: 100%;
-        height: 100%;
-    }
-    
-    .email-input {
-        width: 100%;
-        height: 100%;
-        outline: none;
-        background-color: rgba(204, 204, 204, 0.35);
-        border: none;
-        border: none;
-        font-size: 1.3rem;
-        padding: 1rem;
-    }
-    
-    .send-email-btn{
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        border-radius: 20px;
-        width: 3rem;
-        transition: 0.3s;
-        cursor: pointer;
-    }
-    
+
     .send-email-btn:hover{
         background-color: rgb(151, 151, 151);
         transform: scale(1.1);
     }
-    
-    .time {
-        font-size: 1.5rem;
-    }
-    
-    
-    /* Email checkbox */
-    
-    input.email-checkbox {
-        transform: scale(1.6) translate(0rem, 0.1rem);
-        cursor: pointer;
-    }
-
 }
