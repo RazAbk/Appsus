@@ -130,6 +130,18 @@
      opacity: 1;
      pointer-events: visible;
  }
+
+.colors{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.show-colors{
+    opacity: 1;
+    pointer-events: visible;
+
+}
+
  /* Notes Layout */
  
  .note {

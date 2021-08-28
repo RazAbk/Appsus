@@ -89,6 +89,11 @@ export class NotesApp extends React.Component {
         this.loadNotes();
     }
 
+    onChangeNoteColor = (color, noteId) => {
+        notesService.editNote(noteId,{backgroundColor: color})
+        this.loadNotes();
+    } 
+
 
     render() {
 
@@ -114,6 +119,7 @@ export class NotesApp extends React.Component {
                                 onGoBack={this.onGoBack}
                                 onGetColor={this.onGetColor}
                                 isSelectedColor={isSelectedColor}
+                                onChangeNoteColor={this.onChangeNoteColor}
 
                             />
                         </div>
@@ -133,6 +139,7 @@ export class NotesApp extends React.Component {
                                 onGoBack={this.onGoBack}
                                 onGetColor={this.onGetColor}
                                 isSelectedColor={isSelectedColor}
+                                onChangeNoteColor={this.onChangeNoteColor}
                             />
                         </div>
 

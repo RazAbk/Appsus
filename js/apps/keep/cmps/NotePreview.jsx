@@ -7,16 +7,15 @@ import { notesService } from "../services/note-service.js";
 
 
 
-export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNote, onEditMode, selectedNote, onSaveEdit, onGoBack, onGetColor, isSelectedColor }) {
+export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNote, onEditMode, selectedNote, onSaveEdit, onGoBack, onChangeNoteColor  }) {
     let currNote = React.createRef();
     let noteToDisplay;
-
 
     const { info } = note
 
     switch (note.type) {
         case `note-txt`:
-            noteToDisplay = <NoteTxt noteId={note.id} info={info} selectedNote={selectedNote} onSaveEdit={onSaveEdit} onGoBack={onGoBack} isSelectedColor={isSelectedColor} />
+            noteToDisplay = <NoteTxt noteId={note.id} info={info} selectedNote={selectedNote} onSaveEdit={onSaveEdit} onGoBack={onGoBack} />
             break;
         case `note-img`:
             noteToDisplay = <NoteImg noteId={note.id} info={info} selectedNote={selectedNote} onSaveEdit={onSaveEdit} onGoBack={onGoBack} />
@@ -40,11 +39,12 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNo
         }
     }
 
-    const changeColor = (ev, noteId) => {
+    const onRevealColors = (noteId) => {
+      document.querySelector(`.colors-${noteId}`).classList.toggle('show-colors')
+    }
 
-        let style = { backgroundColor: ev.target.value }
-        // onGetColor(noteId, style)
-
+    const onChangeColor = (color) => {
+        onChangeNoteColor(color,note.id);
     }
 
 
@@ -58,12 +58,13 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNo
             <div className={`note-funcs ${selectedNote === note.id ? 'edit-func' : ''}`}>
                 <i title="delete note" onClick={() => { onDeleteNote(note.id) }} className="fas fa-trash"></i>
                 <i title="pin / unpin note" onClick={() => { onToggleNotePin(note.id) }} className="fas fa-thumbtack"></i>
-                <i title="change color" onClick={() => { onGetColor(note.id) }} className="fas fa-palette"></i>
+                {/* <i title="change color" onClick={() => { onGetColor(note.id) }} className="fas fa-palette"></i> */}
+                <i title="change color" onClick={() => { onRevealColors(note.id) }} className="fas fa-palette"></i>
                 <i title="duplicate note" onClick={() => { onDuplicateNote(note.id) }} className="fas fa-clone"></i>
                 <i title="edit note" onClick={() => { onEditMode(note.id) }} className={`fas fa-edit`}></i>
                 {/* <i title="share note" className="fas fa-at"></i> */}
-                {isSelectedColor && note.id === selectedNote && <Colors noteId={note.id} />}
-
+                <Colors noteId={note.id} onChangeColor={onChangeColor} />
+                
 
             </div>
 

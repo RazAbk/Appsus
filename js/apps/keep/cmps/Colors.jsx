@@ -1,23 +1,13 @@
-export function Colors(noteId) {
-    console.log(noteId)
+export function Colors({noteId, onChangeColor}) {
 
-    const setColorToNote = (color) => {
-        switch (color) {
-            case 'red': 
 
-                break;
-
-            default:    
-                break;
-        }
-
-    }
     return(
 
-    <section className="colors">
-        <div onClick={() => { setColorToNote('red') }}>red</div>
-    </section>
-    )
+        <section className={`colors colors-${noteId}`}>
+            <button onClick={()=>{onChangeColor('blue')}}>blue</button>
+            <button onClick={()=>{onChangeColor('red')}}>red</button>
+        </section>
+        )
 
 }
 
