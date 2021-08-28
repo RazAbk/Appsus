@@ -166,7 +166,6 @@
     width: 15rem;
     height: 100vh;
     top:0;
-    /* height: calc( 100vh - 130px ); */
     background-color: rgba(75, 75, 75, 0.97);
     box-shadow: 6px 0px 8px 0px #3d3d3dc9;
     transition: 0.3s;
@@ -248,7 +247,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgba(238, 238, 238, 0.9);
-    font-size: 2rem;
+    font-size: 1rem;
     border-radius: 5px;
     z-index: 500;
     animation: scale-up-center-modal .4s cubic-bezier(.39, .575, .565, 1.000) both;
@@ -269,7 +268,7 @@
     border-radius: 5px 5px 0 0;
     padding: 1rem;
     color: white;
-    font-size: 1rem;
+    font-size: 0.75rem;
 }
 
 .details-back {
@@ -278,7 +277,6 @@
 
 .email-body {
     padding: 0.5rem 1rem;
-    font-size: 1.5rem;
 }
 
 .email-metadata {
@@ -286,9 +284,13 @@
     justify-content: space-between;
     background-color: rgba(204, 204, 204, 0.349);
     padding: 0.5rem 1rem;
-    font-size: 1.5rem;
-    /* height: 100%; */
+    font-size: 0.75rem;
 }
+
+.email-metadata .time{
+    font-size: 0.75rem;
+}
+
 
 .email-metadata.compose {
     flex-direction: column;
@@ -677,6 +679,10 @@ input.email-checkbox {
         padding: 0.5rem 1rem;
         font-size: 1.5rem;
         /* height: 100%; */
+    }
+
+    .email-metadata .time{
+        font-size: 1.5rem;
     }
     
     .email-metadata.compose {
