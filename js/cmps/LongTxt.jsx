@@ -6,8 +6,8 @@ export function LongTxt ({text}) {
     }
 
     let returnTxt;
-    if(text.length > maxSize/50){
-        returnTxt = text.substring(0, maxSize/50) + '...'; 
+    if(text.length > maxSize/40){
+        returnTxt = text.substring(0, maxSize/40) + '...'; 
     } else{
         returnTxt = text;
     }

@@ -31,3 +31,12 @@ main{
     justify-content: center;
     height: 100%;
 }
+
+
+@media (min-width: 770px){
+    
+    main{
+        flex-basis: calc( 100vh - 130px )
+    }
+    
+}
