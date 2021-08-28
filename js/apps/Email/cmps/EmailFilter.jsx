@@ -23,7 +23,7 @@ export class EmailFilter extends React.Component {
 
     render(){
 
-        const { onOpenMenu, onCloseMenu } = this.props;
+        const { onOpenMenu } = this.props;
 
         return(
             <React.Fragment>

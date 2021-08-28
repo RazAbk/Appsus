@@ -161,11 +161,12 @@
 
 .email-folders {
     transform: translateX(-110%);
-    position:absolute;
+    position:fixed;
     z-index: 300;
     width: 15rem;
-    /* height: 100%; */
-    height: calc( 100vh - 130px );
+    height: 100vh;
+    top:0;
+    /* height: calc( 100vh - 130px ); */
     background-color: rgba(75, 75, 75, 0.97);
     box-shadow: 6px 0px 8px 0px #3d3d3dc9;
     transition: 0.3s;
@@ -546,6 +547,7 @@ input.email-checkbox {
     }
     
     .email-folders {
+        top:unset;
         transform: unset;
         position:absolute;
         z-index: 300;

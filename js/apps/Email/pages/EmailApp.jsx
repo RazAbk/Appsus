@@ -138,6 +138,7 @@ export class EmailApp extends React.Component {
             <div className="email-app main-layout">
                     <React.Fragment>
                         <Screen isOpen={selectedEmail} closeModal={this.onSelectedEmail} />
+                        <Screen isOpen={menuIsHover} closeModal={this.onCloseMenu} />
                     </React.Fragment>
                 <div className="email-layout">
                     <div className="emails-left-layout">
