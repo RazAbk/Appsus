@@ -1,6 +1,6 @@
 import { EmailPreview } from "./EmailPreview.jsx";
 
-export function EmailList({ emails, onSelectedEmail, onCheckEmail, onCheckAllEmails, onMoveEmail, checkedEmails, emailReadToggle, emailStarToggle }) {
+export function EmailList({ emails, onSelectedEmail, onCheckEmail, onCheckAllEmails, onMoveEmail, checkedEmails, emailReadToggle, emailStarToggle, onSetDraft }) {
 
     return (
         <div className="emails-body">
@@ -47,6 +47,7 @@ export function EmailList({ emails, onSelectedEmail, onCheckEmail, onCheckAllEma
                                                     moveEmail = {onMoveEmail}
                                                     emailReadToggle = {emailReadToggle}
                                                     emailStarToggle = {emailStarToggle}
+                                                    onSetDraft = {onSetDraft}
                                     />)}
             </div>
 

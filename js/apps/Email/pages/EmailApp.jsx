@@ -4,6 +4,7 @@ import { EmailList } from '../cmps/EmailList.jsx'
 import { EmailFilter } from '../cmps/EmailFilter.jsx';
 import { EmailDetails } from '../cmps/EmailDetails.jsx';
 import { EmailCompose } from '../cmps/EmailCompose.jsx';
+import { EmailDraftEdit } from '../cmps/EmailDraftEdit.jsx'
 import { eventBusService } from '../../../services/event-bus-service.js';
 
 
@@ -15,6 +16,7 @@ export class EmailApp extends React.Component {
         filterBy: null,
         selectedEmail: null,
         isNewEmail: false,
+        draft: null,
         checkedEmails: [],
     }
 
@@ -33,8 +35,7 @@ export class EmailApp extends React.Component {
         })
     }
     onSelectedEmail = (email) => {
-        this.setState({ selectedEmail: email });
-        this.loadEmails();
+        this.setState({ selectedEmail: email })
     }
 
     onSetFilter = (filterBy) => {
@@ -82,7 +83,16 @@ export class EmailApp extends React.Component {
     }
 
     onCreateNewEmail = (isOn) => {
-        this.setState({ isNewEmail: isOn })
+        this.setState({ isNewEmail: isOn });
+    }
+
+    onDraftEdit = (inOn) => {
+        this.setState({ draft: inOn});
+        this.loadEmails();
+    }
+
+    onSetDraft = (email) => {
+        this.setState( {draft: email });
     }
     
     onMoveEmail= (emailId, folder) => {
@@ -92,7 +102,7 @@ export class EmailApp extends React.Component {
 
     render() {
 
-        const { emails, selectedEmail, isNewEmail } = this.state;
+        const { emails, selectedEmail, isNewEmail, draft } = this.state;
         if (!emails) return <h1>Loading...</h1>
 
         return (
@@ -116,12 +126,12 @@ export class EmailApp extends React.Component {
                         <div className="email-filter">
                             <EmailFilter onSetFilter={this.onSetFilter} currentFolder={this.state.filterBy ? this.state.filterBy.folder : 'inbox'} />
                         </div>
-                        <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} onCheckEmail={this.onCheckEmail} onCheckAllEmails={this.onCheckAllEmails} onMoveEmail={this.onMoveEmail} checkedEmails={this.state.checkedEmails} emailReadToggle={this.onEmailReadToggle} emailStarToggle={this.onEmailStarToggle}/>
+                        <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} onCheckEmail={this.onCheckEmail} onCheckAllEmails={this.onCheckAllEmails} onMoveEmail={this.onMoveEmail} checkedEmails={this.state.checkedEmails} emailReadToggle={this.onEmailReadToggle} emailStarToggle={this.onEmailStarToggle} onSetDraft={this.onSetDraft}/>
 
                     </div>
-                    {( selectedEmail && selectedEmail.folder !== 'drafts' ) && <EmailDetails email={selectedEmail} onSelectedEmail={this.onSelectedEmail} />}
-                    {isNewEmail && <EmailCompose userComposer={emailService.getLoggedUser()} onCreateNewEmail={this.onCreateNewEmail} isOpen={isNewEmail} />}
-                    {( selectedEmail && selectedEmail.folder === 'drafts' ) && <EmailCompose draftToEdit={selectedEmail} userComposer={emailService.getLoggedUser()} onCreateNewEmail={this.onCreateNewEmail} isOpen={isNewEmail} onSelectedEmail={this.onSelectedEmail} />}
+                    {selectedEmail && <EmailDetails email={selectedEmail} onSelectedEmail={this.onSelectedEmail} />}
+                    {isNewEmail && <EmailCompose userComposer={emailService.getLoggedUser()} onCreateNewEmail={this.onCreateNewEmail} draftInterval={this.state.draftInterval} isOpen={isNewEmail} />}
+                    {draft && <EmailDraftEdit onDraftEdit={this.onDraftEdit} draft={this.state.draft} /> }
                 </div>
             </div>
         )

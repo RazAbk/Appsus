@@ -14,7 +14,8 @@ export const emailService = {
     toggleEmailRead,
     toggleEmailStar,
     getUnReadEmailsCount,
-    draftToMail
+    draftToMail,
+    saveDraft
 }
 
 const EMAIL_KEY = 'emailsDB'
@@ -135,8 +136,8 @@ const gEmails = storageService.loadFromStorage(EMAIL_KEY) || [{
         isChecked: false,
         folder: 'drafts',
         sentAt: Date.now(),
-        composer: 'yonatan@Gmail.com',
-        receiver: 'user@appsus.com'
+        composer: 'user@appsus.com',
+        receiver: 'yonatan@Gmail.com'
     },
 ];
 _saveEmailsToStorage();
@@ -257,6 +258,15 @@ function draftToMail(emailId, email){
     const emailIdx = _getEmailIdxById(emailId);
     gEmails[emailIdx] = email;
     gEmails[emailIdx].folder = 'sent';
+    gEmails[emailIdx].sentAt = Date.now();
+    _saveEmailsToStorage();
+}
+
+function saveDraft(emailId, draft) {
+    const emailIdx = _getEmailIdxById(emailId);
+    draft.sentAt = Date.now();
+    gEmails[emailIdx] = draft;
+    _saveEmailsToStorage();
 }
 
 function getUnReadEmailsCount(){
