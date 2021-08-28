@@ -157,7 +157,7 @@
 }
 
 .email-folders {
-    position:fixed;
+    position:absolute;
     z-index: 300;
     width: 3rem;
     height: calc( 100vh - 130px );
