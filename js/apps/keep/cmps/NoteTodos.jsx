@@ -27,7 +27,7 @@ export function NoteTodos({ noteId, info, selectedNote, onSaveEdit, onGoBack }) 
                 <h2>{info.label}</h2>
                 < ul className="todos-list" >
                     {todos.map((todo, idx) =>
-                        <li onClick={toggleTodo} className="todo" key={`${todo.id}-${idx}`}>{todo.txt}</li>)}
+                        <li title="toggle done / undone" onClick={toggleTodo} className="todo" key={`${todo.id}-${idx}`}>{todo.txt}</li>)}
                 </ul>
             </div >
         )

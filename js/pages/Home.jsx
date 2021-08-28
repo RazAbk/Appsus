@@ -1,9 +1,11 @@
+import {img} from '../'
+
 export class Home extends React.Component {
 
     render() {
         return (
-            <section>
-                <h2>Home Sweet Home</h2>
+            <section className="home-page">
+                {/* <svg src=""></svg> */}
             </section>
         )
     }

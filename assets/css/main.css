@@ -6,6 +6,7 @@
 @import url('./parts/animations.css');
 @import url('./apps/keep/notesapp.css');
 @import url('./cmps/UserMsg.css');
+@import url('./home.css');
 
 
 *{

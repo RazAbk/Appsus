@@ -11,32 +11,43 @@ export const notesService = {
 };
 
 const NOTES_KEY = "notesDB";
-const gNotes = storageService.loadFromStorage(NOTES_KEY) || [{
+const gNotes = storageService.loadFromStorage(NOTES_KEY) || [
+    {
         id: utilService.makeId(5),
         type: "note-txt",
         isPinned: true,
-        info: { txt: "Fullstack Me Baby!" },
-        style: { backgroundColor: "rgb(255 212 212 / 16%)" }
+        info: { txt: "Buy milk on my way back from work" },
+        style: { backgroundColor: "rgb(128 150 212 / 16%)" }
+    },
+    {
+        id: utilService.makeId(5),
+        type: "note-txt",
+        isPinned: true,
+        info: { txt: "Fix the fence" },
+        style: { backgroundColor: "rgb(128 12 5 / 16%)" }
     },
     {
         id: utilService.makeId(5),
         type: "note-img",
         isPinned: false,
-        info: { url: "/assets/img/cat.jpg", title: "Bobi and Me" },
-        style: { backgroundColor: "rgb(255 212 212 / 16%)" }
+        info: { url: "/assets/img/cat.jpg", title: "Found this funny picture of a cat" },
+        style: { backgroundColor: "rgb(51 150 80 / 16%)" }
     },
     {
         id: utilService.makeId(5),
         type: "note-todos",
-        isPinned: false,
+        isPinned: true,
         info: {
-            label: "Get my stuff together",
+            label: "Must finish this week",
             todos: [
-                { txt: "Driving liscence", doneAt: null },
-                { txt: "Coding power", doneAt: 187111111 },
+                { txt: "Driving licence", doneAt: null },
+                { txt: "Master react", doneAt: 187111111 },
+                { txt: "Finish my big project", doneAt: null },
+                { txt: "Get some hair cut", doneAt: null },
+                { txt: "Run 5km under 25 minutes", doneAt: null },
             ],
         },
-        style: { backgroundColor: "rgb(255 212 212 / 16%)" }
+        style: { backgroundColor: "rgb(255 20 212 / 16%)" }
     },
     {
         id: utilService.makeId(5),
@@ -44,6 +55,13 @@ const gNotes = storageService.loadFromStorage(NOTES_KEY) || [{
         isPinned: false,
         info: { url: "https://www.youtube.com/watch?v=3OF7ikaSfcc", title: "funny vid" },
         style: { backgroundColor: "rgb(255 212 212 / 16%)" }
+    },
+    {
+        id: utilService.makeId(5),
+        type: "note-video",
+        isPinned: false,
+        info: { url: "https://www.youtube.com/watch?v=pHruXWEasqQ", title: "Now that's something I'll want to do some day" },
+        style: { backgroundColor: "rgb(150 12 50 / 16%)" }
     },
 ];
 _saveNotesToStorage()
