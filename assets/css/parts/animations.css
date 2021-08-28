@@ -9,3 +9,20 @@
     }
 }
 
+  @keyframes slide-right {
+    0% {
+        transform: translateX(-400%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+  }
+  
+  @keyframes rotating {
+    from {
+      transform: rotate(-10deg);
+    }
+    to {
+      transform: rotate(10deg);
+    }
+}
