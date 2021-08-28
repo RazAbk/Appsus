@@ -24,7 +24,6 @@
 }
 
 body {
-    /* background-color: rgb(241, 241, 232); */
     background: linear-gradient(
         0deg,
         rgba(241, 241, 232, 1) 0%,
@@ -33,6 +32,11 @@ body {
 }
 
 main{
+    background: linear-gradient(
+        0deg,
+        rgba(241, 241, 232, 1) 0%,
+        rgba(0, 134, 224, 1) 100%
+    );
     display: flex;
     justify-content: center;
     height: 100%;
