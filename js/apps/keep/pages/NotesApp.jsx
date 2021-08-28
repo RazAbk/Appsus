@@ -2,6 +2,7 @@ import { Screen } from "../../../cmps/Screen.jsx";
 import { notesService } from "../services/note-service.js";
 import { NotesList } from "../cmps/NotesList.jsx";
 import { NoteAdd } from "../cmps/NoteAdd.jsx";
+import { eventBusService } from "../../../services/event-bus-service.js";
 
 export class NotesApp extends React.Component {
     state = {
@@ -26,24 +27,14 @@ export class NotesApp extends React.Component {
         this.setState({ ...this.state, inputType: type })
     }
 
-    onDeleteNote = (noteId) => {
-        console.log(noteId);
-        notesService.deleteNote(noteId);
-        this.loadNotes();
-    }
-
-    onToggleNotePin = (noteId) => {
-        notesService.toggleNotePin(noteId);
-        this.loadNotes();
-    }
-
-    onDuplicateNote = (noteId) => {
-        notesService.duplicateNote(noteId);
-        this.loadNotes();
-    }
-
+    
     onEditMode = (noteId) => {
-        this.setState({ selectedNote: noteId })
+        if (this.state.selectedNote) return
+        else {
+            this.setState({ selectedNote: noteId }, this.loadNotes())
+
+        }
+
     }
 
     onSaveEdit = (noteId, info) => {
@@ -59,15 +50,49 @@ export class NotesApp extends React.Component {
     onGoBack = () => {
         this.setState({ selectedNote: null })
     }
-
+    
     onGetColor = (noteId, style) => {
         notesService.editNote(noteId, style)
         this.loadNotes()
     }
+    onShowModal = (type) => {
+        switch (type) {
+            case 'duplicate': eventBusService.emit('user-msg', { txt: `duplicated!`, type: 'duplicate', time: 2000 })
+            break;
+            case 'pined': eventBusService.emit('user-msg', { txt: `now its on the top go look!`, type: 'pined', time: 2000 })
+            break;
+            case 'delete': eventBusService.emit('user-msg', { txt: `note deleted!`, type: 'delete', time: 2000 })
+                break;
+            }
+    }
+    
+    onToggleNotePin = (noteId) => {
+        if (this.state.selectedNote) {
+            this.onShowModal('pined')
+        }
+        notesService.toggleNotePin(noteId);
+        this.loadNotes();
+    }
 
-
+    onDuplicateNote = (noteId) => {
+        if (this.state.selectedNote) {
+            this.onShowModal('duplicate')
+        }
+        notesService.duplicateNote(noteId);
+        this.loadNotes();
+    }
+    onDeleteNote = (noteId) => {
+        if (this.state.selectedNote) {
+            this.onShowModal('delete')
+        }
+        notesService.deleteNote(noteId);
+        this.onGoBack()
+        this.loadNotes();
+    }
+    
+    
     render() {
-
+        
         const { inputType, selectedNote } = this.state;
 
         return (

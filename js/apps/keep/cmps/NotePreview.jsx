@@ -29,6 +29,7 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNo
     }
 
     const showOrHideFuncs = (ev, input) => {
+        console.log(ev);
         const elFuncs = ev.target.getElementsByClassName('note-funcs')[0];
         ev.stopPropagation();
         if (input === 'enter') {
@@ -38,26 +39,19 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNo
         }
     }
 
-    const toggleEditMode = () => {
-        onEditMode(note.id)
-    }
-
     const changeColor = (ev, noteId) => {
 
         let style = { backgroundColor: ev.target.value }
         onGetColor(noteId, style)
 
     }
-    const showFuncsByTouch = () => {
-        // console.log('hey')
-
-    }
 
 
     return (
         <div onMouseEnter={(ev) => { showOrHideFuncs(ev, 'enter') }}
-        onMouseLeave={(ev) => { showOrHideFuncs(ev, 'leave') }} tabIndex="-1" className={`note ${note.type} ${selectedNote === note.id ? 'note-edit' : ''}`} ref={currNote} style={note.style}  >
-            <div className="note-content">
+            onMouseLeave={(ev) => { showOrHideFuncs(ev, 'leave') }}
+            abindex="-1" className={`note ${note.type} ${selectedNote === note.id ? 'note-edit' : ''}`} ref={currNote} style={note.style}  >
+            <div className="note-content mobile">
                 {noteToDisplay}
             </div>
             <div className={`note-funcs ${selectedNote === note.id ? 'edit-func' : ''}`}>
@@ -67,7 +61,7 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNo
                     <input className="color-input" type="color" onInput={(ev) => changeColor(ev, note.id)} />
                 </label>
                 <i onClick={() => { onDuplicateNote(note.id) }} className="fas fa-clone"></i>
-                <i onClick={toggleEditMode} className={`fas fa-edit`}></i>
+                <i onClick={() => { onEditMode(note.id) }} className={`fas fa-edit`}></i>
                 <i className="fas fa-at"></i>
 
             </div>

@@ -23,6 +23,7 @@ export function NoteTxt({ noteId, info, selectedNote, onSaveEdit, onGoBack}) {
                 <div className="edit-buttons">
                     <button className="btn edit-save" onClick={() => handleRef()}> save! </button>
                     <button className="btn edit-goback fas fa-times" onClick={() => onGoBack()}></button>
+                    
 
                 </div>
             </div>
