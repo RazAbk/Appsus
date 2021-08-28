@@ -18,12 +18,11 @@ export class EmailApp extends React.Component {
         isNewEmail: false,
         draft: null,
         checkedEmails: [],
-        isNavBarExpand: false
+        isNavBarExpand: false,
     }
 
     componentDidMount() {
         this.loadEmails();
-
     }
 
     componentWillUnmount() {
@@ -35,6 +34,7 @@ export class EmailApp extends React.Component {
             this.setState({ emails, checkedEmails: emails.filter(email => email.isChecked) });
         })
     }
+
     onSelectedEmail = (email) => {
         this.setState({ selectedEmail: email })
     }
