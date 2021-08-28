@@ -137,7 +137,7 @@
 
 .email-filter {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     height: 80px;
     background-color: #fff;
@@ -148,7 +148,7 @@
 }
 
 .email-filter input {
-    width: 90%;
+    width: 100%;
     height: 3rem;
     padding: 0 0 0 0.5rem;
     font-size: 1.5rem;
@@ -166,8 +166,23 @@
     transition: 0.3s;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     padding: 1rem 0.5rem 0.5rem 0;
+}
+
+.email-folders>*{
+    width: 100%;
+    white-space: nowrap;
+}
+
+.folders-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.folder-content span{
+    padding-inline-start: 0.75rem;
 }
 
 .email-folders:hover {
@@ -177,10 +192,14 @@
     box-shadow: 6px 0px 8px 0px #3d3d3dc9;
 }
 
-.email-folders>* {
+.email-folders:hover>* {
+    width: 200px;
+}
+
+.email-folders>*{
     margin-block-end: 1rem;
     background-color: #fff;
-    border-radius: 50%;
+    border-radius: 50px;
     padding: 0.5rem;
     color: rgb(94, 80, 63);
     font-size: 1.5rem;
@@ -190,6 +209,7 @@
     transition: 0.3s;
 }
 
+
 .email-folders>*:hover {
     background-color: rgb(255, 241, 181);
     transform: scale(1.1);
@@ -198,7 +218,7 @@
 
 .new-compose {
     background-color: #fff;
-    border-radius: 50%;
+    border-radius: 50px;
     padding: 0.5rem;
     color: rgb(94, 80, 63);
     font-size: 1.5rem;
@@ -350,6 +370,6 @@
 /* Email checkbox */
 
 input.email-checkbox {
-    transform: scale(1.6) translate(0rem, 0.2rem);
+    transform: scale(1.6) translate(0rem, 0.1rem);
     cursor: pointer;
 }

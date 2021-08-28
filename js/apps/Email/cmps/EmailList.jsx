@@ -9,7 +9,7 @@ export function EmailList({ emails, onSelectedEmail, onCheckEmail, onCheckAllEma
                 <div className="func-left">
                     <label htmlFor="checked-all-emails" ></label>
                     <input type="checkbox" name="checked-all-emails" className="email-checkbox" onChange={(ev) => {onCheckAllEmails(ev.nativeEvent.target.checked)}} />
-                    <i className="fas fa-sync-alt refresh"></i>
+                    {/* <i className="fas fa-sync-alt refresh"></i> */}
                 </div>
 
                 <div className="func-right">

@@ -18,11 +18,12 @@ export class EmailApp extends React.Component {
         isNewEmail: false,
         draft: null,
         checkedEmails: [],
+        isNavBarExpand: false
     }
-
 
     componentDidMount() {
         this.loadEmails();
+
     }
 
     componentWillUnmount() {
@@ -100,9 +101,17 @@ export class EmailApp extends React.Component {
         this.loadEmails()
     }
 
+    onFoldersNavChange = (isOn) => {
+        if(isOn){
+            this.setState({isNavBarExpand: true})
+        } else{
+            this.setState({isNavBarExpand: false})
+        }
+    }
+
     render() {
 
-        const { emails, selectedEmail, isNewEmail, draft } = this.state;
+        const { emails, selectedEmail, isNewEmail, draft, isNavBarExpand } = this.state;
         if (!emails) return <h1>Loading...</h1>
 
         return (
@@ -112,14 +121,25 @@ export class EmailApp extends React.Component {
                     </React.Fragment>
                 <div className="email-layout">
                     <div className="emails-left-layout">
-                        <nav className="email-folders">
-                            <i className="fas fa-plus new-compose" onClick={() => this.onCreateNewEmail(true)}></i>
-                            <i className="far fa-envelope" onClick={() => { this.onSetFolderFilter('inbox') }}></i>
-                            <i className="far fa-star" onClick={() => { this.onSetFolderFilter('starred') }}></i>
-                            <i className="far fa-paper-plane" onClick={() => { this.onSetFolderFilter('sent') }}></i>
-                            <i className="fas fa-trash-alt" onClick={() => { this.onSetFolderFilter('trash') }}></i>
-                            <i className="far fa-sticky-note" onClick={() => { this.onSetFolderFilter('drafts') }}></i>
-                        </nav>
+                        <nav className="email-folders" onMouseEnter={()=>{this.onFoldersNavChange(true)}} onMouseLeave={()=>{this.onFoldersNavChange(false)}}>
+                            {isNavBarExpand ? <i className="folder-content fas fa-plus new-compose" onClick={() => this.onCreateNewEmail(true)}><span>new email</span></i>
+                            : <i className="folder-content fas fa-plus new-compose" onClick={() => this.onCreateNewEmail(true)}></i> }
+
+                            {isNavBarExpand ? <i className="folder-content far fa-envelope" onClick={() => { this.onSetFolderFilter('inbox') }}><span>inbox</span></i>
+                            : <i className="folder-content far fa-envelope" onClick={() => { this.onSetFolderFilter('inbox') }}></i> }
+
+                            {isNavBarExpand ? <i className="folder-content far fa-star" onClick={() => { this.onSetFolderFilter('starred') }}><span>starred</span></i>
+                            : <i className="folder-content far fa-star" onClick={() => { this.onSetFolderFilter('starred') }}></i> }
+
+                            {isNavBarExpand ? <i className="folder-content far fa-paper-plane" onClick={() => { this.onSetFolderFilter('sent') }}><span>sent</span></i>
+                            : <i className="folder-content far fa-paper-plane" onClick={() => { this.onSetFolderFilter('sent') }}></i> }
+
+                            {isNavBarExpand ? <i className="folder-content fas fa-trash-alt" onClick={() => { this.onSetFolderFilter('trash') }}><span>trash</span></i>
+                            : <i className="folder-content fas fa-trash-alt" onClick={() => { this.onSetFolderFilter('trash') }}></i> }
+
+                            {isNavBarExpand ? <i className="folder-content far fa-sticky-note" onClick={() => { this.onSetFolderFilter('drafts') }}><span>drafts</span></i>
+                            : <i className="folder-content far fa-sticky-note" onClick={() => { this.onSetFolderFilter('drafts') }}></i> }
+                    </nav>
                     </div>
 
                     <div className="emails-right-layout">
