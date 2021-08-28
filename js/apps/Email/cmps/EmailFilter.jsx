@@ -17,10 +17,19 @@ export class EmailFilter extends React.Component {
         })
     }
 
+    blurrr = () => {
+        setTimeout(this.props.onCloseMenu,50);
+    }
 
     render(){
+
+        const { onOpenMenu, onCloseMenu } = this.props;
+
         return(
-            <input type="text" placeholder="Search" onChange={this.handleChange} autoComplete="off" ></input>
+            <React.Fragment>
+                <i tabIndex="-1" onFocus={onOpenMenu} onBlur={this.blurrr} className="fas fa-bars folders-menu-btn"></i>
+                <input type="text" placeholder="Search" onChange={this.handleChange} autoComplete="off" ></input>
+            </React.Fragment>
         )
     }
 }
