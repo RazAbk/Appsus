@@ -3,7 +3,7 @@ import { LongTxt } from "../../../cmps/LongTxt.jsx"
 
 export function EmailPreview({ email, onSelectedEmail, onCheckEmail, moveEmail, emailReadToggle, emailStarToggle, onSetDraft }) {
 
-    const {time, date} = utilService.getFormattedDateNTime(email.sentAt)
+    const {time, date} = utilService.getFormattedDateNTime(email.sentAt);
 
     const onEmailPreviewClick = () => {
         if(email.folder !== 'drafts') {
@@ -16,8 +16,8 @@ export function EmailPreview({ email, onSelectedEmail, onCheckEmail, moveEmail, 
         if(!email.isRead){
             emailReadToggle(email.id)
         }
-
     }
+
 
     return (
         <div className={`email-preview ${(email.isRead ? '': 'email-unread')}`} onClick={(email) => { onEmailPreviewClick(email) }}>
@@ -32,7 +32,7 @@ export function EmailPreview({ email, onSelectedEmail, onCheckEmail, moveEmail, 
                 <p>{email.composer}</p>
             </div>
             <div className="email-center">
-                <LongTxt text={email.subject} maxSize={60} />
+                <LongTxt text={email.subject} />
             </div>
             <div className="email-right">
                 <p>{`${time} ${date}`}</p>
