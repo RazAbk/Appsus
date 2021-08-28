@@ -12,10 +12,10 @@
 
 /* Notes Input */
 
-input {
+.note input {
     outline: none;
     border: navajowhite;
-    box-shadow: 0 0 3px;
+    /* box-shadow: 0 0 3px; */
 }
 
 input:hover {
