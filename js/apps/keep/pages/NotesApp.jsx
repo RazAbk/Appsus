@@ -8,6 +8,7 @@ export class NotesApp extends React.Component {
     state = {
         notes: [],
         selectedNote: null,
+        isSelectedColor: false,
         inputType: 'note-txt',
 
     }
@@ -27,13 +28,9 @@ export class NotesApp extends React.Component {
         this.setState({ ...this.state, inputType: type })
     }
 
-    
-    onEditMode = (noteId) => {
-        if (this.state.selectedNote) return
-        else {
-            this.setState({ selectedNote: noteId }, this.loadNotes())
 
-        }
+    onEditMode = (noteId) => {
+        this.setState({ selectedNote: noteId }, this.loadNotes())
 
     }
 
@@ -50,22 +47,24 @@ export class NotesApp extends React.Component {
     onGoBack = () => {
         this.setState({ selectedNote: null })
     }
-    
-    onGetColor = (noteId, style) => {
-        notesService.editNote(noteId, style)
-        this.loadNotes()
+
+    onGetColor = (noteId) => {
+        const { selectedColor } = this.state
+        this.setState({ selectedColor: !selectedColor, selectedNote: noteId })
+
+        // notesService.editNote(noteId, style)
     }
     onShowModal = (type) => {
         switch (type) {
             case 'duplicate': eventBusService.emit('user-msg', { txt: `duplicated!`, type: 'duplicate', time: 2000 })
-            break;
+                break;
             case 'pined': eventBusService.emit('user-msg', { txt: `now its on the top go look!`, type: 'pined', time: 2000 })
-            break;
+                break;
             case 'delete': eventBusService.emit('user-msg', { txt: `note deleted!`, type: 'delete', time: 2000 })
                 break;
-            }
+        }
     }
-    
+
     onToggleNotePin = (noteId) => {
         if (this.state.selectedNote) {
             this.onShowModal('pined')
@@ -89,11 +88,11 @@ export class NotesApp extends React.Component {
         this.onGoBack()
         this.loadNotes();
     }
-    
-    
+
+
     render() {
-        
-        const { inputType, selectedNote } = this.state;
+
+        const { inputType, selectedNote, isSelectedColor } = this.state;
 
         return (
             <div className="notes-app">
@@ -114,6 +113,8 @@ export class NotesApp extends React.Component {
                                 onSaveEdit={this.onSaveEdit}
                                 onGoBack={this.onGoBack}
                                 onGetColor={this.onGetColor}
+                                isSelectedColor={isSelectedColor}
+
                             />
                         </div>
                     </div>
@@ -131,6 +132,7 @@ export class NotesApp extends React.Component {
                                 onSaveEdit={this.onSaveEdit}
                                 onGoBack={this.onGoBack}
                                 onGetColor={this.onGetColor}
+                                isSelectedColor={isSelectedColor}
                             />
                         </div>
 

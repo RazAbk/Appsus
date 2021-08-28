@@ -1,5 +1,6 @@
-export function NoteTxt({ noteId, info, selectedNote, onSaveEdit, onGoBack}) {
+export function NoteTxt({ noteId, info, selectedNote, onSaveEdit, onGoBack, isSelectedColor }) {
     let setInfo;
+    console.log(isSelectedColor);
 
     const txtRef = React.createRef()
 
@@ -8,7 +9,7 @@ export function NoteTxt({ noteId, info, selectedNote, onSaveEdit, onGoBack}) {
         onSaveEdit(noteId, setInfo)
     }
 
-    if (!selectedNote || selectedNote != noteId) {
+    if (!selectedNote || selectedNote != noteId || isSelectedColor) {
         return (
             <div className="note-txt">
                 <h2>{info.txt}</h2>
@@ -23,7 +24,6 @@ export function NoteTxt({ noteId, info, selectedNote, onSaveEdit, onGoBack}) {
                 <div className="edit-buttons">
                     <button className="btn edit-save" onClick={() => handleRef()}> save! </button>
                     <button className="btn edit-goback fas fa-times" onClick={() => onGoBack()}></button>
-                    
 
                 </div>
             </div>

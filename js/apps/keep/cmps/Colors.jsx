@@ -1,22 +1,23 @@
-export function Colors() {
+export function Colors(noteId) {
+    console.log(noteId)
 
-    // const setColorToNote(color) {
-    //     switch (color) {
-    //         case 'red':
-                
-    //             break;
-        
-    //         default:
-    //             break;
-    //     }
-        
-    // }
+    const setColorToNote = (color) => {
+        switch (color) {
+            case 'red': 
 
-    // <section className="colorsInput">
+                break;
 
-    //     <div onClick={() => { setColorToNote('red') }}>blue</div>
-    //     {/* <div>red</div> */}
-    // </section>
+            default:    
+                break;
+        }
+
+    }
+    return(
+
+    <section className="colors">
+        <div onClick={() => { setColorToNote('red') }}>red</div>
+    </section>
+    )
 
 }
 

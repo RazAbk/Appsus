@@ -1,7 +1,7 @@
 import { NotePreview } from "./NotePreview.jsx"
 import { utilService } from "../../../services/util.service.js"
 
-export function NotesList({ notes, onDeleteNote, onToggleNotePin, onDuplicateNote, onEditMode, selectedNote, onSaveEdit, onGoBack, onGetColor }) {
+export function NotesList({ notes, onDeleteNote, onToggleNotePin, onDuplicateNote, onEditMode, selectedNote, onSaveEdit, onGoBack, onGetColor,isSelectedColor }) {
 
     return notes.map(note => <NotePreview key={`${note.id}-${utilService.getRandomIntInclusive(1, 100000)}`}
         note={note}
@@ -13,6 +13,7 @@ export function NotesList({ notes, onDeleteNote, onToggleNotePin, onDuplicateNot
         onSaveEdit={onSaveEdit}
         onGoBack={onGoBack}
         onGetColor={onGetColor}
+        isSelectedColor={isSelectedColor}
     />)
 
 }
