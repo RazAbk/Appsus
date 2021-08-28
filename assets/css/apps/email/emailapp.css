@@ -17,7 +17,6 @@
 .emails-right-layout {
     width: 100%;
     height: 100%;
-    padding-inline-start: 4.5rem;
 }
 
 .emails-left-layout {
@@ -156,12 +155,20 @@
     outline: none;
 }
 
+.folders-menu-btn{
+    color:white;
+    padding-inline-end: 0.5rem;
+    font-size: 2rem;
+}
+
 .email-folders {
+    transform: translateX(-110%);
     position:absolute;
     z-index: 300;
-    width: 3rem;
+    width: 15rem;
     height: calc( 100vh - 130px );
-    background-color: rgb(75, 75, 75);
+    background-color: rgba(75, 75, 75, 0.97);
+    box-shadow: 6px 0px 8px 0px #3d3d3dc9;
     transition: 0.3s;
     display: flex;
     flex-direction: column;
@@ -170,33 +177,21 @@
     padding: 1rem 0.5rem 0.5rem 0;
 }
 
-.email-folders>*{
-    width: 100%;
-    white-space: nowrap;
-}
-
-.folders-content{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.folder-content span{
-    padding-inline-start: 0.75rem;
-}
-
-.email-folders:hover {
+/* .email-folders:hover {
     position: absolute;
     width: 15rem;
     background-color: rgba(75, 75, 75, 0.97);
     box-shadow: 6px 0px 8px 0px #3d3d3dc9;
-}
+} */
 
-.email-folders:hover>* {
-    width: 200px;
+.on-hover{
+    transform: translateX(0%);
 }
 
 .email-folders>*{
+    width: 100%;
+    white-space: nowrap;
+
     margin-block-end: 1rem;
     background-color: #fff;
     border-radius: 50px;
@@ -209,12 +204,25 @@
     transition: 0.3s;
 }
 
-
-.email-folders>*:hover {
-    background-color: rgb(255, 241, 181);
-    transform: scale(1.1);
+.email-folders.on-hover>* {
+    width: 200px;
 }
 
+.email-folders>*.on-hover {
+    background-color: rgb(255, 241, 181);
+    transform: scale(1.1) translateX(12.5%);
+}
+
+
+.folders-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.folder-content span{
+    padding-inline-start: 0.75rem;
+}
 
 .new-compose {
     background-color: #fff;
@@ -534,8 +542,13 @@ input.email-checkbox {
         border-radius: 5px;
         outline: none;
     }
+
+    .folders-menu-btn{
+        display: none;
+    }
     
     .email-folders {
+        transform: unset;
         position:absolute;
         z-index: 300;
         width: 3rem;
@@ -549,22 +562,7 @@ input.email-checkbox {
         justify-content: flex-start;
         padding: 1rem 0.5rem 0.5rem 0;
     }
-    
-    .email-folders>*{
-        width: 100%;
-        white-space: nowrap;
-    }
-    
-    .folders-content{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .folder-content span{
-        padding-inline-start: 0.75rem;
-    }
-    
+
     .email-folders:hover {
         position: absolute;
         width: 15rem;
@@ -577,6 +575,8 @@ input.email-checkbox {
     }
     
     .email-folders>*{
+        width: 100%;
+        white-space: nowrap;
         margin-block-end: 1rem;
         background-color: #fff;
         border-radius: 50px;
@@ -592,10 +592,20 @@ input.email-checkbox {
     
     .email-folders>*:hover {
         background-color: rgb(255, 241, 181);
-        transform: scale(1.1);
+        transform: scale(1.1) translateX(15%);
     }
     
+    .folders-content{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     
+    .folder-content span{
+        padding-inline-start: 0.75rem;
+    }
+    
+  
     .new-compose {
         background-color: #fff;
         border-radius: 50px;
