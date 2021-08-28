@@ -1,6 +1,7 @@
 header{
     background-color: rgb(0, 134, 224);
     padding: 0 0.5rem;
+    height: 70px;
 }
 
 .logo{
@@ -8,10 +9,10 @@ header{
 }
 
 .header{
+    height: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 70px;
     padding: 0 0.5rem;
 }
 
@@ -62,6 +63,7 @@ header{
         justify-content: space-between;
         align-items: center;
         justify-content: center;
+        height: 80px;
     }
     
     .header{
