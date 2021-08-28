@@ -66,13 +66,13 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNo
             <div className={`note-funcs ${selectedNote === note.id ? 'edit-func' : ''}`}>
                 <i onClick={() => { onDeleteNote(note.id) }} className="fas fa-trash"></i>
                 <i onClick={() => { onToggleNotePin(note.id); console.log('toggle', note.id); }} className="fas fa-thumbtack"></i>
-                <label className="fas fa-palette">{note.id}
+                <label className="fas fa-palette">
                     <input className="color-input" type="color" onInput={(ev) => changeColor(ev, note.id)} />
                 </label>
                 <i onClick={() => { onDuplicateNote(note.id) }} className="fas fa-clone"></i>
                 <i onClick={toggleEditMode} className={`fas fa-edit`}></i>
                 <i className="fas fa-at"></i>
-                <i type="color" style={{ width: '2px', height: '2px', backgroundColor: 'white' }} onClick={(ev) => { changeColor(ev, note.id) }}>aa</i>
+                
             </div>
 
         </div >

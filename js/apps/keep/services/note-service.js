@@ -55,15 +55,18 @@ function query() {
 
 // Crud
 function editNote(noteId, info) {
-    const idx = _getNoteIdx(noteId)
-    console.log(idx)
-    if (Object.keys(info)[0] === 'backgroundColor') {
-        console.log(info)
-        gNotes[idx].style = info
-    } else {
-        gNotes[idx].info = info
+    const editIdx = _getNoteIdx(noteId)
+
+    if (editIdx !== -1) {
+
+        if (Object.keys(info)[0] === 'backgroundColor') {
+            console.log(info)
+            gNotes[editIdx].style = info
+        } else {
+            gNotes[editIdx].info = info
+        }
+        _saveNotesToStorage()
     }
-    _saveNotesToStorage()
 }
 
 
@@ -99,8 +102,8 @@ function toggleNotePin(noteId) {
 function duplicateNote(noteId) {
     const duplicateIdx = _getNoteIdx(noteId);
     if (duplicateIdx !== -1) {
-        const duplicateIdx = _getNoteIdx(noteId);
         const newCopy = JSON.parse(JSON.stringify(gNotes[duplicateIdx]));
+        newCopy.id = utilService.makeId()
         gNotes.push(newCopy);
         _saveNotesToStorage();
     }
@@ -120,5 +123,12 @@ function getNoteById(noteId) {
     const note = gNotes.find(note => note.id === noteId)
     console.log(note)
     return note
+
+}
+
+
+function addTouchListner() {
+    onTouchStart()
+
 
 }
