@@ -33,11 +33,11 @@ class _AppHeader extends React.Component {
               <i className="fas fa-shapes"></i>
             </div>
             <nav className="nav-bar">
-                    <NavLink activeClassName="my-active" exact to='/' ><i className="fas fa-home"></i></NavLink>
-                    <NavLink to ="/email" ><i className="far fa-envelope"></i>{ unReadEmails !== 0 && <span className="unread-emails">{unReadEmails}</span>}</NavLink>
-                    <NavLink to ="/notes" ><i className="far fa-sticky-note"></i></NavLink>
-                    <NavLink to ="/books" ><i className="fas fa-book"></i></NavLink>
-                    <NavLink to ="/about" ><i className="fas fa-info-circle"></i></NavLink>
+                    <NavLink activeClassName="my-active" exact to='/' ><i title="homepage" className="fas fa-home"></i></NavLink>
+                    <NavLink to ="/email" ><i title="email" className="far fa-envelope"></i>{ unReadEmails !== 0 && <span className="unread-emails">{unReadEmails}</span>}</NavLink>
+                    <NavLink to ="/notes" ><i title="notes" className="far fa-sticky-note"></i></NavLink>
+                    <NavLink to ="/books" ><i title="books" className="fas fa-book"></i></NavLink>
+                    <NavLink to ="/about" ><i title="about" className="fas fa-info-circle"></i></NavLink>
             </nav>
         </div>
     )

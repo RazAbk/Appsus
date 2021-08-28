@@ -56,12 +56,12 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNo
                 {noteToDisplay}
             </div>
             <div className={`note-funcs ${selectedNote === note.id ? 'edit-func' : ''}`}>
-                <i onClick={() => { onDeleteNote(note.id) }} className="fas fa-trash"></i>
-                <i onClick={() => { onToggleNotePin(note.id) }} className="fas fa-thumbtack"></i>
-                <i onClick={() => { onGetColor(note.id) }} className="fas fa-palette"></i>
-                <i onClick={() => { onDuplicateNote(note.id) }} className="fas fa-clone"></i>
-                <i onClick={() => { onEditMode(note.id) }} className={`fas fa-edit`}></i>
-                <i className="fas fa-at"></i>
+                <i title="delete note" onClick={() => { onDeleteNote(note.id) }} className="fas fa-trash"></i>
+                <i title="pin / unpin note" onClick={() => { onToggleNotePin(note.id) }} className="fas fa-thumbtack"></i>
+                <i title="change color" onClick={() => { onGetColor(note.id) }} className="fas fa-palette"></i>
+                <i title="duplicate note" onClick={() => { onDuplicateNote(note.id) }} className="fas fa-clone"></i>
+                <i title="edit note" onClick={() => { onEditMode(note.id) }} className={`fas fa-edit`}></i>
+                {/* <i title="share note" className="fas fa-at"></i> */}
                 {isSelectedColor && note.id === selectedNote && <Colors noteId={note.id} />}
 
 

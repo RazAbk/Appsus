@@ -20,13 +20,13 @@ export function EmailPreview({ email, onSelectedEmail, onCheckEmail, moveEmail, 
 
 
     return (
-        <div className={`email-preview ${(email.isRead ? '': 'email-unread')}`} onClick={(email) => { onEmailPreviewClick(email) }}>
+        <div title="view email" className={`email-preview ${(email.isRead ? '': 'email-unread')}`} onClick={(email) => { onEmailPreviewClick(email) }}>
             <div className="email-left">
                 <label htmlFor="checked-email"  ></label>
-                {email.isChecked && <input type="checkbox" name="checked-email"  onChange={()=>{onSelectedEmail(null);onCheckEmail(email.id)}} className="email-checkbox" checked />}
-                {!email.isChecked && <input type="checkbox" name="checked-email"  onChange={()=>{onSelectedEmail(null);onCheckEmail(email.id)}} className="email-checkbox" />}
+                {email.isChecked && <input title="check email" type="checkbox" name="checked-email"  onChange={()=>{onSelectedEmail(null);onCheckEmail(email.id)}} className="email-checkbox" checked />}
+                {!email.isChecked && <input title="check email" type="checkbox" name="checked-email"  onChange={()=>{onSelectedEmail(null);onCheckEmail(email.id)}} className="email-checkbox" />}
                 <div onClick={(ev) => {ev.stopPropagation(); emailStarToggle(email.id)}} className="email-star">
-                    {email.isStared ? <i className="fas fa-star email-stared"></i> : <i className="far fa-star"></i>}
+                    {email.isStared ? <i title="mark email as important" className="fas fa-star email-stared"></i> : <i className="far fa-star"></i>}
                 </div>
                 
             </div>
@@ -37,9 +37,9 @@ export function EmailPreview({ email, onSelectedEmail, onCheckEmail, moveEmail, 
             </div>
             <div className="email-right">
                 <div onClick={(ev)=>{ev.stopPropagation() ;emailReadToggle(email.id)}} className="email-read-envelope">
-                    {email.isRead ? <i className="far fa-envelope-open"></i> : <i className="fas fa-envelope"></i>}
+                    {email.isRead ? <i title="mark email as read / unread" className="far fa-envelope-open"></i> : <i className="fas fa-envelope"></i>}
                 </div>
-                <i onClick={(ev) => {ev.stopPropagation(); moveEmail(email.id, 'trash');}} className="fas fa-trash-alt email-trash"></i>
+                <i title="send email to trash" onClick={(ev) => {ev.stopPropagation(); moveEmail(email.id, 'trash');}} className="fas fa-trash-alt email-trash"></i>
             </div>
         </div>
     )
