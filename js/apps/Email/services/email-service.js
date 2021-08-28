@@ -14,6 +14,7 @@ export const emailService = {
     toggleEmailRead,
     toggleEmailStar,
     getUnReadEmailsCount,
+    getEmailFolder,
     draftToMail,
     saveDraft
 }
@@ -207,7 +208,6 @@ function moveFolder(emailId, folder){
     const emailIdx = _getEmailIdxById(emailId);
     if(gEmails[emailIdx].folder === 'trash' && folder === 'trash'){
         gEmails.splice(emailIdx, 1);
-        console.log('delete email')
     } else{
         gEmails[emailIdx].folder = folder;
     }
@@ -300,6 +300,11 @@ function getUnReadEmailsCount(){
     });
 
     return sum;
+}
+
+function getEmailFolder(emailId){
+    const emailIdx = _getEmailIdxById(emailId);
+    return gEmails[emailIdx].folder;
 }
 
 function _saveEmailsToStorage() {

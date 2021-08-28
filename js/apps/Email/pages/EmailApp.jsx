@@ -97,6 +97,14 @@ export class EmailApp extends React.Component {
     }
     
     onMoveEmail= (emailId, folder) => {
+        const emailFolder = emailService.getEmailFolder(emailId)
+
+        if(folder === 'trash' && emailFolder === 'trash' ){
+            eventBusService.emit('user-msg', {txt:`email deleted`, type:'message', time: 2000})
+        } else{
+            eventBusService.emit('user-msg', {txt:`moved to ${folder}`, type:'message', time: 2000})
+        }
+        
         emailService.moveFolder(emailId, folder);
         this.loadEmails()
     }

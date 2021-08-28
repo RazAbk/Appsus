@@ -29,7 +29,7 @@ export function EmailList({ emails, onSelectedEmail, onCheckEmail, onCheckAllEma
 
             <div className="emails-list">
 
-                <div className="emails-sort">
+                {/* <div className="emails-sort">
                     <div className="sort-selected">
                     <i className="far fa-star"></i>
                     </div>
@@ -40,7 +40,7 @@ export function EmailList({ emails, onSelectedEmail, onCheckEmail, onCheckAllEma
 
                     </div>
 
-                </div>
+                </div> */}
                 {emails.map(email => <EmailPreview key={email.id} email = {email}
                                                     onSelectedEmail = {onSelectedEmail}
                                                     onCheckEmail = {onCheckEmail}
