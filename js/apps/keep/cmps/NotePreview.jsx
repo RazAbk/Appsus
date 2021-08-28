@@ -28,18 +28,12 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNo
             break;
     }
 
-    const displayFuncs = (ev) => {
+    const showOrHideFuncs = (ev, input) => {
         const elFuncs = ev.target.getElementsByClassName('note-funcs')[0];
         ev.stopPropagation();
-        if (elFuncs) {
+        if (input === 'enter') {
             elFuncs.classList.add('expand-note')
-        }
-    }
-
-    const hideFuncs = (ev) => {
-        const elFuncs = ev.target.getElementsByClassName('note-funcs')[0];
-        ev.stopPropagation();
-        if (elFuncs) {
+        } else {
             elFuncs.classList.remove('expand-note')
         }
     }
@@ -53,13 +47,16 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNo
         let style = { backgroundColor: ev.target.value }
         onGetColor(noteId, style)
 
+    }
+    const showFuncsByTouch = () => {
+        // console.log('hey')
 
     }
 
 
     return (
-        <div className={`note ${note.type} ${selectedNote === note.id ? 'note-edit' : ''}`} onMouseEnter={displayFuncs}
-            onMouseLeave={hideFuncs} ref={currNote} style={note.style} >
+        <div onMouseEnter={(ev) => { showOrHideFuncs(ev, 'enter') }}
+        onMouseLeave={(ev) => { showOrHideFuncs(ev, 'leave') }} tabIndex="-1" className={`note ${note.type} ${selectedNote === note.id ? 'note-edit' : ''}`} ref={currNote} style={note.style}  >
             <div className="note-content">
                 {noteToDisplay}
             </div>
@@ -72,7 +69,7 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNo
                 <i onClick={() => { onDuplicateNote(note.id) }} className="fas fa-clone"></i>
                 <i onClick={toggleEditMode} className={`fas fa-edit`}></i>
                 <i className="fas fa-at"></i>
-                
+
             </div>
 
         </div >
