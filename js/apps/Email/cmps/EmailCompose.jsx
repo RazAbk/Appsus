@@ -33,8 +33,7 @@ export function EmailCompose({ userComposer, onCreateNewEmail, isOpen }) {
 
     var draftInterval = setInterval(() => {
         _saveDraft();
-        console.log(draft)
-    }, 2000);
+    }, 3000);
     
     const _saveDraft = () => {
         if(isDraftUpToDate) return;
@@ -44,7 +43,6 @@ export function EmailCompose({ userComposer, onCreateNewEmail, isOpen }) {
 
     // When exit from the edit mode
     const exitEditMode = () => {
-        
         eventBusService.emit('user-msg', {txt:'Save draft before exit?', type:'confirm', time: 1000*999999})
     }
 
