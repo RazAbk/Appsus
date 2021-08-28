@@ -182,10 +182,10 @@ function query(filterBy) {
         let filteredEmails = gEmails.filter(email => {
             return (
                 (
-                    email.subject.toLowerCase().includes(searchTxt) ||
-                    email.body.toLowerCase().includes(searchTxt) ||
-                    email.composer.toLowerCase().includes(searchTxt) ||
-                    email.receiver.toLowerCase().includes(searchTxt)
+                    email.subject.toLowerCase().includes(searchTxt.toLowerCase()) ||
+                    email.body.toLowerCase().includes(searchTxt.toLowerCase()) ||
+                    email.composer.toLowerCase().includes(searchTxt.toLowerCase()) ||
+                    email.receiver.toLowerCase().includes(searchTxt.toLowerCase())
 
                 )  && ( email.folder === folder || starFilter)
             )

@@ -29,13 +29,13 @@ export function EmailPreview({ email, onSelectedEmail, onCheckEmail, moveEmail, 
                     {email.isStared ? <i className="fas fa-star email-stared"></i> : <i className="far fa-star"></i>}
                 </div>
                 
-                <p>{email.composer}</p>
             </div>
             <div className="email-center">
+                <p>{email.composer}</p>
                 <LongTxt text={email.subject} />
+                <p>{`${time} ${date}`}</p>
             </div>
             <div className="email-right">
-                <p>{`${time} ${date}`}</p>
                 <div onClick={(ev)=>{ev.stopPropagation() ;emailReadToggle(email.id)}} className="email-read-envelope">
                     {email.isRead ? <i className="far fa-envelope-open"></i> : <i className="fas fa-envelope"></i>}
                 </div>
