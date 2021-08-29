@@ -11,8 +11,7 @@ export const notesService = {
 };
 
 const NOTES_KEY = "notesDB";
-const gNotes = storageService.loadFromStorage(NOTES_KEY) || [
-    {
+const gNotes = storageService.loadFromStorage(NOTES_KEY) || [{
         id: utilService.makeId(5),
         type: "note-txt",
         isPinned: true,
@@ -68,13 +67,14 @@ _saveNotesToStorage()
 
 function query() {
 
+    debugger
     return Promise.resolve(gNotes);
 }
 
 // Crud
 function editNote(noteId, info) {
     const editIdx = _getNoteIdx(noteId)
-
+    debugger
     if (editIdx !== -1) {
 
         if (Object.keys(info)[0] === 'backgroundColor') {
@@ -83,6 +83,7 @@ function editNote(noteId, info) {
         } else {
             gNotes[editIdx].info = info
         }
+        console.log(gNotes)
         _saveNotesToStorage()
     }
 }
