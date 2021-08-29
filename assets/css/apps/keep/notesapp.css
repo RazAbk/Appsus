@@ -1,355 +1,363 @@
- .notes-app {
-     width: 100%;
-     height: calc( 100vh - 110px);
-     /* min-height: calc( 100vh - 110px); */
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     overflow-y: scroll;
-     z-index: 2000;
- }
- /* Notes Input */
- 
- .note.input {
-     outline: none;
-     border: navajowhite;
-     /* box-shadow: 0 0 3px; */
- }
- 
- input:hover {
-     transition: 0.5s;
-     background-color: #e8ddd0;
- }
- 
- button {
-     border: none;
-     box-shadow: 0 0 3px;
- }
- 
- iframe {
-     width: 100%;
- }
- 
- label {
-     cursor: pointer;
- }
- 
- .color-input {
-     position: absolute;
-     opacity: 0;
-     width: 1px;
-     height: 1px;
- }
- 
- .notes-input {
-     margin-block-start: 1rem;
-     background-color: rgb(255, 255, 255);
-     border-radius: 5px;
-     border: 1px rgba(87, 87, 87, 0.349) solid;
-     padding: 0.5rem;
-     transition: 0.3s;
- }
- 
- .notes-input-form {
-     position: relative;
-     display: flex;
-     flex-direction: column;
-     height: 1.5rem;
-     transition: 0.3s;
- }
- 
- .add-input {
-     box-shadow: none;
- }
- 
- .expand-form {
-     height: 8rem;
- }
- 
- .notes-input-form input {
-     width: 100%;
-     border: none;
-     height: 2rem;
-     font-size: 1.5rem;
-     outline: none;
-     transition: 0.3s;
- }
- 
- .notes-input-form input::placeholder {
-     color: rgb(163, 163, 163);
-     border: none;
- }
- 
- .choose-type-btns {
-     position: absolute;
-     bottom: 0;
-     z-index: 300;
-     transition: 0.3s;
-     opacity: 0;
-     pointer-events: none;
- }
- 
- .choose-type-btns i {
-     cursor: pointer;
-     transition: 0.3s;
- }
- 
- .choose-type-btns i:hover {
-     transform: scale(1.2);
- }
- 
- .choose-type-btns>* {
-     font-size: 1.5rem;
-     padding-inline-end: 1rem;
- }
- 
- .add-note-btn {
-     position: absolute;
-     bottom: 0;
-     right: 0;
-     cursor: pointer;
-     border: none;
-     background-color: transparent;
-     opacity: 0;
-     pointer-events: none;
-     transition: 0.3s;
-     font-size: 1.7rem;
- }
- 
- .add-note-btn:hover {
-     transform: scale(1.1);
- }
- 
- .optional-input {
-     padding-top: 0.8rem;
-     opacity: 0;
-     pointer-events: none;
-     transition: 0.3s;
- }
- 
- .inside-form-visible {
-     opacity: 1;
-     pointer-events: visible;
- }
+.notes-app {
+    width: 100%;
+    height: calc( 100vh - 110px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    z-index: 2000;
+}
+/* Notes Input */
 
-.colors{
+.note.input {
+    outline: none;
+    border: navajowhite;
+    /* box-shadow: 0 0 3px; */
+}
+
+input:hover {
+    transition: 0.5s;
+    background-color: #e8ddd0;
+}
+
+button {
+    border: none;
+    box-shadow: 0 0 3px;
+}
+
+iframe {
+    width: 100%;
+}
+
+label {
+    cursor: pointer;
+}
+
+.color-input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+
+.notes-input {
+    margin-block-start: 1rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    border: 1px rgba(87, 87, 87, 0.349) solid;
+    padding: 0.5rem;
+    transition: 0.3s;
+}
+
+.notes-input-form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 1.5rem;
+    transition: 0.3s;
+}
+
+.add-input {
+    box-shadow: none;
+}
+
+.expand-form {
+    height: 8rem;
+}
+
+.notes-input-form input {
+    width: 100%;
+    border: none;
+    height: 2rem;
+    font-size: 1.5rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+.notes-input-form input::placeholder {
+    color: rgb(163, 163, 163);
+    border: none;
+}
+
+.choose-type-btns {
+    position: absolute;
+    bottom: 0;
+    z-index: 300;
+    transition: 0.3s;
     opacity: 0;
     pointer-events: none;
 }
 
-.show-colors{
+.choose-type-btns i {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.choose-type-btns i:hover {
+    transform: scale(1.2);
+}
+
+.choose-type-btns>* {
+    font-size: 1.5rem;
+    padding-inline-end: 1rem;
+}
+
+.add-note-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+    font-size: 1.7rem;
+}
+
+.add-note-btn:hover {
+    transform: scale(1.1);
+}
+
+.optional-input {
+    padding-top: 0.8rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.inside-form-visible {
     opacity: 1;
     pointer-events: visible;
+}
+
+.colors{
+   position: absolute;
+   opacity: 0;
+   pointer-events: none;
+   transform: translateY(-100%);
+}
+
+.colors button{
+   margin: 0 0.3rem;
+   width: 20px;
+   height: 20px;
+   border-radius: 50%;
+}
+
+.show-colors{
+   opacity: 1;
+   pointer-events: visible;
 
 }
 
- /* Notes Layout */
- 
- .note {
-     position: relative;
-     background-color: rgb(255 212 212 / 16%);
-     border-radius: 5px;
-     margin-block-end: 0.5rem;
-     word-break: break-all;
-     overflow: hidden;
-     padding: 2rem;
-     box-shadow: inset 0px 0px 2px;
-     break-inside: avoid-column;
- }
- 
- .note img {
-     max-width: 200px;
- }
- 
- .notes-pinned {
-     display: flex;
-     flex-direction: column;
-     justify-content: flex-start;
-     align-items: center;
- }
- 
- .notes-general {
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
- }
- 
- .notes-cards h2 {
-     margin: 1rem 0;
-     color: rgb(94, 94, 94);
-     font-size: 1.2rem;
- }
- 
- .cards-container {
-     columns: 3 250px;
-     width: 100%;
- }
- /* Note functions */
- 
- .note-edit {
-     display: flex;
-     flex-direction: column;
-     width: 90vw;
-     position: fixed;
-     top: 50%;
-     left: 50%;
-     transform: translate(-50%, -50%);
-     background-color: rgb(246 246 246);
-     font-size: 2rem;
-     border-radius: 5px;
-     z-index: 500;
-     animation: scale-up-center-modal .4s cubic-bezier(.39, .575, .565, 1.000) both;
-     box-shadow: 6px 4px 20px 8px #3d3d3dc9;
- }
- 
- .note-funcs .fas {
-     transition: 0.2s;
- }
- 
- .note-funcs .fas:hover {
-     transform: scale(1.4);
- }
- 
- .note-funcs {
-     display: flex;
-     justify-content: space-evenly;
-     align-items: center;
-     cursor: pointer;
-     position: relative;
-     transform: translateY(100%);
- }
- 
- .put-line {
-     text-decoration: line-through;
- }
- 
- .edit-inputs {
-     display: flex;
-     flex-direction: column;
-     width: 100%
- }
- 
- .edit-inputs>* {
-     font-family: 'Assistant', sans-serif;
-     font-size: 1.5rem;
-     margin-block-start: 1rem;
-     padding: 0.5rem;
-     border-radius: 5px;
- }
- 
- .edit-buttons {
-     display: flex;
-     justify-content: center;
- }
- 
- .edit-buttons>* {
-     background: #f6f3ef;
-     border-radius: 5px;
-     cursor: pointer;
-     display: flex;
-     justify-content: center;
- }
- 
- .btn.edit-goback {
-     margin-inline-start: 1.5rem;
-     position: absolute;
-     right: 0;
-     top: 0;
-     padding: 0.4rem;
-     margin-block-start: 0.5em;
-     margin-inline-end: 0.5em;
- }
- 
- .edit-note {
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     height: 100%;
-     justify-content: space-between;
- }
- 
- .edit-note>* {
-     width: 100%;
-     margin-block-start: 0.3rem;
- }
- 
- .todos-list>* {
-     margin-block-start: 0.3rem;
-     cursor: pointer;
- }
- 
- .edit-save {
-     width: 10.5rem;
-     height: 2rem;
-     font-size: 1.4rem;
-     align-items: center;
- }
- 
- .edit-inputs .txt {
-     margin-block-end: 5rem;
- }
- 
- .edit-func {
-     display: flex;
-     max-width: none;
-     justify-content: space-evenly;
- }
- 
- .note-edit {
-     padding: 2rem 2rem 3.5rem 2rem;
- }
- 
- .edit-list>* {
-     font-family: 'Assistant', sans-serif;
-     font-size: 1.5rem;
-     padding: 0.5rem;
-     border-radius: 5px;
-     width: 100%;
- }
- 
- .edit-inputs-todos>* {
-     font-family: 'Assistant', sans-serif;
-     font-size: 1.5rem;
-     padding: 0.5rem;
-     border-radius: 5px;
-     display: flex;
-     flex-direction: column;
-     width: 100%
- }
- 
- .note-todos.note-edit {
-     justify-content: space-evenly;
- }
- 
- .note-content {
-     height: 100%;
- }
- 
- .edit-input-todos {
-     width: 100%;
- }
- 
- li.edit-list {
-     margin-inline-start: 0.3rem;
- }
- 
- @media screen and (min-width:700px) {
-     .note-funcs {
-         opacity: 0;
-         display: flex;
-     }
-     .expand-note {
-         opacity: 1;
-         transition: 0.5s;
-     }
-     .note-edit {
-         width: 40vw;
-     }
-     .edit-save {
-         width: 10.5rem;
-         height: 4rem;
-         font-size: 2.4rem;
-         align-items: center;
-     }
- }
+/* Notes Layout */
+
+.note {
+    position: relative;
+    background-color: rgb(255 212 212 / 16%);
+    border-radius: 5px;
+    margin-block-end: 0.5rem;
+    word-break: break-all;
+    overflow: hidden;
+    padding: 2rem;
+    box-shadow: inset 0px 0px 2px;
+    break-inside: avoid-column;
+}
+
+.note img {
+    max-width: 200px;
+}
+
+.notes-pinned {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.notes-general {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.notes-cards h2 {
+    margin: 1rem 0;
+    color: rgb(94, 94, 94);
+    font-size: 1.2rem;
+}
+
+.cards-container {
+    columns: 3 250px;
+    width: 100%;
+}
+/* Note functions */
+
+.note-edit {
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(246 246 246);
+    font-size: 2rem;
+    border-radius: 5px;
+    z-index: 500;
+    animation: scale-up-center-modal .4s cubic-bezier(.39, .575, .565, 1.000) both;
+    box-shadow: 6px 4px 20px 8px #3d3d3dc9;
+}
+
+.note-funcs .fas {
+    transition: 0.2s;
+}
+
+.note-funcs .fas:hover {
+    transform: scale(1.4);
+}
+
+.note-funcs {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    transform: translateY(100%);
+}
+
+.put-line {
+    text-decoration: line-through;
+}
+
+.edit-inputs {
+    display: flex;
+    flex-direction: column;
+    width: 100%
+}
+
+.edit-inputs>* {
+    font-family: 'Assistant', sans-serif;
+    font-size: 1.5rem;
+    margin-block-start: 1rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.edit-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.edit-buttons>* {
+    background: #f6f3ef;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+.btn.edit-goback {
+    margin-inline-start: 1.5rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0.4rem;
+    margin-block-start: 0.5em;
+    margin-inline-end: 0.5em;
+}
+
+.edit-note {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.edit-note>* {
+    width: 100%;
+    margin-block-start: 0.3rem;
+}
+
+.todos-list>* {
+    margin-block-start: 0.3rem;
+    cursor: pointer;
+}
+
+.edit-save {
+    width: 10.5rem;
+    height: 2rem;
+    font-size: 1.4rem;
+    align-items: center;
+}
+
+.edit-inputs .txt {
+    margin-block-end: 5rem;
+}
+
+.edit-func {
+    display: flex;
+    max-width: none;
+    justify-content: space-evenly;
+}
+
+.note-edit {
+    padding: 2rem 2rem 3.5rem 2rem;
+}
+
+.edit-list>* {
+    font-family: 'Assistant', sans-serif;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.edit-inputs-todos>* {
+    font-family: 'Assistant', sans-serif;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 100%
+}
+
+.note-todos.note-edit {
+    justify-content: space-evenly;
+}
+
+.note-content {
+    height: 100%;
+}
+
+.edit-input-todos {
+    width: 100%;
+}
+
+li.edit-list {
+    margin-inline-start: 0.3rem;
+}
+
+@media screen and (min-width:700px) {
+    .note-funcs {
+        opacity: 0;
+        display: flex;
+    }
+    .expand-note {
+        opacity: 1;
+        transition: 0.5s;
+    }
+    .note-edit {
+        width: 40vw;
+    }
+    .edit-save {
+        width: 10.5rem;
+        height: 4rem;
+        font-size: 2.4rem;
+        align-items: center;
+    }
+}

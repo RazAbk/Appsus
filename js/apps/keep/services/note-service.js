@@ -78,7 +78,6 @@ function editNote(noteId, info) {
     if (editIdx !== -1) {
 
         if (Object.keys(info)[0] === 'backgroundColor') {
-            console.log(info)
             gNotes[editIdx].style = info
         } else {
             gNotes[editIdx].info = info
@@ -137,16 +136,11 @@ function _getNoteIdx(noteId) {
 }
 
 function getNoteById(noteId) {
-    console.log(noteId)
     const note = gNotes.find(note => note.id === noteId)
-    console.log(note)
     return note
 
 }
 
-
 function addTouchListner() {
     onTouchStart()
-
-
 }

@@ -21,7 +21,7 @@ export function NoteTodos({ noteId, info, selectedNote, onSaveEdit, onGoBack }) 
         ev.target.classList.toggle('put-line');
     }
     if (!selectedNote || selectedNote != noteId) {
-
+    
         return (
             <div className="todos">
                 <h2>{info.label}</h2>
