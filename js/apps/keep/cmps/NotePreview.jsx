@@ -1,4 +1,3 @@
-
 import { NoteTxt } from "./NoteTxt.jsx";
 import { NoteImg } from './NoteImg.jsx'
 import { NoteTodos } from './NoteTodos.jsx'
@@ -8,10 +7,8 @@ import { Colors } from "./Colors.jsx";
 
 
 export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNote, onEditMode, selectedNote, onSaveEdit, onGoBack, onChangeNoteColor  }) {
-    
-    let noteToDisplay;
     let currNote = React.createRef();
-
+    let noteToDisplay;
 
     const { info } = note
 
@@ -55,8 +52,7 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNo
     return (
         <div onMouseEnter={(ev) => { showOrHideFuncs(ev, 'enter') }}
             onMouseLeave={(ev) => { showOrHideFuncs(ev, 'leave') }}
-
-            abindex="-1" className={`note ${note.type} ${note.id} ${note.id === selectedNote}`} ref={currNote} style={note.style}  >
+            abindex="-1" className={`note ${note.type} ${selectedNote === note.id ? 'note-edit' : ''}`} ref={currNote} style={note.style}  >
             <div className="note-content mobile">
                 {noteToDisplay}
             </div>

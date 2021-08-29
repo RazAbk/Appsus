@@ -9,4 +9,3 @@ export function Colors({noteId, onChangeColor}) {
         </section>
         )
 }
-
