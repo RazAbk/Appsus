@@ -12,15 +12,6 @@ export function NoteVideo({ noteId, info, selectedNote, onSaveEdit, onGoBack }) 
         newUrl = info.url.replace('watch?v=', `embed/`);
         newUrl = newUrl.replace('youtube', 'youtube-nocookie');
 
-    // const setCorrectUrl = () => {
-    //     debugger
-    //     newUrl = info.url.replace('watch?v=', `embed/`);
-    //     newUrl = newUrl.replace('youtube', 'youtube-nocookie');
-    //     console.log(newUrl)
-    //     return newUrl
-    // }
-
-
     if (!selectedNote || selectedNote != noteId) {
         return (
             <div className="note-video">
