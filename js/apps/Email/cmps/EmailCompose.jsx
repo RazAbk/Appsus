@@ -6,9 +6,11 @@ export function EmailCompose({ userComposer, onCreateNewEmail, isOpen }) {
 
     // EventBus for draft confirm message
     let removeEventBus = eventBusService.on('user-answer', (answer) => {
-        if(answer === 'yes'){
+        if(answer === 'yes' && draft){
             const { subject, body, composer, receiver } = draft;
-            emailService.createEmail(subject ? subject : '', body ? body : '', 'drafts', composer, receiver ? receiver : '');
+            if(subject || body || receiver){
+                emailService.createEmail(subject ? subject : '', body ? body : '', 'drafts', composer, receiver ? receiver : '');
+            }
         }
 
         clearEventBus();
