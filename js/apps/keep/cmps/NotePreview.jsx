@@ -33,6 +33,9 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNo
     const showOrHideFuncs = (ev, input) => {
 
         const elFuncs = ev.target.getElementsByClassName('note-funcs')[0];
+        ev.stopPropagation();
+
+        if(!elFuncs) return;
         if (input === 'enter') {
             elFuncs.classList.add('expand-note')
         } else {
@@ -60,14 +63,11 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNo
             <div className={`note-funcs ${selectedNote === note.id ? 'edit-func' : ''}`}>
                 <i title="delete note" onClick={() => { onDeleteNote(note.id) }} className="fas fa-trash"></i>
                 <i title="pin / unpin note" onClick={() => { onToggleNotePin(note.id) }} className="fas fa-thumbtack"></i>
-                {/* <i title="change color" onClick={() => { onGetColor(note.id) }} className="fas fa-palette"></i> */}
                 <i title="change color" onClick={() => { onRevealColors(note.id) }} className="fas fa-palette"></i>
                 <i title="duplicate note" onClick={() => { onDuplicateNote(note.id) }} className="fas fa-clone"></i>
                 <i title="edit note" onClick={() => { onEditMode(note.id) }} className={`fas fa-edit`}></i>
-                {/* <i title="share note" className="fas fa-at"></i> */}
                 <Colors noteId={note.id} onChangeColor={onChangeColor} />
-                
-
+            
             </div>
 
         </div >

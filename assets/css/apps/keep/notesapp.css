@@ -1,7 +1,6 @@
  .notes-app {
      width: 100%;
      height: calc( 100vh - 110px);
-     /* min-height: calc( 100vh - 110px); */
      display: flex;
      flex-direction: column;
      align-items: center;
@@ -133,8 +132,17 @@
  }
 
 .colors{
+    position: absolute;
     opacity: 0;
     pointer-events: none;
+    transform: translateY(-100%);
+}
+
+.colors button{
+    margin: 0 0.3rem;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
 }
 
 .show-colors{

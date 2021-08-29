@@ -4,13 +4,10 @@ export function NoteImg({ noteId, info, selectedNote, onSaveEdit, onGoBack }) {
     const urlTitle = React.createRef()
 
     const handleRef = () => {
-        console.log(urlRef);
         const setInfo = {
             url: urlRef.current.value,
             title: urlTitle.current.value
         }
-        console.log(setInfo)
-
         onSaveEdit(noteId, setInfo)
     }
 

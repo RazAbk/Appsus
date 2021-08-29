@@ -1,6 +1,5 @@
 export function NoteTxt({ noteId, info, selectedNote, onSaveEdit, onGoBack, isSelectedColor }) {
     let setInfo;
-    console.log(isSelectedColor);
 
     const txtRef = React.createRef()
 
