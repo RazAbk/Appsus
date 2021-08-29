@@ -30,7 +30,7 @@ const gNotes = storageService.loadFromStorage(NOTES_KEY) || [
         id: utilService.makeId(5),
         type: "note-img",
         isPinned: false,
-        info: { url: "/assets/img/cat.jpg", title: "Found this funny picture of a cat" },
+        info: { url: "./assets/img/cat.jpg", title: "Found this funny picture of a cat" },
         style: { backgroundColor: "rgb(51 150 80)" }
     },
     {
