@@ -17,21 +17,21 @@ const gNotes = storageService.loadFromStorage(NOTES_KEY) || [
         type: "note-txt",
         isPinned: true,
         info: { txt: "Buy milk on my way back from work" },
-        style: { backgroundColor: "rgb(128 150 212 / 16%)" }
+        style: { backgroundColor: "rgb(128 150 212)" }
     },
     {
         id: utilService.makeId(5),
         type: "note-txt",
         isPinned: true,
         info: { txt: "Fix the fence" },
-        style: { backgroundColor: "rgb(128 12 5 / 16%)" }
+        style: { backgroundColor: "rgb(218, 182, 5)" }
     },
     {
         id: utilService.makeId(5),
         type: "note-img",
         isPinned: false,
         info: { url: "/assets/img/cat.jpg", title: "Found this funny picture of a cat" },
-        style: { backgroundColor: "rgb(51 150 80 / 16%)" }
+        style: { backgroundColor: "rgb(51 150 80)" }
     },
     {
         id: utilService.makeId(5),
@@ -47,21 +47,21 @@ const gNotes = storageService.loadFromStorage(NOTES_KEY) || [
                 { txt: "Run 5km under 25 minutes", doneAt: null },
             ],
         },
-        style: { backgroundColor: "rgb(255 20 212 / 16%)" }
+        style: { backgroundColor: "rgb(104, 140, 252)" }
     },
     {
         id: utilService.makeId(5),
         type: "note-video",
         isPinned: false,
         info: { url: "https://www.youtube.com/watch?v=3OF7ikaSfcc", title: "funny vid" },
-        style: { backgroundColor: "rgb(255 212 212 / 16%)" }
+        style: { backgroundColor: "rgb(255 212 212)" }
     },
     {
         id: utilService.makeId(5),
         type: "note-video",
         isPinned: false,
         info: { url: "https://www.youtube.com/watch?v=pHruXWEasqQ", title: "Now that's something I'll want to do some day" },
-        style: { backgroundColor: "rgb(150 12 50 / 16%)" }
+        style: { backgroundColor: "rgb(150 12 50)" }
     },
 ];
 _saveNotesToStorage()
@@ -94,7 +94,7 @@ function createNote(info, type) {
         type,
         isPinned: false,
         info,
-        style: { backgroundColor: "rgb(255 212 212 / 16%)" }
+        style: { backgroundColor: "rgb(255 212 212)" }
     }
 
     gNotes.push(newNote);
