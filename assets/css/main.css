@@ -8,6 +8,7 @@
 @import url('./cmps/UserMsg.css');
 @import url('./home.css');
 @import url('../css/parts/fonts.css');
+@import url('../css//about.css');
 
 *{
     box-sizing: border-box;

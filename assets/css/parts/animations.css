@@ -27,6 +27,16 @@
     }
 }
 
+@keyframes only-rotating {
+  from {
+    transform: rotate(-10deg);
+  }
+  to {
+    transform: rotate(10deg);
+  }
+}
+
+
 @keyframes fade {
     0% {
         opacity: 0;
