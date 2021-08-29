@@ -38,11 +38,24 @@ const gEmails = storageService.loadFromStorage(EMAIL_KEY) || [{
         body: `As she said to the Mock Turtle said with some severity; 'it's very rude.' The Hatter was the first really clever thing the King say in a pleased tone. 'Pray don't trouble yourself to say than his first speech. 'You should learn not to make it stop. 'Well, I'd hardly finished the first sentence in her hands, and she soon made out that part.' 'Well, at any rate: go and take it.`,
         isRead: true,
         isStared: false,
-        isChecked: true,
+        isChecked: false,
         folder: 'sent',
         sentAt: Date.now(),
         composer: 'yossi@appsus.com',
-        receiver: 'bobo@walla.com'
+        receiver: 'friendly@walla.com'
+    },
+    {
+        id: utilService.makeId(4),
+        subject: 'About the job we discussed',
+        body: `I would love having a meeting and discussing about the job you offered me.
+        Waiting for your reply, Yossi.`,
+        isRead: true,
+        isStared: true,
+        isChecked: false,
+        folder: 'sent',
+        sentAt: Date.now(),
+        composer: 'yossi@appsus.com',
+        receiver: 'david123@walla.com'
     },
     {
         id: utilService.makeId(4),
@@ -58,26 +71,31 @@ const gEmails = storageService.loadFromStorage(EMAIL_KEY) || [{
     },
     {
         id: utilService.makeId(4),
-        subject: 'Hey old friend',
-        body: 'Hey lavada, its been a long time since we last met, how about catching up?',
-        isRead: true,
-        isStared: true,
-        isChecked: false,
-        folder: 'sent',
-        sentAt: Date.now(),
-        composer: 'yossi@appsus.com',
-        receiver: 'lavada25@yahoo.com'
-    },
-    {
-        id: utilService.makeId(4),
-        subject: 'Hello Yossi',
-        body: 'Lets build a better tomorrow, contact me for more details',
+        subject: 'Live Production and Broadcast Update',
+        body: 'Today I wanted to tell you about some exciting new products and software updates we’ve been working on. We recently announced two new Blackmagic Studio Camera 4K models, four completely redesigned HyperDeck Studio models and the new Blackmagic Web Presenter 4K. We also released DaVinci Resolve 17.3 and announced a new, lower price for Blackmagic URSA Mini Pro 12K to make high resolution workflows more affordable and accessible. Here are more details on each.',
         isRead: true,
         isStared: true,
         isChecked: false,
         folder: 'inbox',
         sentAt: Date.now(),
-        composer: 'dusty26@cole.org',
+        composer: 'mailout@blackmagicdesign.com',
+        receiver: 'yossi@appsus.com'
+    },
+    {
+        id: utilService.makeId(4),
+        subject: 'Confirmed: Your order 30111231261',
+        body: `Hi Yossi,
+
+        Order 3011295926101944 has been confirmed.
+        
+        We rely on customer reviews to help shoppers learn more about products on AliExpress. You can share your thoughts by adding a star rating, comments and pictures.Write a review
+        If you have any questions, please let us know!`,
+        isRead: true,
+        isStared: true,
+        isChecked: false,
+        folder: 'inbox',
+        sentAt: Date.now(),
+        composer: 'aliexpress@aliexpress.com',
         receiver: 'yossi@appsus.com'
     },
     {
