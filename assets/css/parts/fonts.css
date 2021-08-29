@@ -1,0 +1,11 @@
+@font-face{
+    font-family: mon-bold;
+    src: url('../fonts/mon-Bold.ttf')
+}
+
+@font-face{
+    font-family: mon-regular;
+    src: url('../fonts/mon-Regular.ttf')
+}
+
+

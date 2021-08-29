@@ -7,7 +7,8 @@
 @import url('./apps/keep/notesapp.css');
 @import url('./cmps/UserMsg.css');
 @import url('./home.css');
-
+@import url('../css/parts/fonts.css');
+@import url('../css//about.css');
 
 *{
     box-sizing: border-box;
@@ -24,14 +25,30 @@
 }
 
 body {
-    background-color: rgb(241, 241, 232);
+
 }
 
 main{
+    background: linear-gradient(
+        0deg,
+        rgba(241, 241, 232, 1) 0%,
+        rgba(0, 134, 224, 1) 100%
+    );
     display: flex;
     justify-content: center;
     height: 100%;
     overflow-y: hidden;
+}
+
+footer{
+    bottom: 0;
+    color:rgb(49, 42, 29);
+    text-align: center;
+    font-size: 0.5rem;
+}
+
+footer h2{
+    transform: translateY(50%);
 }
 
 

@@ -1,12 +1,25 @@
 .about-page {
-    background: linear-gradient(
-      0deg,
-      rgba(241, 241, 232, 1) 0%,
-      rgba(0, 134, 224, 1) 100%
-    );
-  
-    width: 100%;
-    height: calc( 100vh - 110px );
-    
+  margin-top: 5rem;
+  text-align: center;
+  width: 100%;
+  height: calc(100vh - 180px);
+}
+
+.about-page h1 {
+  font-family: mon-bold;
+  font-size: 2rem;
+}
+
+.fa-react {
+  color: rgb(0, 63, 146);
+  margin-top: 2rem;
+  font-size: 8rem;
+
+  animation: only-rotating 2s ease-in-out infinite alternate-reverse;
+}
+
+@media (min-width: 770px) {
+  .about-page h1 {
+    font-size: 3rem;
   }
-  
+}

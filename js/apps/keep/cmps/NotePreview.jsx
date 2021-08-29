@@ -7,12 +7,10 @@ import { Colors } from "./Colors.jsx";
 
 
 
-
-export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNote, onEditMode, selectedNote, onSaveEdit, onGoBack, onSetColorToNote, test }) {
-
+export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNote, onEditMode, selectedNote, onSaveEdit, onGoBack, onChangeNoteColor  }) {
+    
     let noteToDisplay;
     let currNote = React.createRef();
-
 
 
     const { info } = note
@@ -42,9 +40,12 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNo
         }
     }
 
-    const toggleColor = () => {
-        document.querySelector(`.color-${note.id}`).classList.toggle('show')
+    const onRevealColors = (noteId) => {
+      document.querySelector(`.colors-${noteId}`).classList.toggle('show-colors')
+    }
 
+    const onChangeColor = (color) => {
+        onChangeNoteColor(color,note.id);
     }
 
 
@@ -59,11 +60,13 @@ export function NotePreview({ note, onDeleteNote, onToggleNotePin, onDuplicateNo
             <div className={`note-funcs ${selectedNote === note.id ? 'edit-func' : ''}`}>
                 <i title="delete note" onClick={() => { onDeleteNote(note.id) }} className="fas fa-trash"></i>
                 <i title="pin / unpin note" onClick={() => { onToggleNotePin(note.id) }} className="fas fa-thumbtack"></i>
-                <i title="change color" onClick={() => { toggleColor() }} className="fas fa-palette"></i>
+                {/* <i title="change color" onClick={() => { onGetColor(note.id) }} className="fas fa-palette"></i> */}
+                <i title="change color" onClick={() => { onRevealColors(note.id) }} className="fas fa-palette"></i>
                 <i title="duplicate note" onClick={() => { onDuplicateNote(note.id) }} className="fas fa-clone"></i>
                 <i title="edit note" onClick={() => { onEditMode(note.id) }} className={`fas fa-edit`}></i>
-                <div className={`colors color-${note.id}`}><Colors onSetColorToNote={onSetColorToNote} noteId={note.id} test={test} /></div>
-
+                {/* <i title="share note" className="fas fa-at"></i> */}
+                <Colors noteId={note.id} onChangeColor={onChangeColor} />
+                
 
             </div>
 

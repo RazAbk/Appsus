@@ -2,7 +2,7 @@ export function AppFooter(){
 
     return (
         <React.Fragment>
-            <h1>footer</h1>
+            <h2>Ⓒ created by Guy Snir and Raz Abekasis</h2>
         </React.Fragment>
     )
 }

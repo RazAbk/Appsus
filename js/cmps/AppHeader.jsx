@@ -30,14 +30,13 @@ class _AppHeader extends React.Component {
     return (
         <div className="header main-layout">
             <div className="logo">
-              <i className="fas fa-shapes"></i>
+              <NavLink to ="/" ><img src="./assets/img/logo.svg"></img></NavLink>
             </div>
             <nav className="nav-bar">
-                    <NavLink activeClassName="my-active" exact to='/' ><i title="homepage" className="fas fa-home"></i></NavLink>
-                    <NavLink to ="/email" ><i title="email" className="far fa-envelope"></i>{ unReadEmails !== 0 && <span className="unread-emails">{unReadEmails}</span>}</NavLink>
-                    <NavLink to ="/notes" ><i title="notes" className="far fa-sticky-note"></i></NavLink>
-                    <NavLink to ="/books" ><i title="books" className="fas fa-book"></i></NavLink>
-                    <NavLink to ="/about" ><i title="about" className="fas fa-info-circle"></i></NavLink>
+              <NavLink activeClassName="my-active" exact to='/' ><i title="homepage" className="fas fa-home"></i></NavLink>
+              <NavLink to ="/email" ><i title="email" className="far fa-envelope"></i>{ unReadEmails !== 0 && <span className="unread-emails">{unReadEmails}</span>}</NavLink>
+              <NavLink to ="/notes" ><i title="notes" className="far fa-sticky-note"></i></NavLink>
+              <NavLink to ="/about" ><i title="about" className="fas fa-info-circle"></i></NavLink>
             </nav>
         </div>
     )

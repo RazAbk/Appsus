@@ -1,27 +1,13 @@
+export function Colors({noteId, onChangeColor}) {
 
 
-export function Colors({ onSetColorToNote, noteId, test }) {
-    console.log(test)
-    const setColorToNote = (color) => {
-        // switch (color) {
-        //     case 'red': onSetColorToNote(noteId, { backgroundColor: 'red' })
-        //         break;
-        //     case 'blue': onSetColorToNote(noteId, { backgroundColor: 'blue' })
-        //         break;
+    return(
 
-        // }
-
-
-
-    }
-    return (
-
-        <React.Fragment>
-            {test()}
-            <div onClick={() => { setColorToNote('red') }}>red</div>
-            <div onClick={() => { setColorToNote('blue') }}>blue</div>
-        </React.Fragment>
-    )
+        <section className={`colors colors-${noteId}`}>
+            <button onClick={()=>{onChangeColor('blue')}}>blue</button>
+            <button onClick={()=>{onChangeColor('red')}}>red</button>
+        </section>
+        )
 
 }
 
