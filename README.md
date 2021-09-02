@@ -2,7 +2,7 @@
 
 • Built with react\
 • Contains 2 applications inside: emails and notes (only front end)\
-• Using CRUD, user can compose emails, create notes, edit, delete and etc..\
+• Using CRUDL, user can compose emails, create notes, edit, delete and etc..\
 • Fully mobile responsive
 
 https://razabk.github.io/Appsus/#/
